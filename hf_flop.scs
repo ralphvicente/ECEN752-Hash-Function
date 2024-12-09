@@ -1,0 +1,32 @@
+simulator lang=spectre
+
+
+
+include "~/ECEN752/45nm_HP.pm"
+include "~/ECEN752/param.scs"
+
+
+parameters wn=45n lmin=45n wp=90n lp=45n ln=45n
+
+//INVERTER
+subckt INV (in out vdd vss)
+parameters wn=45n lmin=45n wp=45n lp=45n ln=45n
+mp1 (out in VDD VDD) pmos w=wp l=lp
+mn1 (out in VSS VSS) nmos w=wn l=ln
+ends INV
+
+//transparent latch
+subckt LATCH (in clk out)
+parameters wn=45n lmin=45n wp=45n lp=45n ln=45n
+mnclk (latchin clk in VSS) nmos w=wn l=ln
+xinv1 (latchin out VDD VSS) INV
+xinv2 (out latchin VDD VSS) INV
+ends LATCH
+
+//d flip flop
+subckt DFLOP (in clk out)
+xlatch1 (in clk net1) LATCH
+xinv (clk clkbar vdd vss) INV
+xlatch2 (net1 clkbar out) LATCH
+ends DFLOP
+

@@ -2,8 +2,8 @@ simulator lang=spectre
 
 
 
-include "~/ECEN752/45nm_HP.pm"
-include "~/ECEN752/param.scs"
+include "./45nm_HP.pm"
+include "./param.scs"
 
 
 parameters wn=45n lmin=45n wp=90n lp=45n ln=45n
