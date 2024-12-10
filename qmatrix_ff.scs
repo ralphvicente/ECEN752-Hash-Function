@@ -1,0 +1,1038 @@
+simulator lang=spectre
+
+include "~/ECEN752/45nm_HP.pm"
+
+vgnd0 (gnd 0) vsource dc=0
+vvdd0 (vdd 0) vsource dc=1
+
+//clock for flip-flop
+vpulse (clk 0) vsource type=pulse val0=0 val1=1 period=1n delay=0 rise=3p fall=3p width=500p
+
+//Randomly generated Q-matrix
+vQ_latch00 (Q_latch00 0) vsource dc=0
+vQ_latch10 (Q_latch10 0) vsource dc=1
+vQ_latch20 (Q_latch20 0) vsource dc=1
+vQ_latch30 (Q_latch30 0) vsource dc=0
+vQ_latch40 (Q_latch40 0) vsource dc=0
+vQ_latch01 (Q_latch01 0) vsource dc=0
+vQ_latch11 (Q_latch11 0) vsource dc=0
+vQ_latch21 (Q_latch21 0) vsource dc=0
+vQ_latch31 (Q_latch31 0) vsource dc=1
+vQ_latch41 (Q_latch41 0) vsource dc=0
+vQ_latch02 (Q_latch02 0) vsource dc=0
+vQ_latch12 (Q_latch12 0) vsource dc=1
+vQ_latch22 (Q_latch22 0) vsource dc=0
+vQ_latch32 (Q_latch32 0) vsource dc=1
+vQ_latch42 (Q_latch42 0) vsource dc=0
+vQ_latch03 (Q_latch03 0) vsource dc=0
+vQ_latch13 (Q_latch13 0) vsource dc=1
+vQ_latch23 (Q_latch23 0) vsource dc=0
+vQ_latch33 (Q_latch33 0) vsource dc=0
+vQ_latch43 (Q_latch43 0) vsource dc=1
+vQ_latch04 (Q_latch04 0) vsource dc=1
+vQ_latch14 (Q_latch14 0) vsource dc=1
+vQ_latch24 (Q_latch24 0) vsource dc=0
+vQ_latch34 (Q_latch34 0) vsource dc=0
+vQ_latch44 (Q_latch44 0) vsource dc=0
+vQ_latch05 (Q_latch05 0) vsource dc=0
+vQ_latch15 (Q_latch15 0) vsource dc=1
+vQ_latch25 (Q_latch25 0) vsource dc=0
+vQ_latch35 (Q_latch35 0) vsource dc=1
+vQ_latch45 (Q_latch45 0) vsource dc=1
+vQ_latch06 (Q_latch06 0) vsource dc=1
+vQ_latch16 (Q_latch16 0) vsource dc=0
+vQ_latch26 (Q_latch26 0) vsource dc=0
+vQ_latch36 (Q_latch36 0) vsource dc=0
+vQ_latch46 (Q_latch46 0) vsource dc=0
+vQ_latch07 (Q_latch07 0) vsource dc=0
+vQ_latch17 (Q_latch17 0) vsource dc=0
+vQ_latch27 (Q_latch27 0) vsource dc=0
+vQ_latch37 (Q_latch37 0) vsource dc=0
+vQ_latch47 (Q_latch47 0) vsource dc=0
+vQ_latch08 (Q_latch08 0) vsource dc=1
+vQ_latch18 (Q_latch18 0) vsource dc=1
+vQ_latch28 (Q_latch28 0) vsource dc=0
+vQ_latch38 (Q_latch38 0) vsource dc=0
+vQ_latch48 (Q_latch48 0) vsource dc=0
+vQ_latch09 (Q_latch09 0) vsource dc=0
+vQ_latch19 (Q_latch19 0) vsource dc=1
+vQ_latch29 (Q_latch29 0) vsource dc=0
+vQ_latch39 (Q_latch39 0) vsource dc=1
+vQ_latch49 (Q_latch49 0) vsource dc=0
+vQ_latch010 (Q_latch010 0) vsource dc=1
+vQ_latch110 (Q_latch110 0) vsource dc=0
+vQ_latch210 (Q_latch210 0) vsource dc=1
+vQ_latch310 (Q_latch310 0) vsource dc=1
+vQ_latch410 (Q_latch410 0) vsource dc=1
+vQ_latch011 (Q_latch011 0) vsource dc=0
+vQ_latch111 (Q_latch111 0) vsource dc=1
+vQ_latch211 (Q_latch211 0) vsource dc=1
+vQ_latch311 (Q_latch311 0) vsource dc=1
+vQ_latch411 (Q_latch411 0) vsource dc=1
+vQ_latch012 (Q_latch012 0) vsource dc=1
+vQ_latch112 (Q_latch112 0) vsource dc=0
+vQ_latch212 (Q_latch212 0) vsource dc=0
+vQ_latch312 (Q_latch312 0) vsource dc=1
+vQ_latch412 (Q_latch412 0) vsource dc=1
+vQ_latch013 (Q_latch013 0) vsource dc=0
+vQ_latch113 (Q_latch113 0) vsource dc=1
+vQ_latch213 (Q_latch213 0) vsource dc=1
+vQ_latch313 (Q_latch313 0) vsource dc=0
+vQ_latch413 (Q_latch413 0) vsource dc=0
+vQ_latch014 (Q_latch014 0) vsource dc=0
+vQ_latch114 (Q_latch114 0) vsource dc=1
+vQ_latch214 (Q_latch214 0) vsource dc=0
+vQ_latch314 (Q_latch314 0) vsource dc=0
+vQ_latch414 (Q_latch414 0) vsource dc=1
+vQ_latch015 (Q_latch015 0) vsource dc=0
+vQ_latch115 (Q_latch115 0) vsource dc=0
+vQ_latch215 (Q_latch215 0) vsource dc=0
+vQ_latch315 (Q_latch315 0) vsource dc=0
+vQ_latch415 (Q_latch415 0) vsource dc=1
+vQ_latch016 (Q_latch016 0) vsource dc=1
+vQ_latch116 (Q_latch116 0) vsource dc=1
+vQ_latch216 (Q_latch216 0) vsource dc=0
+vQ_latch316 (Q_latch316 0) vsource dc=1
+vQ_latch416 (Q_latch416 0) vsource dc=0
+vQ_latch017 (Q_latch017 0) vsource dc=0
+vQ_latch117 (Q_latch117 0) vsource dc=1
+vQ_latch217 (Q_latch217 0) vsource dc=1
+vQ_latch317 (Q_latch317 0) vsource dc=0
+vQ_latch417 (Q_latch417 0) vsource dc=0
+vQ_latch018 (Q_latch018 0) vsource dc=0
+vQ_latch118 (Q_latch118 0) vsource dc=1
+vQ_latch218 (Q_latch218 0) vsource dc=1
+vQ_latch318 (Q_latch318 0) vsource dc=1
+vQ_latch418 (Q_latch418 0) vsource dc=0
+vQ_latch019 (Q_latch019 0) vsource dc=0
+vQ_latch119 (Q_latch119 0) vsource dc=0
+vQ_latch219 (Q_latch219 0) vsource dc=1
+vQ_latch319 (Q_latch319 0) vsource dc=1
+vQ_latch419 (Q_latch419 0) vsource dc=0
+vQ_latch020 (Q_latch020 0) vsource dc=0
+vQ_latch120 (Q_latch120 0) vsource dc=1
+vQ_latch220 (Q_latch220 0) vsource dc=1
+vQ_latch320 (Q_latch320 0) vsource dc=1
+vQ_latch420 (Q_latch420 0) vsource dc=0
+vQ_latch021 (Q_latch021 0) vsource dc=1
+vQ_latch121 (Q_latch121 0) vsource dc=1
+vQ_latch221 (Q_latch221 0) vsource dc=0
+vQ_latch321 (Q_latch321 0) vsource dc=1
+vQ_latch421 (Q_latch421 0) vsource dc=0
+vQ_latch022 (Q_latch022 0) vsource dc=0
+vQ_latch122 (Q_latch122 0) vsource dc=1
+vQ_latch222 (Q_latch222 0) vsource dc=1
+vQ_latch322 (Q_latch322 0) vsource dc=0
+vQ_latch422 (Q_latch422 0) vsource dc=1
+vQ_latch023 (Q_latch023 0) vsource dc=0
+vQ_latch123 (Q_latch123 0) vsource dc=0
+vQ_latch223 (Q_latch223 0) vsource dc=0
+vQ_latch323 (Q_latch323 0) vsource dc=1
+vQ_latch423 (Q_latch423 0) vsource dc=1
+vQ_latch024 (Q_latch024 0) vsource dc=0
+vQ_latch124 (Q_latch124 0) vsource dc=0
+vQ_latch224 (Q_latch224 0) vsource dc=0
+vQ_latch324 (Q_latch324 0) vsource dc=0
+vQ_latch424 (Q_latch424 0) vsource dc=1
+vQ_latch025 (Q_latch025 0) vsource dc=0
+vQ_latch125 (Q_latch125 0) vsource dc=1
+vQ_latch225 (Q_latch225 0) vsource dc=1
+vQ_latch325 (Q_latch325 0) vsource dc=0
+vQ_latch425 (Q_latch425 0) vsource dc=1
+vQ_latch026 (Q_latch026 0) vsource dc=0
+vQ_latch126 (Q_latch126 0) vsource dc=0
+vQ_latch226 (Q_latch226 0) vsource dc=1
+vQ_latch326 (Q_latch326 0) vsource dc=0
+vQ_latch426 (Q_latch426 0) vsource dc=1
+vQ_latch027 (Q_latch027 0) vsource dc=0
+vQ_latch127 (Q_latch127 0) vsource dc=1
+vQ_latch227 (Q_latch227 0) vsource dc=0
+vQ_latch327 (Q_latch327 0) vsource dc=0
+vQ_latch427 (Q_latch427 0) vsource dc=1
+vQ_latch028 (Q_latch028 0) vsource dc=1
+vQ_latch128 (Q_latch128 0) vsource dc=1
+vQ_latch228 (Q_latch228 0) vsource dc=0
+vQ_latch328 (Q_latch328 0) vsource dc=1
+vQ_latch428 (Q_latch428 0) vsource dc=0
+vQ_latch029 (Q_latch029 0) vsource dc=0
+vQ_latch129 (Q_latch129 0) vsource dc=0
+vQ_latch229 (Q_latch229 0) vsource dc=0
+vQ_latch329 (Q_latch329 0) vsource dc=1
+vQ_latch429 (Q_latch429 0) vsource dc=0
+vQ_latch030 (Q_latch030 0) vsource dc=0
+vQ_latch130 (Q_latch130 0) vsource dc=1
+vQ_latch230 (Q_latch230 0) vsource dc=1
+vQ_latch330 (Q_latch330 0) vsource dc=1
+vQ_latch430 (Q_latch430 0) vsource dc=1
+vQ_latch031 (Q_latch031 0) vsource dc=1
+vQ_latch131 (Q_latch131 0) vsource dc=0
+vQ_latch231 (Q_latch231 0) vsource dc=1
+vQ_latch331 (Q_latch331 0) vsource dc=1
+vQ_latch431 (Q_latch431 0) vsource dc=0
+vQ_latch032 (Q_latch032 0) vsource dc=1
+vQ_latch132 (Q_latch132 0) vsource dc=1
+vQ_latch232 (Q_latch232 0) vsource dc=0
+vQ_latch332 (Q_latch332 0) vsource dc=1
+vQ_latch432 (Q_latch432 0) vsource dc=1
+vQ_latch033 (Q_latch033 0) vsource dc=0
+vQ_latch133 (Q_latch133 0) vsource dc=1
+vQ_latch233 (Q_latch233 0) vsource dc=0
+vQ_latch333 (Q_latch333 0) vsource dc=1
+vQ_latch433 (Q_latch433 0) vsource dc=1
+vQ_latch034 (Q_latch034 0) vsource dc=0
+vQ_latch134 (Q_latch134 0) vsource dc=0
+vQ_latch234 (Q_latch234 0) vsource dc=0
+vQ_latch334 (Q_latch334 0) vsource dc=1
+vQ_latch434 (Q_latch434 0) vsource dc=0
+vQ_latch035 (Q_latch035 0) vsource dc=0
+vQ_latch135 (Q_latch135 0) vsource dc=1
+vQ_latch235 (Q_latch235 0) vsource dc=1
+vQ_latch335 (Q_latch335 0) vsource dc=1
+vQ_latch435 (Q_latch435 0) vsource dc=1
+vQ_latch036 (Q_latch036 0) vsource dc=0
+vQ_latch136 (Q_latch136 0) vsource dc=0
+vQ_latch236 (Q_latch236 0) vsource dc=1
+vQ_latch336 (Q_latch336 0) vsource dc=0
+vQ_latch436 (Q_latch436 0) vsource dc=0
+vQ_latch037 (Q_latch037 0) vsource dc=1
+vQ_latch137 (Q_latch137 0) vsource dc=1
+vQ_latch237 (Q_latch237 0) vsource dc=0
+vQ_latch337 (Q_latch337 0) vsource dc=0
+vQ_latch437 (Q_latch437 0) vsource dc=1
+vQ_latch038 (Q_latch038 0) vsource dc=0
+vQ_latch138 (Q_latch138 0) vsource dc=0
+vQ_latch238 (Q_latch238 0) vsource dc=0
+vQ_latch338 (Q_latch338 0) vsource dc=0
+vQ_latch438 (Q_latch438 0) vsource dc=0
+vQ_latch039 (Q_latch039 0) vsource dc=0
+vQ_latch139 (Q_latch139 0) vsource dc=1
+vQ_latch239 (Q_latch239 0) vsource dc=1
+vQ_latch339 (Q_latch339 0) vsource dc=1
+vQ_latch439 (Q_latch439 0) vsource dc=1
+vQ_latch040 (Q_latch040 0) vsource dc=0
+vQ_latch140 (Q_latch140 0) vsource dc=0
+vQ_latch240 (Q_latch240 0) vsource dc=0
+vQ_latch340 (Q_latch340 0) vsource dc=1
+vQ_latch440 (Q_latch440 0) vsource dc=1
+vQ_latch041 (Q_latch041 0) vsource dc=1
+vQ_latch141 (Q_latch141 0) vsource dc=1
+vQ_latch241 (Q_latch241 0) vsource dc=1
+vQ_latch341 (Q_latch341 0) vsource dc=1
+vQ_latch441 (Q_latch441 0) vsource dc=1
+vQ_latch042 (Q_latch042 0) vsource dc=0
+vQ_latch142 (Q_latch142 0) vsource dc=1
+vQ_latch242 (Q_latch242 0) vsource dc=0
+vQ_latch342 (Q_latch342 0) vsource dc=0
+vQ_latch442 (Q_latch442 0) vsource dc=0
+vQ_latch043 (Q_latch043 0) vsource dc=0
+vQ_latch143 (Q_latch143 0) vsource dc=0
+vQ_latch243 (Q_latch243 0) vsource dc=1
+vQ_latch343 (Q_latch343 0) vsource dc=1
+vQ_latch443 (Q_latch443 0) vsource dc=0
+vQ_latch044 (Q_latch044 0) vsource dc=1
+vQ_latch144 (Q_latch144 0) vsource dc=1
+vQ_latch244 (Q_latch244 0) vsource dc=1
+vQ_latch344 (Q_latch344 0) vsource dc=0
+vQ_latch444 (Q_latch444 0) vsource dc=1
+vQ_latch045 (Q_latch045 0) vsource dc=1
+vQ_latch145 (Q_latch145 0) vsource dc=0
+vQ_latch245 (Q_latch245 0) vsource dc=1
+vQ_latch345 (Q_latch345 0) vsource dc=0
+vQ_latch445 (Q_latch445 0) vsource dc=0
+vQ_latch046 (Q_latch046 0) vsource dc=0
+vQ_latch146 (Q_latch146 0) vsource dc=1
+vQ_latch246 (Q_latch246 0) vsource dc=0
+vQ_latch346 (Q_latch346 0) vsource dc=0
+vQ_latch446 (Q_latch446 0) vsource dc=0
+vQ_latch047 (Q_latch047 0) vsource dc=0
+vQ_latch147 (Q_latch147 0) vsource dc=1
+vQ_latch247 (Q_latch247 0) vsource dc=1
+vQ_latch347 (Q_latch347 0) vsource dc=1
+vQ_latch447 (Q_latch447 0) vsource dc=1
+vQ_latch048 (Q_latch048 0) vsource dc=1
+vQ_latch148 (Q_latch148 0) vsource dc=0
+vQ_latch248 (Q_latch248 0) vsource dc=1
+vQ_latch348 (Q_latch348 0) vsource dc=1
+vQ_latch448 (Q_latch448 0) vsource dc=0
+vQ_latch049 (Q_latch049 0) vsource dc=1
+vQ_latch149 (Q_latch149 0) vsource dc=0
+vQ_latch249 (Q_latch249 0) vsource dc=1
+vQ_latch349 (Q_latch349 0) vsource dc=1
+vQ_latch449 (Q_latch449 0) vsource dc=0
+vQ_latch050 (Q_latch050 0) vsource dc=1
+vQ_latch150 (Q_latch150 0) vsource dc=1
+vQ_latch250 (Q_latch250 0) vsource dc=0
+vQ_latch350 (Q_latch350 0) vsource dc=1
+vQ_latch450 (Q_latch450 0) vsource dc=0
+vQ_latch051 (Q_latch051 0) vsource dc=1
+vQ_latch151 (Q_latch151 0) vsource dc=0
+vQ_latch251 (Q_latch251 0) vsource dc=1
+vQ_latch351 (Q_latch351 0) vsource dc=0
+vQ_latch451 (Q_latch451 0) vsource dc=1
+vQ_latch052 (Q_latch052 0) vsource dc=1
+vQ_latch152 (Q_latch152 0) vsource dc=0
+vQ_latch252 (Q_latch252 0) vsource dc=1
+vQ_latch352 (Q_latch352 0) vsource dc=0
+vQ_latch452 (Q_latch452 0) vsource dc=1
+vQ_latch053 (Q_latch053 0) vsource dc=0
+vQ_latch153 (Q_latch153 0) vsource dc=1
+vQ_latch253 (Q_latch253 0) vsource dc=0
+vQ_latch353 (Q_latch353 0) vsource dc=0
+vQ_latch453 (Q_latch453 0) vsource dc=1
+vQ_latch054 (Q_latch054 0) vsource dc=0
+vQ_latch154 (Q_latch154 0) vsource dc=0
+vQ_latch254 (Q_latch254 0) vsource dc=0
+vQ_latch354 (Q_latch354 0) vsource dc=1
+vQ_latch454 (Q_latch454 0) vsource dc=1
+vQ_latch055 (Q_latch055 0) vsource dc=0
+vQ_latch155 (Q_latch155 0) vsource dc=1
+vQ_latch255 (Q_latch255 0) vsource dc=1
+vQ_latch355 (Q_latch355 0) vsource dc=0
+vQ_latch455 (Q_latch455 0) vsource dc=0
+vQ_latch056 (Q_latch056 0) vsource dc=1
+vQ_latch156 (Q_latch156 0) vsource dc=1
+vQ_latch256 (Q_latch256 0) vsource dc=0
+vQ_latch356 (Q_latch356 0) vsource dc=1
+vQ_latch456 (Q_latch456 0) vsource dc=0
+vQ_latch057 (Q_latch057 0) vsource dc=1
+vQ_latch157 (Q_latch157 0) vsource dc=0
+vQ_latch257 (Q_latch257 0) vsource dc=0
+vQ_latch357 (Q_latch357 0) vsource dc=0
+vQ_latch457 (Q_latch457 0) vsource dc=1
+vQ_latch058 (Q_latch058 0) vsource dc=0
+vQ_latch158 (Q_latch158 0) vsource dc=1
+vQ_latch258 (Q_latch258 0) vsource dc=1
+vQ_latch358 (Q_latch358 0) vsource dc=1
+vQ_latch458 (Q_latch458 0) vsource dc=0
+vQ_latch059 (Q_latch059 0) vsource dc=0
+vQ_latch159 (Q_latch159 0) vsource dc=0
+vQ_latch259 (Q_latch259 0) vsource dc=0
+vQ_latch359 (Q_latch359 0) vsource dc=1
+vQ_latch459 (Q_latch459 0) vsource dc=0
+vQ_latch060 (Q_latch060 0) vsource dc=1
+vQ_latch160 (Q_latch160 0) vsource dc=1
+vQ_latch260 (Q_latch260 0) vsource dc=0
+vQ_latch360 (Q_latch360 0) vsource dc=0
+vQ_latch460 (Q_latch460 0) vsource dc=0
+vQ_latch061 (Q_latch061 0) vsource dc=1
+vQ_latch161 (Q_latch161 0) vsource dc=0
+vQ_latch261 (Q_latch261 0) vsource dc=1
+vQ_latch361 (Q_latch361 0) vsource dc=1
+vQ_latch461 (Q_latch461 0) vsource dc=1
+vQ_latch062 (Q_latch062 0) vsource dc=0
+vQ_latch162 (Q_latch162 0) vsource dc=1
+vQ_latch262 (Q_latch262 0) vsource dc=1
+vQ_latch362 (Q_latch362 0) vsource dc=0
+vQ_latch462 (Q_latch462 0) vsource dc=0
+vQ_latch063 (Q_latch063 0) vsource dc=1
+vQ_latch163 (Q_latch163 0) vsource dc=0
+vQ_latch263 (Q_latch263 0) vsource dc=0
+vQ_latch363 (Q_latch363 0) vsource dc=0
+vQ_latch463 (Q_latch463 0) vsource dc=1
+vQ_latch064 (Q_latch064 0) vsource dc=0
+vQ_latch164 (Q_latch164 0) vsource dc=1
+vQ_latch264 (Q_latch264 0) vsource dc=0
+vQ_latch364 (Q_latch364 0) vsource dc=0
+vQ_latch464 (Q_latch464 0) vsource dc=1
+vQ_latch065 (Q_latch065 0) vsource dc=1
+vQ_latch165 (Q_latch165 0) vsource dc=1
+vQ_latch265 (Q_latch265 0) vsource dc=0
+vQ_latch365 (Q_latch365 0) vsource dc=0
+vQ_latch465 (Q_latch465 0) vsource dc=1
+vQ_latch066 (Q_latch066 0) vsource dc=0
+vQ_latch166 (Q_latch166 0) vsource dc=0
+vQ_latch266 (Q_latch266 0) vsource dc=1
+vQ_latch366 (Q_latch366 0) vsource dc=1
+vQ_latch466 (Q_latch466 0) vsource dc=1
+vQ_latch067 (Q_latch067 0) vsource dc=1
+vQ_latch167 (Q_latch167 0) vsource dc=1
+vQ_latch267 (Q_latch267 0) vsource dc=1
+vQ_latch367 (Q_latch367 0) vsource dc=1
+vQ_latch467 (Q_latch467 0) vsource dc=1
+vQ_latch068 (Q_latch068 0) vsource dc=1
+vQ_latch168 (Q_latch168 0) vsource dc=0
+vQ_latch268 (Q_latch268 0) vsource dc=0
+vQ_latch368 (Q_latch368 0) vsource dc=1
+vQ_latch468 (Q_latch468 0) vsource dc=1
+vQ_latch069 (Q_latch069 0) vsource dc=1
+vQ_latch169 (Q_latch169 0) vsource dc=1
+vQ_latch269 (Q_latch269 0) vsource dc=0
+vQ_latch369 (Q_latch369 0) vsource dc=0
+vQ_latch469 (Q_latch469 0) vsource dc=1
+vQ_latch070 (Q_latch070 0) vsource dc=0
+vQ_latch170 (Q_latch170 0) vsource dc=1
+vQ_latch270 (Q_latch270 0) vsource dc=1
+vQ_latch370 (Q_latch370 0) vsource dc=0
+vQ_latch470 (Q_latch470 0) vsource dc=1
+vQ_latch071 (Q_latch071 0) vsource dc=0
+vQ_latch171 (Q_latch171 0) vsource dc=1
+vQ_latch271 (Q_latch271 0) vsource dc=0
+vQ_latch371 (Q_latch371 0) vsource dc=0
+vQ_latch471 (Q_latch471 0) vsource dc=1
+vQ_latch072 (Q_latch072 0) vsource dc=1
+vQ_latch172 (Q_latch172 0) vsource dc=1
+vQ_latch272 (Q_latch272 0) vsource dc=0
+vQ_latch372 (Q_latch372 0) vsource dc=0
+vQ_latch472 (Q_latch472 0) vsource dc=0
+vQ_latch073 (Q_latch073 0) vsource dc=0
+vQ_latch173 (Q_latch173 0) vsource dc=1
+vQ_latch273 (Q_latch273 0) vsource dc=0
+vQ_latch373 (Q_latch373 0) vsource dc=1
+vQ_latch473 (Q_latch473 0) vsource dc=0
+vQ_latch074 (Q_latch074 0) vsource dc=1
+vQ_latch174 (Q_latch174 0) vsource dc=1
+vQ_latch274 (Q_latch274 0) vsource dc=1
+vQ_latch374 (Q_latch374 0) vsource dc=0
+vQ_latch474 (Q_latch474 0) vsource dc=1
+vQ_latch075 (Q_latch075 0) vsource dc=1
+vQ_latch175 (Q_latch175 0) vsource dc=0
+vQ_latch275 (Q_latch275 0) vsource dc=1
+vQ_latch375 (Q_latch375 0) vsource dc=0
+vQ_latch475 (Q_latch475 0) vsource dc=1
+vQ_latch076 (Q_latch076 0) vsource dc=0
+vQ_latch176 (Q_latch176 0) vsource dc=1
+vQ_latch276 (Q_latch276 0) vsource dc=1
+vQ_latch376 (Q_latch376 0) vsource dc=0
+vQ_latch476 (Q_latch476 0) vsource dc=1
+vQ_latch077 (Q_latch077 0) vsource dc=1
+vQ_latch177 (Q_latch177 0) vsource dc=0
+vQ_latch277 (Q_latch277 0) vsource dc=0
+vQ_latch377 (Q_latch377 0) vsource dc=1
+vQ_latch477 (Q_latch477 0) vsource dc=1
+vQ_latch078 (Q_latch078 0) vsource dc=1
+vQ_latch178 (Q_latch178 0) vsource dc=0
+vQ_latch278 (Q_latch278 0) vsource dc=1
+vQ_latch378 (Q_latch378 0) vsource dc=0
+vQ_latch478 (Q_latch478 0) vsource dc=1
+vQ_latch079 (Q_latch079 0) vsource dc=0
+vQ_latch179 (Q_latch179 0) vsource dc=1
+vQ_latch279 (Q_latch279 0) vsource dc=1
+vQ_latch379 (Q_latch379 0) vsource dc=1
+vQ_latch479 (Q_latch479 0) vsource dc=1
+vQ_latch080 (Q_latch080 0) vsource dc=0
+vQ_latch180 (Q_latch180 0) vsource dc=1
+vQ_latch280 (Q_latch280 0) vsource dc=0
+vQ_latch380 (Q_latch380 0) vsource dc=0
+vQ_latch480 (Q_latch480 0) vsource dc=1
+vQ_latch081 (Q_latch081 0) vsource dc=1
+vQ_latch181 (Q_latch181 0) vsource dc=1
+vQ_latch281 (Q_latch281 0) vsource dc=0
+vQ_latch381 (Q_latch381 0) vsource dc=0
+vQ_latch481 (Q_latch481 0) vsource dc=0
+vQ_latch082 (Q_latch082 0) vsource dc=0
+vQ_latch182 (Q_latch182 0) vsource dc=0
+vQ_latch282 (Q_latch282 0) vsource dc=1
+vQ_latch382 (Q_latch382 0) vsource dc=1
+vQ_latch482 (Q_latch482 0) vsource dc=0
+vQ_latch083 (Q_latch083 0) vsource dc=0
+vQ_latch183 (Q_latch183 0) vsource dc=0
+vQ_latch283 (Q_latch283 0) vsource dc=1
+vQ_latch383 (Q_latch383 0) vsource dc=1
+vQ_latch483 (Q_latch483 0) vsource dc=0
+vQ_latch084 (Q_latch084 0) vsource dc=1
+vQ_latch184 (Q_latch184 0) vsource dc=1
+vQ_latch284 (Q_latch284 0) vsource dc=1
+vQ_latch384 (Q_latch384 0) vsource dc=1
+vQ_latch484 (Q_latch484 0) vsource dc=0
+vQ_latch085 (Q_latch085 0) vsource dc=0
+vQ_latch185 (Q_latch185 0) vsource dc=0
+vQ_latch285 (Q_latch285 0) vsource dc=0
+vQ_latch385 (Q_latch385 0) vsource dc=1
+vQ_latch485 (Q_latch485 0) vsource dc=1
+vQ_latch086 (Q_latch086 0) vsource dc=0
+vQ_latch186 (Q_latch186 0) vsource dc=0
+vQ_latch286 (Q_latch286 0) vsource dc=0
+vQ_latch386 (Q_latch386 0) vsource dc=0
+vQ_latch486 (Q_latch486 0) vsource dc=1
+vQ_latch087 (Q_latch087 0) vsource dc=1
+vQ_latch187 (Q_latch187 0) vsource dc=1
+vQ_latch287 (Q_latch287 0) vsource dc=1
+vQ_latch387 (Q_latch387 0) vsource dc=0
+vQ_latch487 (Q_latch487 0) vsource dc=0
+vQ_latch088 (Q_latch088 0) vsource dc=1
+vQ_latch188 (Q_latch188 0) vsource dc=1
+vQ_latch288 (Q_latch288 0) vsource dc=1
+vQ_latch388 (Q_latch388 0) vsource dc=0
+vQ_latch488 (Q_latch488 0) vsource dc=1
+vQ_latch089 (Q_latch089 0) vsource dc=1
+vQ_latch189 (Q_latch189 0) vsource dc=1
+vQ_latch289 (Q_latch289 0) vsource dc=1
+vQ_latch389 (Q_latch389 0) vsource dc=1
+vQ_latch489 (Q_latch489 0) vsource dc=1
+vQ_latch090 (Q_latch090 0) vsource dc=1
+vQ_latch190 (Q_latch190 0) vsource dc=0
+vQ_latch290 (Q_latch290 0) vsource dc=1
+vQ_latch390 (Q_latch390 0) vsource dc=0
+vQ_latch490 (Q_latch490 0) vsource dc=1
+vQ_latch091 (Q_latch091 0) vsource dc=0
+vQ_latch191 (Q_latch191 0) vsource dc=1
+vQ_latch291 (Q_latch291 0) vsource dc=0
+vQ_latch391 (Q_latch391 0) vsource dc=0
+vQ_latch491 (Q_latch491 0) vsource dc=0
+vQ_latch092 (Q_latch092 0) vsource dc=0
+vQ_latch192 (Q_latch192 0) vsource dc=0
+vQ_latch292 (Q_latch292 0) vsource dc=1
+vQ_latch392 (Q_latch392 0) vsource dc=1
+vQ_latch492 (Q_latch492 0) vsource dc=1
+vQ_latch093 (Q_latch093 0) vsource dc=0
+vQ_latch193 (Q_latch193 0) vsource dc=0
+vQ_latch293 (Q_latch293 0) vsource dc=1
+vQ_latch393 (Q_latch393 0) vsource dc=1
+vQ_latch493 (Q_latch493 0) vsource dc=1
+vQ_latch094 (Q_latch094 0) vsource dc=1
+vQ_latch194 (Q_latch194 0) vsource dc=1
+vQ_latch294 (Q_latch294 0) vsource dc=0
+vQ_latch394 (Q_latch394 0) vsource dc=0
+vQ_latch494 (Q_latch494 0) vsource dc=0
+vQ_latch095 (Q_latch095 0) vsource dc=0
+vQ_latch195 (Q_latch195 0) vsource dc=1
+vQ_latch295 (Q_latch295 0) vsource dc=1
+vQ_latch395 (Q_latch395 0) vsource dc=0
+vQ_latch495 (Q_latch495 0) vsource dc=1
+vQ_latch096 (Q_latch096 0) vsource dc=0
+vQ_latch196 (Q_latch196 0) vsource dc=0
+vQ_latch296 (Q_latch296 0) vsource dc=1
+vQ_latch396 (Q_latch396 0) vsource dc=1
+vQ_latch496 (Q_latch496 0) vsource dc=0
+vQ_latch097 (Q_latch097 0) vsource dc=1
+vQ_latch197 (Q_latch197 0) vsource dc=0
+vQ_latch297 (Q_latch297 0) vsource dc=0
+vQ_latch397 (Q_latch397 0) vsource dc=0
+vQ_latch497 (Q_latch497 0) vsource dc=1
+vQ_latch098 (Q_latch098 0) vsource dc=0
+vQ_latch198 (Q_latch198 0) vsource dc=1
+vQ_latch298 (Q_latch298 0) vsource dc=0
+vQ_latch398 (Q_latch398 0) vsource dc=0
+vQ_latch498 (Q_latch498 0) vsource dc=1
+vQ_latch099 (Q_latch099 0) vsource dc=1
+vQ_latch199 (Q_latch199 0) vsource dc=0
+vQ_latch299 (Q_latch299 0) vsource dc=0
+vQ_latch399 (Q_latch399 0) vsource dc=1
+vQ_latch499 (Q_latch499 0) vsource dc=0
+
+subckt INV (in out vdd gnd)
+parameters wn=45n lmin=45n wp=90n lp=45n ln=45n
+mp1 (out in VDD VDD) pmos w=wp l=lp as=wp*1.5*lp ad=wp*1.5*lp ps=wp+3*lp pd=wp+3*lp
+mn1 (out in VSS VSS) nmos w=wn l=ln as=wn*1.5*ln ad=wn*1.5*ln ps=wn+3*ln pd=wn+3*ln
+ends INV
+
+//transparent latch
+subckt LATCH (in clk out vdd gnd)
+parameters wn=45n lmin=45n wp=90n lp=45n ln=45n
+mnclk (latchin clk in VSS) nmos w=wn l=ln as=wn*1.5*ln ad=wn*1.5*ln ps=wn+3*ln pd=wn+3*ln
+xinv1 (latchin out vdd gnd) INV
+xinv2 (out latchin vdd gnd) INV lp=90n ln=90n //long channel inverter
+ends LATCH
+
+//d flip flop
+subckt DFLOP (in clk out vdd gnd)
+xlatch1 (in clk net1 vdd gnd) LATCH
+xinv (clk clkbar vdd gnd) INV
+xlatch2 (net1 clkbar out vdd gnd) LATCH
+ends DFLOP
+
+xdc_q0_0 (Q_latch00 clk Q00 vdd gnd) DFLOP
+xdf_q0_1 (Q_latch01 clk Q01 vdd gnd) DFLOP
+xdf_q0_2 (Q_latch02 clk Q02 vdd gnd) DFLOP
+xdf_q0_3 (Q_latch03 clk Q03 vdd gnd) DFLOP
+xdf_q0_4 (Q_latch04 clk Q04 vdd gnd) DFLOP
+xdf_q0_5 (Q_latch05 clk Q05 vdd gnd) DFLOP
+xdf_q0_6 (Q_latch06 clk Q06 vdd gnd) DFLOP
+xdf_q0_7 (Q_latch07 clk Q07 vdd gnd) DFLOP
+xdf_q0_8 (Q_latch08 clk Q08 vdd gnd) DFLOP
+xdf_q0_9 (Q_latch09 clk Q09 vdd gnd) DFLOP
+xdf_q0_10 (Q_latch010 clk Q010 vdd gnd) DFLOP
+xdf_q0_11 (Q_latch011 clk Q011 vdd gnd) DFLOP
+xdf_q0_12 (Q_latch012 clk Q012 vdd gnd) DFLOP
+xdf_q0_13 (Q_latch013 clk Q013 vdd gnd) DFLOP
+xdf_q0_14 (Q_latch014 clk Q014 vdd gnd) DFLOP
+xdf_q0_15 (Q_latch015 clk Q015 vdd gnd) DFLOP
+xdf_q0_16 (Q_latch016 clk Q016 vdd gnd) DFLOP
+xdf_q0_17 (Q_latch017 clk Q017 vdd gnd) DFLOP
+xdf_q0_18 (Q_latch018 clk Q018 vdd gnd) DFLOP
+xdf_q0_19 (Q_latch019 clk Q019 vdd gnd) DFLOP
+xdf_q0_20 (Q_latch020 clk Q020 vdd gnd) DFLOP
+xdf_q0_21 (Q_latch021 clk Q021 vdd gnd) DFLOP
+xdf_q0_22 (Q_latch022 clk Q022 vdd gnd) DFLOP
+xdf_q0_23 (Q_latch023 clk Q023 vdd gnd) DFLOP
+xdf_q0_24 (Q_latch024 clk Q024 vdd gnd) DFLOP
+xdf_q0_25 (Q_latch025 clk Q025 vdd gnd) DFLOP
+xdf_q0_26 (Q_latch026 clk Q026 vdd gnd) DFLOP
+xdf_q0_27 (Q_latch027 clk Q027 vdd gnd) DFLOP
+xdf_q0_28 (Q_latch028 clk Q028 vdd gnd) DFLOP
+xdf_q0_29 (Q_latch029 clk Q029 vdd gnd) DFLOP
+xdc_q0_30 (Q_latch030 clk Q030 vdd gnd) DFLOP
+xdf_q0_31 (Q_latch031 clk Q031 vdd gnd) DFLOP
+xdf_q0_32 (Q_latch032 clk Q032 vdd gnd) DFLOP
+xdf_q0_33 (Q_latch033 clk Q033 vdd gnd) DFLOP
+xdf_q0_34 (Q_latch034 clk Q034 vdd gnd) DFLOP
+xdf_q0_35 (Q_latch035 clk Q035 vdd gnd) DFLOP
+xdf_q0_36 (Q_latch036 clk Q036 vdd gnd) DFLOP
+xdf_q0_37 (Q_latch037 clk Q037 vdd gnd) DFLOP
+xdf_q0_38 (Q_latch038 clk Q038 vdd gnd) DFLOP
+xdf_q0_39 (Q_latch039 clk Q039 vdd gnd) DFLOP
+xdf_q0_40 (Q_latch040 clk Q040 vdd gnd) DFLOP
+xdf_q0_41 (Q_latch041 clk Q041 vdd gnd) DFLOP
+xdf_q0_42 (Q_latch042 clk Q042 vdd gnd) DFLOP
+xdf_q0_43 (Q_latch043 clk Q043 vdd gnd) DFLOP
+xdf_q0_44 (Q_latch044 clk Q044 vdd gnd) DFLOP
+xdf_q0_45 (Q_latch045 clk Q045 vdd gnd) DFLOP
+xdf_q0_46 (Q_latch046 clk Q046 vdd gnd) DFLOP
+xdf_q0_47 (Q_latch047 clk Q047 vdd gnd) DFLOP
+xdf_q0_48 (Q_latch048 clk Q048 vdd gnd) DFLOP
+xdf_q0_49 (Q_latch049 clk Q049 vdd gnd) DFLOP
+xdf_q0_50 (Q_latch050 clk Q050 vdd gnd) DFLOP
+xdf_q0_51 (Q_latch051 clk Q051 vdd gnd) DFLOP
+xdf_q0_52 (Q_latch052 clk Q052 vdd gnd) DFLOP
+xdf_q0_53 (Q_latch053 clk Q053 vdd gnd) DFLOP
+xdf_q0_54 (Q_latch054 clk Q054 vdd gnd) DFLOP
+xdf_q0_55 (Q_latch055 clk Q055 vdd gnd) DFLOP
+xdf_q0_56 (Q_latch056 clk Q056 vdd gnd) DFLOP
+xdf_q0_57 (Q_latch057 clk Q057 vdd gnd) DFLOP
+xdf_q0_58 (Q_latch058 clk Q058 vdd gnd) DFLOP
+xdf_q0_59 (Q_latch059 clk Q059 vdd gnd) DFLOP
+xdc_q0_60 (Q_latch060 clk Q060 vdd gnd) DFLOP
+xdf_q0_61 (Q_latch061 clk Q061 vdd gnd) DFLOP
+xdf_q0_62 (Q_latch062 clk Q062 vdd gnd) DFLOP
+xdf_q0_63 (Q_latch063 clk Q063 vdd gnd) DFLOP
+xdf_q0_64 (Q_latch064 clk Q064 vdd gnd) DFLOP
+xdf_q0_65 (Q_latch065 clk Q065 vdd gnd) DFLOP
+xdf_q0_66 (Q_latch066 clk Q066 vdd gnd) DFLOP
+xdf_q0_67 (Q_latch067 clk Q067 vdd gnd) DFLOP
+xdf_q0_68 (Q_latch068 clk Q068 vdd gnd) DFLOP
+xdf_q0_69 (Q_latch069 clk Q069 vdd gnd) DFLOP
+xdf_q0_70 (Q_latch070 clk Q070 vdd gnd) DFLOP
+xdf_q0_71 (Q_latch071 clk Q071 vdd gnd) DFLOP
+xdf_q0_72 (Q_latch072 clk Q072 vdd gnd) DFLOP
+xdf_q0_73 (Q_latch073 clk Q073 vdd gnd) DFLOP
+xdf_q0_74 (Q_latch074 clk Q074 vdd gnd) DFLOP
+xdf_q0_75 (Q_latch075 clk Q075 vdd gnd) DFLOP
+xdf_q0_76 (Q_latch076 clk Q076 vdd gnd) DFLOP
+xdf_q0_77 (Q_latch077 clk Q077 vdd gnd) DFLOP
+xdf_q0_78 (Q_latch078 clk Q078 vdd gnd) DFLOP
+xdf_q0_79 (Q_latch079 clk Q079 vdd gnd) DFLOP
+xdf_q0_80 (Q_latch080 clk Q080 vdd gnd) DFLOP
+xdf_q0_81 (Q_latch081 clk Q081 vdd gnd) DFLOP
+xdf_q0_82 (Q_latch082 clk Q082 vdd gnd) DFLOP
+xdf_q0_83 (Q_latch083 clk Q083 vdd gnd) DFLOP
+xdf_q0_84 (Q_latch084 clk Q084 vdd gnd) DFLOP
+xdf_q0_85 (Q_latch085 clk Q085 vdd gnd) DFLOP
+xdf_q0_86 (Q_latch086 clk Q086 vdd gnd) DFLOP
+xdf_q0_87 (Q_latch087 clk Q087 vdd gnd) DFLOP
+xdf_q0_88 (Q_latch088 clk Q088 vdd gnd) DFLOP
+xdf_q0_89 (Q_latch089 clk Q089 vdd gnd) DFLOP
+xdf_q0_90 (Q_latch090 clk Q090 vdd gnd) DFLOP
+xdf_q0_91 (Q_latch091 clk Q091 vdd gnd) DFLOP
+xdf_q0_92 (Q_latch092 clk Q092 vdd gnd) DFLOP
+xdf_q0_93 (Q_latch093 clk Q093 vdd gnd) DFLOP
+xdf_q0_94 (Q_latch094 clk Q094 vdd gnd) DFLOP
+xdf_q0_95 (Q_latch095 clk Q095 vdd gnd) DFLOP
+xdf_q0_96 (Q_latch096 clk Q096 vdd gnd) DFLOP
+xdf_q0_97 (Q_latch097 clk Q097 vdd gnd) DFLOP
+xdf_w0_98 (Q_latch098 clk Q098 vdd gnd) DFLOP
+xdf_q0_99 (Q_latch099 clk Q099 vdd gnd) DFLOP
+
+xdc_q1_0 (Q_latch10 clk Q10 vdd gnd) DFLOP
+xdf_q1_1 (Q_latch11 clk Q11 vdd gnd) DFLOP
+xdf_q1_2 (Q_latch12 clk Q12 vdd gnd) DFLOP
+xdf_q1_3 (Q_latch13 clk Q13 vdd gnd) DFLOP
+xdf_q1_4 (Q_latch14 clk Q14 vdd gnd) DFLOP
+xdf_q1_5 (Q_latch15 clk Q15 vdd gnd) DFLOP
+xdf_q1_6 (Q_latch16 clk Q16 vdd gnd) DFLOP
+xdf_q1_7 (Q_latch17 clk Q17 vdd gnd) DFLOP
+xdf_q1_8 (Q_latch18 clk Q18 vdd gnd) DFLOP
+xdf_q1_9 (Q_latch19 clk Q19 vdd gnd) DFLOP
+xdf_q1_10 (Q_latch110 clk Q110 vdd gnd) DFLOP
+xdf_q1_11 (Q_latch111 clk Q111 vdd gnd) DFLOP
+xdf_q1_12 (Q_latch112 clk Q112 vdd gnd) DFLOP
+xdf_q1_13 (Q_latch113 clk Q113 vdd gnd) DFLOP
+xdf_q1_14 (Q_latch114 clk Q114 vdd gnd) DFLOP
+xdf_q1_15 (Q_latch115 clk Q115 vdd gnd) DFLOP
+xdf_q1_16 (Q_latch116 clk Q116 vdd gnd) DFLOP
+xdf_q1_17 (Q_latch117 clk Q117 vdd gnd) DFLOP
+xdf_q1_18 (Q_latch118 clk Q118 vdd gnd) DFLOP
+xdf_q1_19 (Q_latch119 clk Q119 vdd gnd) DFLOP
+xdf_q1_20 (Q_latch120 clk Q120 vdd gnd) DFLOP
+xdf_q1_21 (Q_latch121 clk Q121 vdd gnd) DFLOP
+xdf_q1_22 (Q_latch122 clk Q122 vdd gnd) DFLOP
+xdf_q1_23 (Q_latch123 clk Q123 vdd gnd) DFLOP
+xdf_q1_24 (Q_latch124 clk Q124 vdd gnd) DFLOP
+xdf_q1_25 (Q_latch125 clk Q125 vdd gnd) DFLOP
+xdf_q1_26 (Q_latch126 clk Q126 vdd gnd) DFLOP
+xdf_q1_27 (Q_latch127 clk Q127 vdd gnd) DFLOP
+xdf_q1_28 (Q_latch128 clk Q128 vdd gnd) DFLOP
+xdf_q1_29 (Q_latch129 clk Q129 vdd gnd) DFLOP
+xdc_q1_30 (Q_latch130 clk Q130 vdd gnd) DFLOP
+xdf_q1_31 (Q_latch131 clk Q131 vdd gnd) DFLOP
+xdf_q1_32 (Q_latch132 clk Q132 vdd gnd) DFLOP
+xdf_q1_33 (Q_latch133 clk Q133 vdd gnd) DFLOP
+xdf_q1_34 (Q_latch134 clk Q134 vdd gnd) DFLOP
+xdf_q1_35 (Q_latch135 clk Q135 vdd gnd) DFLOP
+xdf_q1_36 (Q_latch136 clk Q136 vdd gnd) DFLOP
+xdf_q1_37 (Q_latch137 clk Q137 vdd gnd) DFLOP
+xdf_q1_38 (Q_latch138 clk Q138 vdd gnd) DFLOP
+xdf_q1_39 (Q_latch139 clk Q139 vdd gnd) DFLOP
+xdf_q1_40 (Q_latch140 clk Q140 vdd gnd) DFLOP
+xdf_q1_41 (Q_latch141 clk Q141 vdd gnd) DFLOP
+xdf_q1_42 (Q_latch142 clk Q142 vdd gnd) DFLOP
+xdf_q1_43 (Q_latch143 clk Q143 vdd gnd) DFLOP
+xdf_q1_44 (Q_latch144 clk Q144 vdd gnd) DFLOP
+xdf_q1_45 (Q_latch145 clk Q145 vdd gnd) DFLOP
+xdf_q1_46 (Q_latch146 clk Q146 vdd gnd) DFLOP
+xdf_q1_47 (Q_latch147 clk Q147 vdd gnd) DFLOP
+xdc_q1_48 (Q_latch148 clk Q148 vdd gnd) DFLOP
+xdf_q1_49 (Q_latch149 clk Q149 vdd gnd) DFLOP
+xdf_q1_50 (Q_latch150 clk Q150 vdd gnd) DFLOP
+xdf_q1_51 (Q_latch151 clk Q151 vdd gnd) DFLOP
+xdf_q1_52 (Q_latch152 clk Q152 vdd gnd) DFLOP
+xdf_q1_53 (Q_latch153 clk Q153 vdd gnd) DFLOP
+xdf_q1_54 (Q_latch154 clk Q154 vdd gnd) DFLOP
+xdc_q1_55 (Q_latch155 clk Q155 vdd gnd) DFLOP
+xdf_q1_56 (Q_latch156 clk Q156 vdd gnd) DFLOP
+xdf_q1_57 (Q_latch157 clk Q157 vdd gnd) DFLOP
+xdf_q1_58 (Q_latch158 clk Q158 vdd gnd) DFLOP
+xdf_q1_59 (Q_latch159 clk Q159 vdd gnd) DFLOP
+xdc_q1_60 (Q_latch160 clk Q160 vdd gnd) DFLOP
+xdf_q1_61 (Q_latch161 clk Q161 vdd gnd) DFLOP
+xdf_q1_62 (Q_latch162 clk Q162 vdd gnd) DFLOP
+xdf_q1_63 (Q_latch163 clk Q163 vdd gnd) DFLOP
+xdf_q1_64 (Q_latch164 clk Q164 vdd gnd) DFLOP
+xdf_q1_65 (Q_latch165 clk Q165 vdd gnd) DFLOP
+xdf_q1_66 (Q_latch166 clk Q166 vdd gnd) DFLOP
+xdf_q1_67 (Q_latch167 clk Q167 vdd gnd) DFLOP
+xdf_q1_68 (Q_latch168 clk Q168 vdd gnd) DFLOP
+xdf_q1_69 (Q_latch169 clk Q169 vdd gnd) DFLOP
+xdf_q1_70 (Q_latch170 clk Q170 vdd gnd) DFLOP
+xdc_q1_71 (Q_latch171 clk Q171 vdd gnd) DFLOP
+xdf_q1_72 (Q_latch172 clk Q172 vdd gnd) DFLOP
+xdf_q1_73 (Q_latch173 clk Q173 vdd gnd) DFLOP
+xdf_q1_74 (Q_latch174 clk Q174 vdd gnd) DFLOP
+xdf_q1_75 (Q_latch175 clk Q175 vdd gnd) DFLOP
+xdf_q1_76 (Q_latch176 clk Q176 vdd gnd) DFLOP
+xdf_q1_77 (Q_latch177 clk Q177 vdd gnd) DFLOP
+xdf_q1_78 (Q_latch178 clk Q178 vdd gnd) DFLOP
+xdf_q1_79 (Q_latch179 clk Q179 vdd gnd) DFLOP
+xdf_q1_80 (Q_latch180 clk Q180 vdd gnd) DFLOP
+xdf_q1_81 (Q_latch181 clk Q181 vdd gnd) DFLOP
+xdf_q1_82 (Q_latch182 clk Q182 vdd gnd) DFLOP
+xdf_q1_83 (Q_latch183 clk Q183 vdd gnd) DFLOP
+xdc_q1_84 (Q_latch184 clk Q184 vdd gnd) DFLOP
+xdf_q1_85 (Q_latch185 clk Q185 vdd gnd) DFLOP
+xdf_q1_86 (Q_latch186 clk Q186 vdd gnd) DFLOP
+xdf_q1_87 (Q_latch187 clk Q187 vdd gnd) DFLOP
+xdf_q1_88 (Q_latch188 clk Q188 vdd gnd) DFLOP
+xdf_q1_89 (Q_latch189 clk Q189 vdd gnd) DFLOP
+xdf_q1_90 (Q_latch190 clk Q190 vdd gnd) DFLOP
+xdf_q1_91 (Q_latch191 clk Q191 vdd gnd) DFLOP
+xdf_q1_92 (Q_latch192 clk Q192 vdd gnd) DFLOP
+xdf_q1_93 (Q_latch193 clk Q193 vdd gnd) DFLOP
+xdf_q1_94 (Q_latch194 clk Q194 vdd gnd) DFLOP
+xdc_q1_95 (Q_latch195 clk Q195 vdd gnd) DFLOP
+xdf_q1_96 (Q_latch196 clk Q196 vdd gnd) DFLOP
+xdf_q1_97 (Q_latch197 clk Q197 vdd gnd) DFLOP
+xdf_w1_98 (Q_latch198 clk Q198 vdd gnd) DFLOP
+xdf_q1_99 (Q_latch199 clk Q199 vdd gnd) DFLOP
+
+xdf_q2_0 (Q_latch20 clk Q20 vdd gnd) DFLOP
+xdf_q2_1 (Q_latch21 clk Q21 vdd gnd) DFLOP
+xdf_q2_2 (Q_latch22 clk Q22 vdd gnd) DFLOP
+xdf_q2_3 (Q_latch23 clk Q23 vdd gnd) DFLOP
+xdf_q2_4 (Q_latch24 clk Q24 vdd gnd) DFLOP
+xdf_q2_5 (Q_latch25 clk Q25 vdd gnd) DFLOP
+xdf_q2_6 (Q_latch26 clk Q26 vdd gnd) DFLOP
+xdf_q2_7 (Q_latch27 clk Q27 vdd gnd) DFLOP
+xdf_q2_8 (Q_latch28 clk Q28 vdd gnd) DFLOP
+xdf_q2_9 (Q_latch29 clk Q29 vdd gnd) DFLOP
+xdf_q2_10 (Q_latch210 clk Q210 vdd gnd) DFLOP
+xdf_q2_11 (Q_latch211 clk Q211 vdd gnd) DFLOP
+xdf_q2_12 (Q_latch212 clk Q212 vdd gnd) DFLOP
+xdf_q2_13 (Q_latch213 clk Q213 vdd gnd) DFLOP
+xdf_q2_14 (Q_latch214 clk Q214 vdd gnd) DFLOP
+xdf_q2_15 (Q_latch215 clk Q215 vdd gnd) DFLOP
+xdf_q2_16 (Q_latch216 clk Q216 vdd gnd) DFLOP
+xdf_q2_17 (Q_latch217 clk Q217 vdd gnd) DFLOP
+xdf_q2_18 (Q_latch218 clk Q218 vdd gnd) DFLOP
+xdf_q2_19 (Q_latch219 clk Q219 vdd gnd) DFLOP
+xdf_q2_20 (Q_latch220 clk Q220 vdd gnd) DFLOP
+xdf_q2_21 (Q_latch221 clk Q221 vdd gnd) DFLOP
+xdf_q2_22 (Q_latch222 clk Q222 vdd gnd) DFLOP
+xdf_q2_23 (Q_latch223 clk Q223 vdd gnd) DFLOP
+xdf_q2_24 (Q_latch224 clk Q224 vdd gnd) DFLOP
+xdf_q2_25 (Q_latch225 clk Q225 vdd gnd) DFLOP
+xdf_q2_26 (Q_latch226 clk Q226 vdd gnd) DFLOP
+xdf_q2_27 (Q_latch227 clk Q227 vdd gnd) DFLOP
+xdf_q2_28 (Q_latch228 clk Q228 vdd gnd) DFLOP
+xdf_q2_29 (Q_latch229 clk Q229 vdd gnd) DFLOP
+xdf_q2_30 (Q_latch230 clk Q230 vdd gnd) DFLOP
+xdf_q2_31 (Q_latch231 clk Q231 vdd gnd) DFLOP
+xdf_q2_32 (Q_latch232 clk Q232 vdd gnd) DFLOP
+xdf_q2_33 (Q_latch233 clk Q233 vdd gnd) DFLOP
+xdf_q2_34 (Q_latch234 clk Q234 vdd gnd) DFLOP
+xdf_q2_35 (Q_latch235 clk Q235 vdd gnd) DFLOP
+xdf_q2_36 (Q_latch236 clk Q236 vdd gnd) DFLOP
+xdf_q2_37 (Q_latch237 clk Q237 vdd gnd) DFLOP
+xdf_q2_38 (Q_latch238 clk Q238 vdd gnd) DFLOP
+xdf_q2_39 (Q_latch239 clk Q239 vdd gnd) DFLOP
+xdf_q2_40 (Q_latch240 clk Q240 vdd gnd) DFLOP
+xdf_q2_41 (Q_latch241 clk Q241 vdd gnd) DFLOP
+xdf_q2_42 (Q_latch242 clk Q242 vdd gnd) DFLOP
+xdf_q2_43 (Q_latch243 clk Q243 vdd gnd) DFLOP
+xdf_q2_44 (Q_latch244 clk Q244 vdd gnd) DFLOP
+xdf_q2_45 (Q_latch245 clk Q245 vdd gnd) DFLOP
+xdf_q2_46 (Q_latch246 clk Q246 vdd gnd) DFLOP
+xdf_q2_47 (Q_latch247 clk Q247 vdd gnd) DFLOP
+xdf_q2_48 (Q_latch248 clk Q248 vdd gnd) DFLOP
+xdf_q2_49 (Q_latch249 clk Q249 vdd gnd) DFLOP
+xdf_q2_50 (Q_latch250 clk Q250 vdd gnd) DFLOP
+xdf_q2_51 (Q_latch251 clk Q251 vdd gnd) DFLOP
+xdf_q2_52 (Q_latch252 clk Q252 vdd gnd) DFLOP
+xdf_q2_53 (Q_latch253 clk Q253 vdd gnd) DFLOP
+xdf_q2_54 (Q_latch254 clk Q254 vdd gnd) DFLOP
+xdf_q2_55 (Q_latch255 clk Q255 vdd gnd) DFLOP
+xdf_q2_56 (Q_latch256 clk Q256 vdd gnd) DFLOP
+xdf_q2_57 (Q_latch257 clk Q257 vdd gnd) DFLOP
+xdf_q2_58 (Q_latch258 clk Q258 vdd gnd) DFLOP
+xdf_q2_59 (Q_latch259 clk Q259 vdd gnd) DFLOP
+xdf_q2_60 (Q_latch260 clk Q260 vdd gnd) DFLOP
+xdf_q2_61 (Q_latch261 clk Q261 vdd gnd) DFLOP
+xdf_q2_62 (Q_latch262 clk Q262 vdd gnd) DFLOP
+xdf_q2_63 (Q_latch263 clk Q263 vdd gnd) DFLOP
+xdf_q2_64 (Q_latch264 clk Q264 vdd gnd) DFLOP
+xdf_q2_65 (Q_latch265 clk Q265 vdd gnd) DFLOP
+xdf_q2_66 (Q_latch266 clk Q266 vdd gnd) DFLOP
+xdf_q2_67 (Q_latch267 clk Q267 vdd gnd) DFLOP
+xdf_q2_68 (Q_latch268 clk Q268 vdd gnd) DFLOP
+xdf_q2_69 (Q_latch269 clk Q269 vdd gnd) DFLOP
+xdf_q2_70 (Q_latch270 clk Q270 vdd gnd) DFLOP
+xdf_q2_71 (Q_latch271 clk Q271 vdd gnd) DFLOP
+xdf_q2_72 (Q_latch272 clk Q272 vdd gnd) DFLOP
+xdf_q2_73 (Q_latch273 clk Q273 vdd gnd) DFLOP
+xdf_q2_74 (Q_latch274 clk Q274 vdd gnd) DFLOP
+xdf_q2_75 (Q_latch275 clk Q275 vdd gnd) DFLOP
+xdf_q2_76 (Q_latch276 clk Q276 vdd gnd) DFLOP
+xdf_q2_77 (Q_latch277 clk Q277 vdd gnd) DFLOP
+xdf_q2_78 (Q_latch278 clk Q278 vdd gnd) DFLOP
+xdf_q2_79 (Q_latch279 clk Q279 vdd gnd) DFLOP
+xdf_q2_80 (Q_latch280 clk Q280 vdd gnd) DFLOP
+xdf_q2_81 (Q_latch281 clk Q281 vdd gnd) DFLOP
+xdf_q2_82 (Q_latch282 clk Q282 vdd gnd) DFLOP
+xdf_q2_83 (Q_latch283 clk Q283 vdd gnd) DFLOP
+xdf_q2_84 (Q_latch284 clk Q284 vdd gnd) DFLOP
+xdf_q2_85 (Q_latch285 clk Q285 vdd gnd) DFLOP
+xdf_q2_86 (Q_latch286 clk Q286 vdd gnd) DFLOP
+xdf_q2_87 (Q_latch287 clk Q287 vdd gnd) DFLOP
+xdf_q2_88 (Q_latch288 clk Q288 vdd gnd) DFLOP
+xdf_q2_89 (Q_latch289 clk Q289 vdd gnd) DFLOP
+xdf_q2_90 (Q_latch290 clk Q290 vdd gnd) DFLOP
+xdf_q2_91 (Q_latch291 clk Q291 vdd gnd) DFLOP
+xdf_q2_92 (Q_latch292 clk Q292 vdd gnd) DFLOP
+xdf_q2_93 (Q_latch293 clk Q293 vdd gnd) DFLOP
+xdf_q2_94 (Q_latch294 clk Q294 vdd gnd) DFLOP
+xdf_q2_95 (Q_latch295 clk Q295 vdd gnd) DFLOP
+xdf_q2_96 (Q_latch296 clk Q296 vdd gnd) DFLOP
+xdf_q2_97 (Q_latch297 clk Q297 vdd gnd) DFLOP
+xdf_q2_98 (Q_latch298 clk Q298 vdd gnd) DFLOP
+xdf_q2_99 (Q_latch299 clk Q299 vdd gnd) DFLOP
+
+xdf_q3_0 (Q_latch30 clk Q30 vdd gnd) DFLOP
+xdf_q3_1 (Q_latch31 clk Q31 vdd gnd) DFLOP
+xdf_q3_2 (Q_latch32 clk Q32 vdd gnd) DFLOP
+xdf_q3_3 (Q_latch33 clk Q33 vdd gnd) DFLOP
+xdf_q3_4 (Q_latch34 clk Q34 vdd gnd) DFLOP
+xdf_q3_5 (Q_latch35 clk Q35 vdd gnd) DFLOP
+xdf_q3_6 (Q_latch36 clk Q36 vdd gnd) DFLOP
+xdf_q3_7 (Q_latch37 clk Q37 vdd gnd) DFLOP
+xdf_q3_8 (Q_latch38 clk Q38 vdd gnd) DFLOP
+xdf_q3_9 (Q_latch39 clk Q39 vdd gnd) DFLOP
+xdf_q3_10 (Q_latch310 clk Q310 vdd gnd) DFLOP
+xdf_q3_11 (Q_latch311 clk Q311 vdd gnd) DFLOP
+xdf_q3_12 (Q_latch312 clk Q312 vdd gnd) DFLOP
+xdf_q3_13 (Q_latch313 clk Q313 vdd gnd) DFLOP
+xdf_q3_14 (Q_latch314 clk Q314 vdd gnd) DFLOP
+xdf_q3_15 (Q_latch315 clk Q315 vdd gnd) DFLOP
+xdf_q3_16 (Q_latch316 clk Q316 vdd gnd) DFLOP
+xdf_q3_17 (Q_latch317 clk Q317 vdd gnd) DFLOP
+xdf_q3_18 (Q_latch318 clk Q318 vdd gnd) DFLOP
+xdf_q3_19 (Q_latch319 clk Q319 vdd gnd) DFLOP
+xdf_q3_20 (Q_latch320 clk Q320 vdd gnd) DFLOP
+xdf_q3_21 (Q_latch321 clk Q321 vdd gnd) DFLOP
+xdf_q3_22 (Q_latch322 clk Q322 vdd gnd) DFLOP
+xdf_q3_23 (Q_latch323 clk Q323 vdd gnd) DFLOP
+xdf_q3_24 (Q_latch324 clk Q324 vdd gnd) DFLOP
+xdf_q3_25 (Q_latch325 clk Q325 vdd gnd) DFLOP
+xdf_q3_26 (Q_latch326 clk Q326 vdd gnd) DFLOP
+xdf_q3_27 (Q_latch327 clk Q327 vdd gnd) DFLOP
+xdf_q3_28 (Q_latch328 clk Q328 vdd gnd) DFLOP
+xdf_q3_29 (Q_latch329 clk Q329 vdd gnd) DFLOP
+xdf_q3_30 (Q_latch330 clk Q330 vdd gnd) DFLOP
+xdf_q3_31 (Q_latch331 clk Q331 vdd gnd) DFLOP
+xdf_q3_32 (Q_latch332 clk Q332 vdd gnd) DFLOP
+xdf_q3_33 (Q_latch333 clk Q333 vdd gnd) DFLOP
+xdf_q3_34 (Q_latch334 clk Q334 vdd gnd) DFLOP
+xdf_q3_35 (Q_latch335 clk Q335 vdd gnd) DFLOP
+xdf_q3_36 (Q_latch336 clk Q336 vdd gnd) DFLOP
+xdf_q3_37 (Q_latch337 clk Q337 vdd gnd) DFLOP
+xdf_q3_38 (Q_latch338 clk Q338 vdd gnd) DFLOP
+xdf_q3_39 (Q_latch339 clk Q339 vdd gnd) DFLOP
+xdf_q3_40 (Q_latch340 clk Q340 vdd gnd) DFLOP
+xdf_q3_41 (Q_latch341 clk Q341 vdd gnd) DFLOP
+xdf_q3_42 (Q_latch342 clk Q342 vdd gnd) DFLOP
+xdf_q3_43 (Q_latch343 clk Q343 vdd gnd) DFLOP
+xdf_q3_44 (Q_latch344 clk Q344 vdd gnd) DFLOP
+xdf_q3_45 (Q_latch345 clk Q345 vdd gnd) DFLOP
+xdf_q3_46 (Q_latch346 clk Q346 vdd gnd) DFLOP
+xdf_q3_47 (Q_latch347 clk Q347 vdd gnd) DFLOP
+xdf_q3_48 (Q_latch348 clk Q348 vdd gnd) DFLOP
+xdf_q3_49 (Q_latch349 clk Q349 vdd gnd) DFLOP
+xdf_q3_50 (Q_latch350 clk Q350 vdd gnd) DFLOP
+xdf_q3_51 (Q_latch351 clk Q351 vdd gnd) DFLOP
+xdf_q3_52 (Q_latch352 clk Q352 vdd gnd) DFLOP
+xdf_q3_53 (Q_latch353 clk Q353 vdd gnd) DFLOP
+xdf_q3_54 (Q_latch354 clk Q354 vdd gnd) DFLOP
+xdf_q3_55 (Q_latch355 clk Q355 vdd gnd) DFLOP
+xdf_q3_56 (Q_latch356 clk Q356 vdd gnd) DFLOP
+xdf_q3_57 (Q_latch357 clk Q357 vdd gnd) DFLOP
+xdf_q3_58 (Q_latch358 clk Q358 vdd gnd) DFLOP
+xdf_q3_59 (Q_latch359 clk Q359 vdd gnd) DFLOP
+xdf_q3_60 (Q_latch360 clk Q360 vdd gnd) DFLOP
+xdf_q3_61 (Q_latch361 clk Q361 vdd gnd) DFLOP
+xdf_q3_62 (Q_latch362 clk Q362 vdd gnd) DFLOP
+xdf_q3_63 (Q_latch363 clk Q363 vdd gnd) DFLOP
+xdf_q3_64 (Q_latch364 clk Q364 vdd gnd) DFLOP
+xdf_q3_65 (Q_latch365 clk Q365 vdd gnd) DFLOP
+xdf_q3_66 (Q_latch366 clk Q366 vdd gnd) DFLOP
+xdf_q3_67 (Q_latch367 clk Q367 vdd gnd) DFLOP
+xdf_q3_68 (Q_latch368 clk Q368 vdd gnd) DFLOP
+xdf_q3_69 (Q_latch369 clk Q369 vdd gnd) DFLOP
+xdf_q3_70 (Q_latch370 clk Q370 vdd gnd) DFLOP
+xdf_q3_71 (Q_latch371 clk Q371 vdd gnd) DFLOP
+xdf_q3_72 (Q_latch372 clk Q372 vdd gnd) DFLOP
+xdf_q3_73 (Q_latch373 clk Q373 vdd gnd) DFLOP
+xdf_q3_74 (Q_latch374 clk Q374 vdd gnd) DFLOP
+xdf_q3_75 (Q_latch375 clk Q375 vdd gnd) DFLOP
+xdf_q3_76 (Q_latch376 clk Q376 vdd gnd) DFLOP
+xdf_q3_77 (Q_latch377 clk Q377 vdd gnd) DFLOP
+xdf_q3_78 (Q_latch378 clk Q378 vdd gnd) DFLOP
+xdf_q3_79 (Q_latch379 clk Q379 vdd gnd) DFLOP
+xdf_q3_80 (Q_latch380 clk Q380 vdd gnd) DFLOP
+xdf_q3_81 (Q_latch381 clk Q381 vdd gnd) DFLOP
+xdf_q3_82 (Q_latch382 clk Q382 vdd gnd) DFLOP
+xdf_q3_83 (Q_latch383 clk Q383 vdd gnd) DFLOP
+xdf_q3_84 (Q_latch384 clk Q384 vdd gnd) DFLOP
+xdf_q3_85 (Q_latch385 clk Q385 vdd gnd) DFLOP
+xdf_q3_86 (Q_latch386 clk Q386 vdd gnd) DFLOP
+xdf_q3_87 (Q_latch387 clk Q387 vdd gnd) DFLOP
+xdf_q3_88 (Q_latch388 clk Q388 vdd gnd) DFLOP
+xdf_q3_89 (Q_latch389 clk Q389 vdd gnd) DFLOP
+xdf_q3_90 (Q_latch390 clk Q390 vdd gnd) DFLOP
+xdf_q3_91 (Q_latch391 clk Q391 vdd gnd) DFLOP
+xdf_q3_92 (Q_latch392 clk Q392 vdd gnd) DFLOP
+xdf_q3_93 (Q_latch393 clk Q393 vdd gnd) DFLOP
+xdf_q3_94 (Q_latch394 clk Q394 vdd gnd) DFLOP
+xdf_q3_95 (Q_latch395 clk Q395 vdd gnd) DFLOP
+xdf_q3_96 (Q_latch396 clk Q396 vdd gnd) DFLOP
+xdf_q3_97 (Q_latch397 clk Q397 vdd gnd) DFLOP
+xdf_q3_98 (Q_latch398 clk Q398 vdd gnd) DFLOP
+xdf_q3_99 (Q_latch399 clk Q399 vdd gnd) DFLOP
+
+xdf_q4_0 (Q_latch40 clk Q40 vdd gnd) DFLOP
+xdf_q4_1 (Q_latch41 clk Q41 vdd gnd) DFLOP
+xdf_q4_2 (Q_latch42 clk Q42 vdd gnd) DFLOP
+xdf_q4_3 (Q_latch43 clk Q43 vdd gnd) DFLOP
+xdf_q4_4 (Q_latch44 clk Q44 vdd gnd) DFLOP
+xdf_q4_5 (Q_latch45 clk Q45 vdd gnd) DFLOP
+xdf_q4_6 (Q_latch46 clk Q46 vdd gnd) DFLOP
+xdf_q4_7 (Q_latch47 clk Q47 vdd gnd) DFLOP
+xdf_q4_8 (Q_latch48 clk Q48 vdd gnd) DFLOP
+xdf_q4_9 (Q_latch49 clk Q49 vdd gnd) DFLOP
+xdf_q4_10 (Q_latch410 clk Q410 vdd gnd) DFLOP
+xdf_q4_11 (Q_latch411 clk Q411 vdd gnd) DFLOP
+xdf_q4_12 (Q_latch412 clk Q412 vdd gnd) DFLOP
+xdf_q4_13 (Q_latch413 clk Q413 vdd gnd) DFLOP
+xdf_q4_14 (Q_latch414 clk Q414 vdd gnd) DFLOP
+xdf_q4_15 (Q_latch415 clk Q415 vdd gnd) DFLOP
+xdf_q4_16 (Q_latch416 clk Q416 vdd gnd) DFLOP
+xdf_q4_17 (Q_latch417 clk Q417 vdd gnd) DFLOP
+xdf_q4_18 (Q_latch418 clk Q418 vdd gnd) DFLOP
+xdf_q4_19 (Q_latch419 clk Q419 vdd gnd) DFLOP
+xdf_q4_20 (Q_latch420 clk Q420 vdd gnd) DFLOP
+xdf_q4_21 (Q_latch421 clk Q421 vdd gnd) DFLOP
+xdf_q4_22 (Q_latch422 clk Q422 vdd gnd) DFLOP
+xdf_q4_23 (Q_latch423 clk Q423 vdd gnd) DFLOP
+xdf_q4_24 (Q_latch424 clk Q424 vdd gnd) DFLOP
+xdf_q4_25 (Q_latch425 clk Q425 vdd gnd) DFLOP
+xdf_q4_26 (Q_latch426 clk Q426 vdd gnd) DFLOP
+xdf_q4_27 (Q_latch427 clk Q427 vdd gnd) DFLOP
+xdf_q4_28 (Q_latch428 clk Q428 vdd gnd) DFLOP
+xdf_q4_29 (Q_latch429 clk Q429 vdd gnd) DFLOP
+xdf_q4_30 (Q_latch430 clk Q430 vdd gnd) DFLOP
+xdf_q4_31 (Q_latch431 clk Q431 vdd gnd) DFLOP
+xdf_q4_32 (Q_latch432 clk Q432 vdd gnd) DFLOP
+xdf_q4_33 (Q_latch433 clk Q433 vdd gnd) DFLOP
+xdf_q4_34 (Q_latch434 clk Q434 vdd gnd) DFLOP
+xdf_q4_35 (Q_latch435 clk Q435 vdd gnd) DFLOP
+xdc_q4_36 (Q_latch436 clk Q436 vdd gnd) DFLOP
+xdf_q4_37 (Q_latch437 clk Q437 vdd gnd) DFLOP
+xdf_q4_38 (Q_latch438 clk Q438 vdd gnd) DFLOP
+xdf_q4_39 (Q_latch439 clk Q439 vdd gnd) DFLOP
+xdf_q4_40 (Q_latch440 clk Q440 vdd gnd) DFLOP
+xdf_q4_41 (Q_latch441 clk Q441 vdd gnd) DFLOP
+xdf_q4_42 (Q_latch442 clk Q442 vdd gnd) DFLOP
+xdf_q4_43 (Q_latch443 clk Q443 vdd gnd) DFLOP
+xdf_q4_44 (Q_latch444 clk Q444 vdd gnd) DFLOP
+xdf_q4_45 (Q_latch445 clk Q445 vdd gnd) DFLOP
+xdf_q4_46 (Q_latch446 clk Q446 vdd gnd) DFLOP
+xdf_q4_47 (Q_latch447 clk Q447 vdd gnd) DFLOP
+xdf_q4_48 (Q_latch448 clk Q448 vdd gnd) DFLOP
+xdf_q4_49 (Q_latch449 clk Q449 vdd gnd) DFLOP
+xdf_q4_50 (Q_latch450 clk Q450 vdd gnd) DFLOP
+xdf_q4_51 (Q_latch451 clk Q451 vdd gnd) DFLOP
+xdf_q4_52 (Q_latch452 clk Q452 vdd gnd) DFLOP
+xdf_q4_53 (Q_latch453 clk Q453 vdd gnd) DFLOP
+xdf_q4_54 (Q_latch454 clk Q454 vdd gnd) DFLOP
+xdf_q4_55 (Q_latch455 clk Q455 vdd gnd) DFLOP
+xdf_q4_56 (Q_latch456 clk Q456 vdd gnd) DFLOP
+xdf_q4_57 (Q_latch457 clk Q457 vdd gnd) DFLOP
+xdf_q4_58 (Q_latch458 clk Q458 vdd gnd) DFLOP
+xdf_q4_59 (Q_latch459 clk Q459 vdd gnd) DFLOP
+xdf_q4_60 (Q_latch460 clk Q460 vdd gnd) DFLOP
+xdc_q4_61 (Q_latch461 clk Q461 vdd gnd) DFLOP
+xdf_q4_62 (Q_latch462 clk Q462 vdd gnd) DFLOP
+xdf_q4_63 (Q_latch463 clk Q463 vdd gnd) DFLOP
+xdf_q4_64 (Q_latch464 clk Q464 vdd gnd) DFLOP
+xdf_q4_65 (Q_latch465 clk Q465 vdd gnd) DFLOP
+xdf_q4_66 (Q_latch466 clk Q466 vdd gnd) DFLOP
+xdf_q4_67 (Q_latch467 clk Q467 vdd gnd) DFLOP
+xdf_q4_68 (Q_latch468 clk Q468 vdd gnd) DFLOP
+xdf_q4_69 (Q_latch469 clk Q469 vdd gnd) DFLOP
+xdf_q4_70 (Q_latch470 clk Q470 vdd gnd) DFLOP
+xdf_q4_71 (Q_latch471 clk Q471 vdd gnd) DFLOP
+xdf_q4_72 (Q_latch472 clk Q472 vdd gnd) DFLOP
+xdf_q4_73 (Q_latch473 clk Q473 vdd gnd) DFLOP
+xdf_q4_74 (Q_latch474 clk Q474 vdd gnd) DFLOP
+xdf_q4_75 (Q_latch475 clk Q475 vdd gnd) DFLOP
+xdf_q4_76 (Q_latch476 clk Q476 vdd gnd) DFLOP
+xdf_q4_77 (Q_latch477 clk Q477 vdd gnd) DFLOP
+xdf_q4_78 (Q_latch478 clk Q478 vdd gnd) DFLOP
+xdf_q4_79 (Q_latch479 clk Q479 vdd gnd) DFLOP
+xdf_q4_80 (Q_latch480 clk Q480 vdd gnd) DFLOP
+xdf_q4_81 (Q_latch481 clk Q481 vdd gnd) DFLOP
+xdf_q4_82 (Q_latch482 clk Q482 vdd gnd) DFLOP
+xdf_q4_83 (Q_latch483 clk Q483 vdd gnd) DFLOP
+xdf_q4_84 (Q_latch484 clk Q484 vdd gnd) DFLOP
+xdf_q4_85 (Q_latch485 clk Q485 vdd gnd) DFLOP
+xdf_q4_86 (Q_latch486 clk Q486 vdd gnd) DFLOP
+xdf_q4_87 (Q_latch487 clk Q487 vdd gnd) DFLOP
+xdf_q4_88 (Q_latch488 clk Q488 vdd gnd) DFLOP
+xdf_q4_89 (Q_latch489 clk Q489 vdd gnd) DFLOP
+xdf_q4_90 (Q_latch490 clk Q490 vdd gnd) DFLOP
+xdf_q4_91 (Q_latch491 clk Q491 vdd gnd) DFLOP
+xdf_q4_92 (Q_latch492 clk Q492 vdd gnd) DFLOP
+xdf_q4_93 (Q_latch493 clk Q493 vdd gnd) DFLOP
+xdf_q4_94 (Q_latch494 clk Q494 vdd gnd) DFLOP
+xdf_q4_95 (Q_latch495 clk Q495 vdd gnd) DFLOP
+xdf_q4_96 (Q_latch496 clk Q496 vdd gnd) DFLOP
+xdf_q4_97 (Q_latch497 clk Q497 vdd gnd) DFLOP
+xdf_q4_98 (Q_latch498 clk Q498 vdd gnd) DFLOP
+xdf_q4_99 (Q_latch499 clk Q499 vdd gnd) DFLOP
+

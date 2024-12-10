@@ -1,0 +1,136 @@
+// "spectre" description for "Design", "hf", "spectreText" 
+
+
+simulator lang=spectre
+
+
+simulator lang=spectre
+
+
+include "~/ECEN752/45nm_HP.pm"
+include "~/ECEN752/hf_subckt_45nm.scs"
+include "~/ECEN752/qmatrix_ff.scs"  //Includes qmatrix stored in flip flops.
+
+//Add the Q-matrix row i.e. the outputs of each row subckt below acts as input to the XOR gate for each bin
+row0 (key0 key1 key2 key3 key4 key5 key6 key7 key8 key9 key10 key11 key12 key13 key14 key15 key16 key17 key18 key19 key20 key21 key22 key23 key24 key25 key26 key27 key28 key29 key30 key31 key32 key33 key34 key35 key36 key37 key38 key39 key40 key41 key42 key43 key44 key45 key46 key47 key48 key49 key50 key51 key52 key53 key54 key55 key56 key57 key58 key59 key60 key61 key62 key63 key64 key65 key66 key67 key68 key69 key70 key71 key72 key73 key74 key75 key76 key77 key78 key79 key80 key81 key82 key83 key84 key85 key86 key87 key88 key89 key90 key91 key92 key93 key94 key95 key96 key97 key98 key99 Q00 Q01 Q02 Q03 Q04 Q05 Q06 Q07 Q08 Q09 Q010 Q011 Q012 Q013 Q014 Q015 Q016 Q017 Q018 Q019 Q020 Q021 Q022 Q023 Q024 Q025 Q026 Q027 Q028 Q029 Q030 Q031 Q032 Q033 Q034 Q035 Q036 Q037 Q038 Q039 Q040 Q041 Q042 Q043 Q044 Q045 Q046 Q047 Q048 Q049 Q050 Q051 Q052 Q053 Q054 Q055 Q056 Q057 Q058 Q059 Q060 Q061 Q062 Q063 Q064 Q065 Q066 Q067 Q068 Q069 Q070 Q071 Q072 Q073 Q074 Q075 Q076 Q077 Q078 Q079 Q080 Q081 Q082 Q083 Q084 Q085 Q086 Q087 Q088 Q089 Q090 Q091 Q092 Q093 Q094 Q095 Q096 Q097 Q098 Q099 out00 out01 out02 out03 out04 out05 out06 out07 out08 out09 out010 out011 out012 out013 out014 out015 out016 out017 out018 out019 out020 out021 out022 out023 out024 out025 out026 out027 out028 out029 out030 out031 out032 out033 out034 out035 out036 out037 out038 out039 out040 out041 out042 out043 out044 out045 out046 out047 out048 out049 out050 out051 out052 out053 out054 out055 out056 out057 out058 out059 out060 out061 out062 out063 out064 out065 out066 out067 out068 out069 out070 out071 out072 out073 out074 out075 out076 out077 out078 out079 out080 out081 out082 out083 out084 out085 out086 out087 out088 out089 out090 out091 out092 out093 out094 out095 out096 out097 out098 out099 vdd gnd) row
+row1 (key0 key1 key2 key3 key4 key5 key6 key7 key8 key9 key10 key11 key12 key13 key14 key15 key16 key17 key18 key19 key20 key21 key22 key23 key24 key25 key26 key27 key28 key29 key30 key31 key32 key33 key34 key35 key36 key37 key38 key39 key40 key41 key42 key43 key44 key45 key46 key47 key48 key49 key50 key51 key52 key53 key54 key55 key56 key57 key58 key59 key60 key61 key62 key63 key64 key65 key66 key67 key68 key69 key70 key71 key72 key73 key74 key75 key76 key77 key78 key79 key80 key81 key82 key83 key84 key85 key86 key87 key88 key89 key90 key91 key92 key93 key94 key95 key96 key97 key98 key99 Q10 Q11 Q12 Q13 Q14 Q15 Q16 Q17 Q18 Q19 Q110 Q111 Q112 Q113 Q114 Q115 Q116 Q117 Q118 Q119 Q120 Q121 Q122 Q123 Q124 Q125 Q126 Q127 Q128 Q129 Q130 Q131 Q132 Q133 Q134 Q135 Q136 Q137 Q138 Q139 Q140 Q141 Q142 Q143 Q144 Q145 Q146 Q147 Q148 Q149 Q150 Q151 Q152 Q153 Q154 Q155 Q156 Q157 Q158 Q159 Q160 Q161 Q162 Q163 Q164 Q165 Q166 Q167 Q168 Q169 Q170 Q171 Q172 Q173 Q174 Q175 Q176 Q177 Q178 Q179 Q180 Q181 Q182 Q183 Q184 Q185 Q186 Q187 Q188 Q189 Q190 Q191 Q192 Q193 Q194 Q195 Q196 Q197 Q198 Q199 out10 out11 out12 out13 out14 out15 out16 out17 out18 out19 out110 out111 out112 out113 out114 out115 out116 out117 out118 out119 out120 out121 out122 out123 out124 out125 out126 out127 out128 out129 out130 out131 out132 out133 out134 out135 out136 out137 out138 out139 out140 out141 out142 out143 out144 out145 out146 out147 out148 out149 out150 out151 out152 out153 out154 out155 out156 out157 out158 out159 out160 out161 out162 out163 out164 out165 out166 out167 out168 out169 out170 out171 out172 out173 out174 out175 out176 out177 out178 out179 out180 out181 out182 out183 out184 out185 out186 out187 out188 out189 out190 out191 out192 out193 out194 out195 out196 out197 out198 out199 vdd gnd) row
+row2 (key0 key1 key2 key3 key4 key5 key6 key7 key8 key9 key10 key11 key12 key13 key14 key15 key16 key17 key18 key19 key20 key21 key22 key23 key24 key25 key26 key27 key28 key29 key30 key31 key32 key33 key34 key35 key36 key37 key38 key39 key40 key41 key42 key43 key44 key45 key46 key47 key48 key49 key50 key51 key52 key53 key54 key55 key56 key57 key58 key59 key60 key61 key62 key63 key64 key65 key66 key67 key68 key69 key70 key71 key72 key73 key74 key75 key76 key77 key78 key79 key80 key81 key82 key83 key84 key85 key86 key87 key88 key89 key90 key91 key92 key93 key94 key95 key96 key97 key98 key99 Q20 Q21 Q22 Q23 Q24 Q25 Q26 Q27 Q28 Q29 Q210 Q211 Q212 Q213 Q214 Q215 Q216 Q217 Q218 Q219 Q220 Q221 Q222 Q223 Q224 Q225 Q226 Q227 Q228 Q229 Q230 Q231 Q232 Q233 Q234 Q235 Q236 Q237 Q238 Q239 Q240 Q241 Q242 Q243 Q244 Q245 Q246 Q247 Q248 Q249 Q250 Q251 Q252 Q253 Q254 Q255 Q256 Q257 Q258 Q259 Q260 Q261 Q262 Q263 Q264 Q265 Q266 Q267 Q268 Q269 Q270 Q271 Q272 Q273 Q274 Q275 Q276 Q277 Q278 Q279 Q280 Q281 Q282 Q283 Q284 Q285 Q286 Q287 Q288 Q289 Q290 Q291 Q292 Q293 Q294 Q295 Q296 Q297 Q298 Q299 out20 out21 out22 out23 out24 out25 out26 out27 out28 out29 out210 out211 out212 out213 out214 out215 out216 out217 out218 out219 out220 out221 out222 out223 out224 out225 out226 out227 out228 out229 out230 out231 out232 out233 out234 out235 out236 out237 out238 out239 out240 out241 out242 out243 out244 out245 out246 out247 out248 out249 out250 out251 out252 out253 out254 out255 out256 out257 out258 out259 out260 out261 out262 out263 out264 out265 out266 out267 out268 out269 out270 out271 out272 out273 out274 out275 out276 out277 out278 out279 out280 out281 out282 out283 out284 out285 out286 out287 out288 out289 out290 out291 out292 out293 out294 out295 out296 out297 out298 out299 vdd gnd) row
+row3 (key0 key1 key2 key3 key4 key5 key6 key7 key8 key9 key10 key11 key12 key13 key14 key15 key16 key17 key18 key19 key20 key21 key22 key23 key24 key25 key26 key27 key28 key29 key30 key31 key32 key33 key34 key35 key36 key37 key38 key39 key40 key41 key42 key43 key44 key45 key46 key47 key48 key49 key50 key51 key52 key53 key54 key55 key56 key57 key58 key59 key60 key61 key62 key63 key64 key65 key66 key67 key68 key69 key70 key71 key72 key73 key74 key75 key76 key77 key78 key79 key80 key81 key82 key83 key84 key85 key86 key87 key88 key89 key90 key91 key92 key93 key94 key95 key96 key97 key98 key99 Q30 Q31 Q32 Q33 Q34 Q35 Q36 Q37 Q38 Q39 Q310 Q311 Q312 Q313 Q314 Q315 Q316 Q317 Q318 Q319 Q320 Q321 Q322 Q323 Q324 Q325 Q326 Q327 Q328 Q329 Q330 Q331 Q332 Q333 Q334 Q335 Q336 Q337 Q338 Q339 Q340 Q341 Q342 Q343 Q344 Q345 Q346 Q347 Q348 Q349 Q350 Q351 Q352 Q353 Q354 Q355 Q356 Q357 Q358 Q359 Q360 Q361 Q362 Q363 Q364 Q365 Q366 Q367 Q368 Q369 Q370 Q371 Q372 Q373 Q374 Q375 Q376 Q377 Q378 Q379 Q380 Q381 Q382 Q383 Q384 Q385 Q386 Q387 Q388 Q389 Q390 Q391 Q392 Q393 Q394 Q395 Q396 Q397 Q398 Q399 out30 out31 out32 out33 out34 out35 out36 out37 out38 out39 out310 out311 out312 out313 out314 out315 out316 out317 out318 out319 out320 out321 out322 out323 out324 out325 out326 out327 out328 out329 out330 out331 out332 out333 out334 out335 out336 out337 out338 out339 out340 out341 out342 out343 out344 out345 out346 out347 out348 out349 out350 out351 out352 out353 out354 out355 out356 out357 out358 out359 out360 out361 out362 out363 out364 out365 out366 out367 out368 out369 out370 out371 out372 out373 out374 out375 out376 out377 out378 out379 out380 out381 out382 out383 out384 out385 out386 out387 out388 out389 out390 out391 out392 out393 out394 out395 out396 out397 out398 out399 vdd gnd) row
+row4 (key0 key1 key2 key3 key4 key5 key6 key7 key8 key9 key10 key11 key12 key13 key14 key15 key16 key17 key18 key19 key20 key21 key22 key23 key24 key25 key26 key27 key28 key29 key30 key31 key32 key33 key34 key35 key36 key37 key38 key39 key40 key41 key42 key43 key44 key45 key46 key47 key48 key49 key50 key51 key52 key53 key54 key55 key56 key57 key58 key59 key60 key61 key62 key63 key64 key65 key66 key67 key68 key69 key70 key71 key72 key73 key74 key75 key76 key77 key78 key79 key80 key81 key82 key83 key84 key85 key86 key87 key88 key89 key90 key91 key92 key93 key94 key95 key96 key97 key98 key99 Q40 Q41 Q42 Q43 Q44 Q45 Q46 Q47 Q48 Q49 Q410 Q411 Q412 Q413 Q414 Q415 Q416 Q417 Q418 Q419 Q420 Q421 Q422 Q423 Q424 Q425 Q426 Q427 Q428 Q429 Q430 Q431 Q432 Q433 Q434 Q435 Q436 Q437 Q438 Q439 Q440 Q441 Q442 Q443 Q444 Q445 Q446 Q447 Q448 Q449 Q450 Q451 Q452 Q453 Q454 Q455 Q456 Q457 Q458 Q459 Q460 Q461 Q462 Q463 Q464 Q465 Q466 Q467 Q468 Q469 Q470 Q471 Q472 Q473 Q474 Q475 Q476 Q477 Q478 Q479 Q480 Q481 Q482 Q483 Q484 Q485 Q486 Q487 Q488 Q489 Q490 Q491 Q492 Q493 Q494 Q495 Q496 Q497 Q498 Q499 out40 out41 out42 out43 out44 out45 out46 out47 out48 out49 out410 out411 out412 out413 out414 out415 out416 out417 out418 out419 out420 out421 out422 out423 out424 out425 out426 out427 out428 out429 out430 out431 out432 out433 out434 out435 out436 out437 out438 out439 out440 out441 out442 out443 out444 out445 out446 out447 out448 out449 out450 out451 out452 out453 out454 out455 out456 out457 out458 out459 out460 out461 out462 out463 out464 out465 out466 out467 out468 out469 out470 out471 out472 out473 out474 out475 out476 out477 out478 out479 out480 out481 out482 out483 out484 out485 out486 out487 out488 out489 out490 out491 out492 out493 out494 out495 out496 out497 out498 out499 vdd gnd) row
+
+//Final bitwise XOR to select the state of the bin_bit. 5 binselectors below translates to 32 bins (finalized bin value by CAM team)
+binsel0 (out00 out01 out02 out03 out04 out05 out06 out07 out08 out09 out010 out011 out012 out013 out014 out015 out016 out017 out018 out019 out020 out021 out022 out023 out024 out025 out026 out027 out028 out029 out030 out031 out032 out033 out034 out035 out036 out037 out038 out039 out040 out041 out042 out043 out044 out045 out046 out047 out048 out049 out050 out051 out052 out053 out054 out055 out056 out057 out058 out059 out060 out061 out062 out063 out064 out065 out066 out067 out068 out069 out070 out071 out072 out073 out074 out075 out076 out077 out078 out079 out080 out081 out082 out083 out084 out085 out086 out087 out088 out089 out090 out091 out092 out093 out094 out095 out096 out097 out098 out099 bin0 vdd gnd) XOR100
+binsel1 (out10 out11 out12 out13 out14 out15 out16 out17 out18 out19 out110 out111 out112 out113 out114 out115 out116 out117 out118 out119 out120 out121 out122 out123 out124 out125 out126 out127 out128 out129 out130 out131 out132 out133 out134 out135 out136 out137 out138 out139 out140 out141 out142 out143 out144 out145 out146 out147 out148 out149 out150 out151 out152 out153 out154 out155 out156 out157 out158 out159 out160 out161 out162 out163 out164 out165 out166 out167 out168 out169 out170 out171 out172 out173 out174 out175 out176 out177 out178 out179 out180 out181 out182 out183 out184 out185 out186 out187 out188 out189 out190 out191 out192 out193 out194 out195 out196 out197 out198 out199 bin1 vdd gnd) XOR100
+binsel2 (out20 out21 out22 out23 out24 out25 out26 out27 out28 out29 out210 out211 out212 out213 out214 out215 out216 out217 out218 out219 out220 out221 out222 out223 out224 out225 out226 out227 out228 out229 out230 out231 out232 out233 out234 out235 out236 out237 out238 out239 out240 out241 out242 out243 out244 out245 out246 out247 out248 out249 out250 out251 out252 out253 out254 out255 out256 out257 out258 out259 out260 out261 out262 out263 out264 out265 out266 out267 out268 out269 out270 out271 out272 out273 out274 out275 out276 out277 out278 out279 out280 out281 out282 out283 out284 out285 out286 out287 out288 out289 out290 out291 out292 out293 out294 out295 out296 out297 out298 out299 bin2 vdd gnd) XOR100
+binsel3 (out30 out31 out32 out33 out34 out35 out36 out37 out38 out39 out310 out311 out312 out313 out314 out315 out316 out317 out318 out319 out320 out321 out322 out323 out324 out325 out326 out327 out328 out329 out330 out331 out332 out333 out334 out335 out336 out337 out338 out339 out340 out341 out342 out343 out344 out345 out346 out347 out348 out349 out350 out351 out352 out353 out354 out355 out356 out357 out358 out359 out360 out361 out362 out363 out364 out365 out366 out367 out368 out369 out370 out371 out372 out373 out374 out375 out376 out377 out378 out379 out380 out381 out382 out383 out384 out385 out386 out387 out388 out389 out390 out391 out392 out393 out394 out395 out396 out397 out398 out399 bin3 vdd gnd) XOR100
+binsel4 (out40 out41 out42 out43 out44 out45 out46 out47 out48 out49 out410 out411 out412 out413 out414 out415 out416 out417 out418 out419 out420 out421 out422 out423 out424 out425 out426 out427 out428 out429 out430 out431 out432 out433 out434 out435 out436 out437 out438 out439 out440 out441 out442 out443 out444 out445 out446 out447 out448 out449 out450 out451 out452 out453 out454 out455 out456 out457 out458 out459 out460 out461 out462 out463 out464 out465 out466 out467 out468 out469 out470 out471 out472 out473 out474 out475 out476 out477 out478 out479 out480 out481 out482 out483 out484 out485 out486 out487 out488 out489 out490 out491 out492 out493 out494 out495 out496 out497 out498 out499 bin4 vdd gnd) XOR100
+
+vgnd (gnd 0) vsource dc=0
+vvdd (vdd 0) vsource dc=1
+
+
+//Test bench to test the key values. These key value netlists were randomized and generated using a Python script.
+vkey0 (key0 0) vsource dc=0
+vkey1 (key1 0) vsource dc=0
+vkey2 (key2 0) vsource dc=0
+vkey3 (key3 0) vsource dc=0
+vkey4 (key4 0) vsource dc=0
+vkey5 (key5 0) vsource dc=1
+vkey6 (key6 0) vsource dc=1
+vkey7 (key7 0) vsource dc=0
+vkey8 (key8 0) vsource dc=0
+vkey9 (key9 0) vsource dc=0
+vkey10 (key10 0) vsource dc=0
+vkey11 (key11 0) vsource dc=1
+vkey12 (key12 0) vsource dc=1
+vkey13 (key13 0) vsource dc=1
+vkey14 (key14 0) vsource dc=1
+vkey15 (key15 0) vsource dc=1
+vkey16 (key16 0) vsource dc=1
+vkey17 (key17 0) vsource dc=0
+vkey18 (key18 0) vsource dc=1
+vkey19 (key19 0) vsource dc=0
+vkey20 (key20 0) vsource dc=0
+vkey21 (key21 0) vsource dc=0
+vkey22 (key22 0) vsource dc=1
+vkey23 (key23 0) vsource dc=1
+vkey24 (key24 0) vsource dc=0
+vkey25 (key25 0) vsource dc=0
+vkey26 (key26 0) vsource dc=0
+vkey27 (key27 0) vsource dc=0
+vkey28 (key28 0) vsource dc=0
+vkey29 (key29 0) vsource dc=1
+vkey30 (key30 0) vsource dc=0
+vkey31 (key31 0) vsource dc=1
+vkey32 (key32 0) vsource dc=0
+vkey33 (key33 0) vsource dc=0
+vkey34 (key34 0) vsource dc=1
+vkey35 (key35 0) vsource dc=0
+vkey36 (key36 0) vsource dc=1
+vkey37 (key37 0) vsource dc=1
+vkey38 (key38 0) vsource dc=1
+vkey39 (key39 0) vsource dc=0
+vkey40 (key40 0) vsource dc=1
+vkey41 (key41 0) vsource dc=0
+vkey42 (key42 0) vsource dc=0
+vkey43 (key43 0) vsource dc=1
+vkey44 (key44 0) vsource dc=1
+vkey45 (key45 0) vsource dc=0
+vkey46 (key46 0) vsource dc=0
+vkey47 (key47 0) vsource dc=1
+vkey48 (key48 0) vsource dc=0
+vkey49 (key49 0) vsource dc=0
+vkey50 (key50 0) vsource dc=0
+vkey51 (key51 0) vsource dc=1
+vkey52 (key52 0) vsource dc=1
+vkey53 (key53 0) vsource dc=1
+vkey54 (key54 0) vsource dc=1
+vkey55 (key55 0) vsource dc=0
+vkey56 (key56 0) vsource dc=1
+vkey57 (key57 0) vsource dc=0
+vkey58 (key58 0) vsource dc=0
+vkey59 (key59 0) vsource dc=1
+vkey60 (key60 0) vsource dc=0
+vkey61 (key61 0) vsource dc=1
+vkey62 (key62 0) vsource dc=1
+vkey63 (key63 0) vsource dc=1
+vkey64 (key64 0) vsource dc=1
+vkey65 (key65 0) vsource dc=0
+vkey66 (key66 0) vsource dc=1
+vkey67 (key67 0) vsource dc=1
+vkey68 (key68 0) vsource dc=1
+vkey69 (key69 0) vsource dc=1
+vkey70 (key70 0) vsource dc=0
+vkey71 (key71 0) vsource dc=1
+vkey72 (key72 0) vsource dc=0
+vkey73 (key73 0) vsource dc=0
+vkey74 (key74 0) vsource dc=0
+vkey75 (key75 0) vsource dc=1
+vkey76 (key76 0) vsource dc=0
+vkey77 (key77 0) vsource dc=1
+vkey78 (key78 0) vsource dc=1
+vkey79 (key79 0) vsource dc=1
+vkey80 (key80 0) vsource dc=1
+vkey81 (key81 0) vsource dc=1
+vkey82 (key82 0) vsource dc=1
+vkey83 (key83 0) vsource dc=0
+vkey84 (key84 0) vsource dc=1
+vkey85 (key85 0) vsource dc=0
+vkey86 (key86 0) vsource dc=1
+vkey87 (key87 0) vsource dc=0
+vkey88 (key88 0) vsource dc=0
+vkey89 (key89 0) vsource dc=1
+vkey90 (key90 0) vsource dc=1
+vkey91 (key91 0) vsource dc=1
+vkey92 (key92 0) vsource dc=1
+vkey93 (key93 0) vsource dc=1
+vkey94 (key94 0) vsource dc=0
+vkey95 (key95 0) vsource dc=1
+vkey96 (key96 0) vsource dc=0
+vkey97 (key97 0) vsource dc=0
+vkey98 (key98 0) vsource dc=0
+vkey99 (key99 0) vsource dc=0
+
+Transient_Analysis1 tran start=0 stop=10ns step=100ps
+
+save bin0 bin1 bin2

@@ -1,0 +1,1799 @@
+
+********************
+BSIM4 MOS Transistor
+********************
+
+BSIM4 is version-4 of the BSIM model. It uses single-piece equations for all regions to improve the smoothness of the model
+characteristics.
+
+Model parameter "version" only accepts real number value, like 4.21 for version=4.2.1. The available versions are
+4.00(4.0.0), 4.10(4.1.0), 4.20(4.2.0), 4.21(4.2.1), 4.30(4.3.0), 4.40(4.4.0), 4.50(4.5.0), 4.60(4.6.0), 4.61(4.6.1),
+4.62(4.6.2), 4.63(4.6.3), 4.64(4.6.4), 4.65(4.6.5), 4.70(4.7.0), 4.80(4.8.0), 4.81(4.8.1) and 4.82(4.8.2).
+
+BSIM4 also supports the binning option like the approach used in BSIM3. This option is provided for users who want to achieve
+the highest accuracy of the model. The binning equation is given by 
+ 
+      P = P0 + Pl / Leff + Pw / Weff + Pp / (Leff * Weff) 
+
+Only the P0 parameters are listed. Pl, Pw, and Pw are not shown but can be recognized. The names of Pl, Pw, and Pp are
+identical to that of P0 but with a prefix of l, w, and p, respectively. BSIM4 transistors require that you use a model
+statement. 
+
+For more information on this model, consult the University of California at Berkeley BSIM4 home page at 
+http://www-device.eecs.berkeley.edu/~bsim3/bsim4.html 
+
+
+Sample Instance Statement:
+m4 (0 2 1 1) pchmod w=2u l=0.8u as=250p ad=250p pd=168p ps=168p m=1
+
+Sample Model Statement:
+model pchmod bsim4 type=p mobmod=0 capmod=2 version=4.21 toxe=3e-9 cdsc=2.58e-4 cdscb=0 cdscd=6.1e-8 cit=0 nfactor=1.1
+xj=9e-8 vfb=0.76 vsat=9.2e4 at=3.3e4 a0=1.1 ags=1.0e-20 a1=0 ngate=9e19 vth0=-0.42 a2=1 delta=0.014 pvag=1e-20 pclm=6.28e-4
+pdits=0.2 pditsl=2.3e6 pditsd=0.23 fprout=0.2 pdiblcb=3.4e-8 pdiblc1=0.81 drout=0.56 pdiblc2=9.84e-6 pscbe1=8.14e8
+pscbe2=9.58e-07 lint=5e-9 wint=5e-9 dmcg=5e-6 dmci=5e-6 dmdg=5e-6 dmcgt=6e-7 dwj=4.5e-8 rsh=6 cgso=7.43e-10 cgdo=7.43e-10
+cgbo=2.56e-11 cgsl=1e-14 cgdl=1e-14 ckappas=0.5 ckappad=0.5 noff=0.9 voffcv=0.02 acde=1 moin=15 xpart=0 kt1l=0 kt2=2.2e-2
+lpe0=5.75e-8 lpeb=2.3e-10 dvt0=2.89 dvt1=0.53 dvt2=-3.2e-2 dvt0w=0 dvt1w=0 dvt2w=0 dvtp0=7.32e-7 dvtp1=0.12 dsub=0.058
+eta0=0.001 u0=4.19e-2 ua=8.7e-16 ub=3.06e-18 k1=0.33 uc=4.6e-13 ute=-1.5 ua1=4.31e-9 ub1=7.61e-18 uc1=-5.6e-11 k2=-1.87e-2
+rdsw=369.4 rdw=184.7 rsw=184.7 prwg=3.22e-8 prwb=6.8e-11 wr=1 rdswmin=0 rdwmin=0 rswmin=0 prt=0 b0=-1e-20 k3=80 k3b=0
+w0=2.5e-6 b1=0 keta=-0.047 alpha0=7.4e-2 alpha1=0.005 beta0=30
+
+In spice language mode, the model is selected through the level model parameter.
+For example,
+.model pchmod PMOS level=14 mobmod=0 capmod=2 version=4.21
+
+This device is supported within altergroups.
+
+Synopsis:
+Name ( d g s b ) ModelName <parameter=value> ...
+
+Model Synopsis:
+model ModelName bsim4 <parameter=value> ...
+
+
+===================
+Instance Parameters
+===================
+
+1       w (m)             Channel width.
+2       l (m)             Channel length.
+3       as (m^2)          Area of source diffusion.
+4       ad (m^2)          Area of drain diffusion.
+5       ps (m)            Perimeter of source diffusion.
+6       pd (m)            Perimeter of drain diffusion.
+7       nrd               Number of squares of drain diffusion.
+8       nrs               Number of squares of source diffusion.
+9       rdc=0.0 Ohm       Drain contact resistance.
+10      rsc=0.0 Ohm       Source contact resistance.
+11      sa=0.0 m          Distance between OD edge to poly from one side.
+12      sb=0.0 m          Distance between OD edge to poly from the other side.
+13      sd=0.0 m          Distance between neighbor fingers.
+14      sa1=0.0 m         Distance between OD edge to poly from one side 1.
+15      sa2=0.0 m         Distance between OD edge to poly from one side 2.
+16      sa3=0.0 m         Distance between OD edge to poly from one side 3.
+17      sa4=0.0 m         Distance between OD edge to poly from one side 4.
+18      sa5=0.0 m         Distance between OD edge to poly from one side 5.
+19      sa6=0.0 m         Distance between OD edge to poly from one side 6.
+20      sa7=0.0 m         Distance between OD edge to poly from one side 7.
+21      sa8=0.0 m         Distance between OD edge to poly from one side 8.
+22      sa9=0.0 m         Distance between OD edge to poly from one side 9.
+23      sa10=0.0 m        Distance between OD edge to poly from one side 10.
+24      sb1=0.0 m         Distance between OD edge to poly from other side 1.
+25      sb2=0.0 m         Distance between OD edge to poly from other side 2.
+26      sb3=0.0 m         Distance between OD edge to poly from other side 3.
+27      sb4=0.0 m         Distance between OD edge to poly from other side 4.
+28      sb5=0.0 m         Distance between OD edge to poly from other side 5.
+29      sb6=0.0 m         Distance between OD edge to poly from other side 6.
+30      sb7=0.0 m         Distance between OD edge to poly from other side 7.
+31      sb8=0.0 m         Distance between OD edge to poly from other side 8.
+32      sb9=0.0 m         Distance between OD edge to poly from other side 9.
+33      sb10=0.0 m        Distance between OD edge to poly from other side 10.
+34      sw1=0.0 m         Width of SA1/SB1.
+35      sw2=0.0 m         Width of SA2/SB2.
+36      sw3=0.0 m         Width of SA3/SB3.
+37      sw4=0.0 m         Width of SA4/SB4.
+38      sw5=0.0 m         Width of SA5/SB5.
+39      sw6=0.0 m         Width of SA6/SB6.
+40      sw7=0.0 m         Width of SA7/SB7.
+41      sw8=0.0 m         Width of SA8/SB8.
+42      sw9=0.0 m         Width of SA9/SB9.
+43      sw10=0.0 m        Width of SA10/SB10.
+44      isnoisy=yes       Should device generate noise. Possible values are no and yes.
+45      m=1               Multiplicity factor (number of MOSFETs in parallel).
+46      mult_i=1.0        Variability in current.
+47      mult_q=1.0        Variability in charge.
+48      mult_fn=Mult_i    Variability in flicker noise.
+49      region=triode     Estimated operating region. Spectre outputs the number (0-4) in a rawfile. Possible values are off,
+                          triode, sat, subth and breakdown.
+50      trnqsmod          Transient NQS model selector.
+51      acnqsmod          AC small-signal NQS model selector.
+52      trise (C)         Temperature rise from ambient.
+53      dtemp (C)         Alias for trise.
+54      deltox=0 m        Shift in gate electrical/physical equivalent oxide thickness (for both TOXE and TOXP).
+55      rgatemod          Gate resistance model selector.
+56      rbodymod          Substrate resistance network model selector.
+57      geomod            Geometry dependent parasitics model selector.
+58      stimod            LOD stress effect model selector.
+59      rgeomod           Diffusion resistance and contact model selector.
+60      rbpb (Ohm)        Resistance connected between bNode' and bNode.
+61      rbpd (Ohm)        Resistance connected between bNode' and dbNode.
+62      rbps (Ohm)        Resistance connected between bNode' and sbNode.
+63      rbdb (Ohm)        Resistance connected between dbNode and bNode.
+64      rbsb (Ohm)        Resistance connected between sbNode and bNode.
+65      nf                Number of device fingers.
+66      min               Whether to minimize the number of drain or source diffusions for evennumber fingered device. Set to
+                          0 to minimize.
+67      delvto=0.0 V      Shift in zero-bias threshold voltage vth0.
+68      mulmu0=1.0        Mobility multiplier, alias of mulu0.
+69      mulvsat=1.0       Vsat multiplier.
+70      mulu0=1.0         Mobility multiplier.
+71      mulid0=1.0        Ids multiplier.
+72      mulbeta=1.0       Beta multiplier.
+73      delk1=0.0 sqrt(V)
+                          Shift in body bias coefficient k1.
+74      delnfct=0.0       Shift in subthreshold swing factor nfactor.
+75      deleta0=0.0       Shift in DIBL coefficient subthreshold region.
+76      sca=0.0           Integral of the first distribution function for scattered well dopant.
+77      scb=0.0           Integral of the second distribution function for scattered well dopant.
+78      scc=0.0           Integral of the third distribution function for scattered well dopant.
+79      sc=0.0 m          Distance to a single well edge.
+80      xgw=0.0 m         Distance from the gate contact to the channel edge.
+81      ngcon=1.0         Number of gate contacts.
+
+
+================
+Model Parameters
+================
+
+Device type parameters:
+1       type=n            Transistor type. Possible values are n and p.
+
+Model Selectors & Controller:
+2       level=14          Model level selector for spice compatibility.
+3       version=4.21      Model parameter "version" only accepts real number value, like 4.21 for version=4.2.1. The
+                          available versions are 4.00(4.0.0), 4.10(4.1.0), 4.20(4.2.0), 4.21(4.2.1), 4.30(4.3.0),
+                          4.40(4.4.0), 4.50(4.5.0), 4.60(4.6.0), 4.61(4.6.1), 4.62(4.6.2), 4.63(4.6.3), 4.64(4.6.4),
+                          4.65(4.6.5), 4.70(4.7.0), 4.80(4.8.0), 4.81(4.8.1) and 4.82(4.8.2).
+4       binunit=1         Bin parameter unit selector. 1 for microns and 2 for meters.
+5       paramchk=1        Switch for parameter value check. Set to 1 to turn on.
+6       mobmod=0          Mobility model selector. The available mobmod is 0~6. mobmod=4~6 is only valid since version
+                          4.8.0.
+7       cvchargemod=0.0   Capacitance Charge model selector.
+8       mtrlmod=0.0       parameter for non-silicon substrate or metal gate selector.
+9       mtrlcompatmod=0   New material mod backward compatibility selector.
+10      rdsmod=0          Bias-dependent source/drain resistance model selector.
+11      igcmod=0          Gate-to-channel tunneling model selector.
+12      igbmod=0          Gate-to-substrate tunneling model selector.
+13      capmod=2          Capacitance model selector.
+14      rgatemod=0        Gate resistance model selector.
+15      rbodymod=0        Substrate resistance network model selector.
+16      trnqsmod=0        Transient Non-quasi static model selector. Set to 1 to turn on nqs.
+17      acnqsmod=0        Ac Non-quasi static model selector. Set to 1 to turn on nqs.
+18      fnoimod=1         Flicker noise model selector.
+19      tnoimod=0         Thermal noise model selector.
+20      diomod=1          Source/Drain junction diode IV model selector.
+21      tempmod=0         Temperature model selector. 0 for original model and 1 for new format.
+22      permod=1          Perimeter model selector.
+23      geomod=0          Geometry dependent parasitics model selector.
+24      stimod=0          LOD stress effect model selector. 0 for Berkeley LOD, 1 & 2 for TSMC LOD.
+25      wpemod=0          Flag for WPE model (WPEMOD=1 to activate this model).
+26      rgeomod=0         Diffusion resistance and contact model selector. It served as the default value of instance
+                          rgeomod.
+27      flkmod=0          Flicker Noise Model.
+28      fullreinit=0      Model parameter full reinit selector.
+29      updatelevel=0     Model update selector. Available versions are 0, 1 and 2.
+30      eglev=0           DC temperature selector.
+31      minr=0.001 Ohm    Minimum source/drain resistance.
+
+Process parameters:
+32      epsrox=3.9        Gate dielectric constant.
+33      epsrgate=11.7     Dielectric constant of gate relative to vacuum.
+34      epsrsub=11.7      Dielectric constant of substrate relative to vacuum.
+35      eot=1.5e-9 m      Equivalent gate oxide thickness in meters.
+36      toxe=3.0e-9 m     Electrical gate equivalent oxide thickness.
+37      toxp=`toxe' m     Physical gate equivalent oxide thickness.
+38      toxm=`toxe' m     Toxe at which parameters were extracted.
+39      dtox=0.0 m        Difference between electrical and physical gate oxide thickness.
+40      xj=0.15e-6 m      Source/drain junction depth.
+41      gamma1 (sqrt(V))  Body-effect coefficient near the surface.
+42      gamma2 (sqrt(V))  Body-effect coefficient in the bulk.
+43      ndep=1.7e17 cm^-3
+                          Channel doping concentration at depletion edge for zero body bias.
+44      nsub=6.0e16 cm^-3
+                          Substrate doping concentration.
+45      ngate=0.0 cm^-3   Poly Si gate doping concentration.
+46      nsd=1.0e20 cm^-3  Source-drain doping concentration.
+47      vbx (V)           Vbs at which the depletion region width equals XT.
+48      xt=1.55e-7 m      Doping depth.
+49      rsh=0.0 Ohm/sqr   Source/drain sheet resistance.
+50      rshg=0.1 Ohm/sqr  Gate electrode sheet resistance.
+51      lint=0.0 m        Lateral diffusion for one side.
+52      wint=0.0 m        Width reduction for one side.
+53      wl=0.0 m^wln      Length dependence of delta W.
+54      wln=1.0           Length exponent of delta W.
+55      ww=0.0 m^wwn      Width dependence of delta W.
+56      wwn=1.0           Width exponent of delta W.
+57      wwl=0.0 m^(wwn+wln)
+                          Area dependence of delta W.
+58      ll=0.0 m^lln      Length dependence of delta L.
+59      lln=1.0           Length exponent of delta L.
+60      lw=0.0 m^lwn      Width dependence of delta L.
+61      lwn=1.0           Width exponent of delta L.
+62      lwl=0.0 m^(lln+lwn)
+                          Area dependence of delta L.
+63      dwg=0.0 m/V       Gate-bias dependence of channel width.
+64      dwb=0.0 m/sqrt(V)
+                          Body-bias dependence of channel width.
+65      lmlt=1.0          Length shrink reduction factor.
+66      wmlt=1.0          Width shrink reduction factor.
+
+Threshold voltage parameters:
+67      vtho=0.7(nmos) / -0.7(pmos) V
+                          Threshold voltage at Vbs=0 for long-channel devices. Alias of vth0.
+68      vfb=-1.0 V        Flat-band voltage.
+69      vddeot=1.5(nmos) / -1.5(pmos) V
+                          Voltage for extraction of Equivalent gate oxide thickness.
+70      phin=0.0 V        Non-uniform vertical doping effect on surface potential.
+71      k1=0.53 sqrt(V)   First-order body bias coefficient.
+72      k2=-0.0186        Second-order body bias coefficient.
+73      k3=80.0           Narrow width coefficient.
+74      k3b=0.0 1/V       Body effect coefficient of K3.
+75      w0=2.5e-6 m       Narrow width coefficient.
+76      lpe0=1.74e-7 m    Lateral non-uniform doping at Vbs=0.
+77      lpeb=0.0 m        Lateral non-uniform doping effect on K1.
+78      vbm=-3.0 V        Maximum applied body voltage in VTH0 calculation.
+79      dvt0=2.2          First coefficient of short-channel effects.
+80      dvt1=0.53         Second coefficient of short-channel effects.
+81      dvt2=-0.032 1/V   Body-bias coefficient of short-channel effects.
+82      dvtp0=0.0 m       First coefficient of drain-induced Vth shift for long-channel pocket devices.
+83      dvtp1=0.0 1/V     Second coefficient of drain-induced Vth shift for long-channel pocket devices.
+84      dvtp2=0.0         3rd parameter for Vth shift due to pocket.
+85      dvtp3=0.0         4th parameter for Vth shift due to pocket.
+86      dvtp4=0.0         5th parameter for Vth shift due to pocket.
+87      dvtp5=0.0         6th parameter for Vth shift due to pocket.
+88      dvt0w=0.0         First coefficient of narrow-width effects.
+89      dvt1w=5.3e6 1/m   Second coefficient of narrow-width effects.
+90      dvt2w=-0.032 1/V  Body-bias coefficient of narrow-width effects.
+91      a0=1.0            Nonuniform depletion width effect coefficient.
+92      ags=0.0 1/V       Gate-bias dependence of Abulk.
+93      b0=0.0 m          Bulk charge coefficient due to narrow width effect.
+94      b1=0.0 m          Bulk charge coefficient due to narrow width effect.
+95      keta=-0.047 1/V   Body-bias coefficient for non-uniform depletion width effect.
+96      ketac=-0.047 1/V  Body-bias coefficient for non-uniform depletion width effect in dynamic evaluation.
+97      a1=0.0 1/V        First non-saturation effect parameter.
+98      a2=1.0            Second non-saturation factor.
+99      phig=4.05 eV      The gate work function.
+100     ni0sub=1.45e10 cm^-3
+                          Intrinsic carrier concentration at T=300.15K.
+101     bg0sub=1.16 eV    Band-gap of substrate at T=0K.
+102     tbgasub=7.02e-4 V/K
+                          First parameter of band-gap change due to temperature.
+103     tbgbsub=1108.0 K  Second parameter of bandgap change due to temperature.
+104     ados=1.0          Charge centroid parameter.
+105     bdos=1.0          Charge centroid parameter.
+106     tempeot=300.15 C  Temperature for extraction of EOT.
+107     leffeot=1 m       Effective length for extraction of EOT.
+108     weffeot=10 m      Effective width for extraction of EOT.
+109     vthmod            Vth output selector. 'std' outputs model equation Vth. 'vthcc' outputs constant current Vth, and
+                          may impact simulation performance. The default value is taken from the options parameter 'vthmod'.
+                          Possible values are std and vthcc.
+110     ivth (A)          Vth current parameter. The default value is taken from the options parameter 'ivthn' or 'ivthp',
+                          depending on the type of the model.
+111     ivthw (m)         Width offset for constant current Vth. The default value is taken from the options parameter
+                          'ivthw'.
+112     ivthl (m)         Length offset for constant current Vth. The default value is taken from the options parameter
+                          'ivthl'.
+113     ivth_vdsmin (V)   Minimum Vds in constant current Vth calculating. The default value is taken from the options
+                          parameter 'ivth_vdsmin'.
+114     acm=12            area calculation method selector.
+115     hdif=0 m          Length of heavily doped diffusion.
+116     ldif=0 m          Lateral diffusion beyond the gate.
+117     rs=12.5 Ohm       Source resistance.
+118     rd=12.5 Ohm       Drain resistance.
+119     ld (m)            Lateral diffusion into the channel from the source and drain diffusion.
+120     trd=0 1/C         Temperature parameter for drain resistance.
+121     trs=0 1/C         Temperature parameter for source resistance.
+
+Mobility parameters:
+122     u0=670(nmos) / 250(pmos)
+                          Low-field surface mobility at tnom.
+123     ua=1.0e-15 (mobmod=2/6) / 1.0e-9 (other mobmod) m/V
+                          First-order mobility reduction coefficient.
+124     ub=1.0e-19 m^2/V^2
+                          Second-order mobility reduction coefficient.
+125     uc=-0.0465 1/V (mobmod=1/5) / -0.0465e-9 m/V^2 (other mobmod)
+                          Body-bias dependence of mobility.
+126     ud=0.0/1.0e14(before version 4.6.0) /m^2
+                          Coulomb scattering factor of mobility.
+127     up=0.0            Channel length linear factor of mobility.
+128     lp=1.0e-8 m       Channel length exponential factor of mobility.
+129     eu=1.67(nmos) / 1.0(pmos)
+                          Exponent for mobility degradation of mobmod=2/6.
+130     vsat=8.0e4 m/s    Carrier saturation velocity at tnom.
+131     lambda=0.0        Velocity overshoot coefficient.
+132     vtl=2.0e5 m/s     Thermal velocity.
+133     lc=5.0e-9 m       Velocity back scattering coefficient.
+134     xn=3.0            Velocity back scattering coefficient.
+135     easub=4.05 eV     Electron affinity of substrate.
+136     ucs=1.67(nmos) / 1.0(pmos)
+                          Coulomb scattering exponent.
+137     ucste=-4.775e-3   Temperature coefficient of colombic mobility.
+
+Subthreshold parameters:
+138     voff=-0.08 V      Threshold voltage offset.
+139     tvoff=0.0 V       Temperature parameter for voff.
+140     ltvoff=0.0 V      Length dependence of tvoff.
+141     wtvoff=0.0 V      Width dependence of tvoff.
+142     ptvoff=0.0 V      Cross-term dependence of tvoff.
+143     voffl=0.0 mV      Channel-length dependence of Voff.
+144     minv=0.0          Vgsteff fitting parameter for moderate inversion condition.
+145     nfactor=1.0       Subthreshold swing coefficient.
+146     eta0=0.08         DIBL coefficient subthreshold region.
+147     etab=-0.07 1/V    Body-bias dependence of et0.
+148     dsub=`drout'      DIBL effect in subthreshold region.
+149     cit=0.0 F/m^2     Interface trap parameter for subthreshold swing.
+150     cdsc=2.4e-4 F/m^2
+                          Source/drain and channel coupling capacitance.
+151     cdscb=0.0 F/m^2*V
+                          Body-bias dependence of cdsc.
+152     cdscd=0.0 F/m^2*V
+                          Drain-bias dependence of cdsc.
+
+Output resistance parameters:
+153     pclm=1.3          Channel length modulation coefficient.
+154     pdiblc1=0.39      First coefficient of drain-induced barrier lowering.
+155     pdiblc2=8.6e-3    Second coefficient of drain-induced barrier lowering.
+156     pdiblcb=0.0 1/V   Body-effect coefficient for DIBL.
+157     drout=0.56        DIBL effect on output resistance coefficient.
+158     pscbe1=4.24e8 V/m
+                          First coefficient of substrate current body effect.
+159     pscbe2=1e-5 m/V   Second coefficient of substrate current body effect.
+160     fprout=0.0 V/sqrt(m)
+                          Effect of pocket implant on Rout degradation.
+161     pvag=0.0          Gate dependence of Early voltage.
+162     delta=0.01 V      Effective drain voltage smoothing parameter.
+163     pdits=0.0 1/V     Effect of pocket implant on Rout degradation.
+164     pditsl=0.0 1/m    Channel-length dependence of drain-induced Vth shift on Rout.
+165     pditsd=0.0 1/V    Vds dependence of drain-induced Vth shift on Rout.
+
+Bias-dependent Rds parameters:
+166     rdsw=200.0 Ohm*um^wr
+                          Zero bias LDD resistance per unit width for RDSMOD=0.
+167     rdswmin=0.0 Ohm*um^wr
+                          LDD resistance per unit width at high Vgs and zero Vbs for RDSMOD=0.
+168     rdw=100.0 Ohm*um^wr
+                          Zero bias LDD resistance per unit width for RDSMOD=1.
+169     rdwmin=0.0 Ohm*um^wr
+                          LDD resistance per unit width at high Vgs and zero Vbs for RDSMOD=1.
+170     rsw=100.0 Ohm*um^wr
+                          Zero bias LDD resistance per unit width for RDSMOD=1.
+171     rswmin=0.0 Ohm*um^wr
+                          LDD resistance per unit width at high Vgs and zero Vbs for RDSMOD=1.
+172     prwg=1 1/V        Gate-effect coefficient for Rds.
+173     prwb=0.0 1/sqrt(V)
+                          Body-effect coefficient for Rds.
+174     wr=1.0            Width offset for parasitic resistance.
+
+Substrate current parameters:
+175     alpha0=0.0 A*m/V  Substrate current impact ionization coefficient.
+176     alpha1=0.0 A/V    Substrate current impact ionization coefficient.
+177     beta0=30.0 1/V    Substrate current impact ionization exponent.
+
+Gate-Induced drain leakage parameters:
+178     gidlmod=0         Parameter for GIDL selector.
+179     agidl=0.0 1/Ohm   Pre-exponential coefficient for GIDL.
+180     bgidl=2.3e9 V/m   Exponential coefficient for GIDL.
+181     cgidl=0.5 V^3     Parameter for body-bias effect on GIDL.
+182     egidl=0.8 V       Fitting parameter for band bending for GIDL.
+183     fgidl=0.0 V       GIDL vb parameter.
+184     kgidl=0.0 V       GIDL vb parameter.
+185     rgidl=1.0         GIDL vg parameter.
+186     agisl=agidl 1/Ohm
+                          Pre-exponential coefficient for GISL (bsim4.6).
+187     bgisl=bgidl V/m   Exponential coefficient for GISL (bsim4.6).
+188     cgisl=cgidl V^3   Parameter for body-bias effect on GISL (bsim4.6).
+189     egisl=egidl V     Fitting parameter for band bending for GISL (bsim4.6).
+190     fgisl=fgidl V     GISL vb parameter.
+191     kgisl=kgidl V     GISL vb parameter.
+192     rgisl=rgidl       GISL vg parameter.
+
+Gate Tunneling parameters:
+193     aigbacc=0.43 sqrt(F/g)*s/m
+                          Parameter for Igb in accumulation.
+194     bigbacc=0.054 sqrt(F/g)*s/(m*V)
+                          Parameter for Igb in accumulation.
+195     cigbacc=0.075 1/V
+                          Parameter for Igb in accumulation.
+196     nigbacc=1.0       Parameter for Igb in accumulation.
+197     aigbinv=0.35 sqrt(F/g)*s/m
+                          Parameter for Igb in inversion.
+198     bigbinv=0.03 sqrt(F/g)*s/(m*V)
+                          Parameter for Igb in inversion.
+199     cigbinv=0.006 1/V
+                          Parameter for Igb in inversion.
+200     eigbinv=1.1 V     Parameter for Igb in inversion.
+201     nigbinv=3.0       Parameter for Igb in inversion.
+202     aigc=0.43(nmos) / 0.31(pmos) sqrt(F/g)*s/m
+                          Parameter for Igcs and Igcd.
+203     bigc=0.054(nmos) / 0.024(pmos) sqrt(F/g)*s/(m*V)
+                          Parameter for Igcs and Igcd.
+204     cigc=0.075(nmos) / 0.03(pmos) 1/V
+                          Parameter for Igcs and Igcd.
+205     aigsd=0.43(nmos) / 0.31(pmos) sqrt(F/g)*s/m
+                          Parameter for Igs and Igd.
+206     bigsd=0.054(nmos) / 0.024(pmos) sqrt(F/g)*s/(m*V)
+                          Parameter for Igs and Igd.
+207     cigsd=0.075(nmos) / 0.03(pmos) 1/V
+                          Parameter for Igs and Igd.
+208     aigs=1.36e-2(nmos) / 9.80e-3(pmos) sqrt(F/g)*s/m
+                          Parameter for Igs (bsim4.6).
+209     bigs=1.71e-3(nmos) / 7.59e-4(pmos) sqrt(F/g)*s/(m*V)
+                          Parameter for Igs (bsim4.6).
+210     cigs=0.075(nmos) / 0.03(pmos) 1/V
+                          Parameter for Igs (bsim4.6).
+211     aigd=1.36e-2(nmos) / 9.80e-3(pmos) sqrt(F/g)*s/m
+                          Parameter for Igd (bsim4.6).
+212     bigd=1.71e-3(nmos) / 7.59e-4(pmos) sqrt(F/g)*s/(m*V)
+                          Parameter for Igd (bsim4.6).
+213     cigd=0.075(nmos) / 0.03(pmos) 1/V
+                          Parameter for Igd (bsim4.6).
+214     dlcig=`Lint' m    Source overlap length for Igs.
+215     dlcigd=dlcig m    drain overlap length for Igd (bsim4.6).
+216     nigc=1.0          Parameter for Igcs, Igcd ,Igs and Igd.
+217     poxedge=1.0       Factor for the gate oxide thickness in source/drain overlap regions.
+218     pigcd=1.0         Vds dependence of Igcs and Igcd.
+219     ntox=1.0          Exponent for the gate oxide ratio.
+220     toxref=3.0e-9 m   Nominal gate oxide thickness for gate dielectric tunneling current model only.
+221     vfbsdoff=0.0 V    S/D flatband voltage offset.
+222     tvfbsdoff=0.0 V   Temperature parameter for vfbsdoff.
+223     ltvfbsdoff=0.0 V  Length dependence of tvfbsdoff.
+224     wtvfbsdoff=0.0 V  Width dependence of tvfbsdoff.
+225     ptvfbsdoff=0.0 V  Cross-term dependence of tvfbsdoff.
+
+Overlap capacitance parameters:
+226     cgso (F/m)        Non LDD region source-gate overlap capacitance per unit channel width.
+227     cgdo (F/m)        Non LDD region drain-gate overlap capacitance per unit channel width.
+228     cgbo=2*Dwc*Coxe F/m
+                          Non LDD region drain-gate overlap capacitance per unit channel width.
+229     meto=0.0 m        Metal overlap in fringing field.
+230     cgsl=0.0 F/m      Overlap capacitance between gate and lightly-doped source region.
+231     cgdl=0.0 F/m      Overlap capacitance between gate and lightly-doped drain region.
+232     ckappas=0.6 V     Coefficient of bias-dependent overlap capacitance for the source side.
+233     ckappad=`ckappas' V
+                          Coefficient of bias-dependent overlap capacitance for the source side.
+
+Charge model selection parameters:
+234     xpart=0.0         Charge partition number. Use 0.0 for 40/60, 0.5 for 50/50, and 1.0 for 0/100.
+235     cf (F/m)          Fringing field capacitance (alias=lx91).
+236     clc=1e-7 m        Constant term for the short channel model.
+237     cle=0.6           Exponential term for the short channel model.
+238     dlc=`lint' m      Delta L for capacitance model.
+239     dwc=`wint' m      Delta W for capacitance model.
+240     vfbcv=-1.0        Flat-band voltage for capmod=0.
+241     noff=1.0          Transition parameter.
+242     voffcv=0.0 V      CV parameter in VgsteffCV for weak to strong inversion.
+243     minvcv=0.0        Fitting parameter for moderate inversion condition.
+244     voffcvl=0.0 V*m   Length dependence parameter for Vth offset in CV.
+245     acde=1.0 m/V      Exponential coefficient for charge thickness in CAPMOD=2 for accumulation and depletion regions.
+246     moin=15.0         Exponential coefficient for charge thickness for accumulation and depletion regions.
+247     llc=`ll' m^lln    Length dependence of delta L for CV.
+248     lwc=`lw' m^lwn    Width dependence of delta L for CV.
+249     lwlc=`lwl' m^(lln+lwn)
+                          Area dependence of delta L for CV.
+250     wlc=`wl' m^wln    Length dependence of delta W for CV.
+251     wwc=`ww' m^wwn    Width dependence of delta W for CV.
+252     wwlc=`wwl' m^(wwn+wln)
+                          Area dependence of delta W for CV.
+
+Parasitic resistance parameters:
+253     dmcg=0.0 m        Distance from S/D contact center to the gate edge.
+254     dmci=`dmcg' m     Distance from S/D contact center to the isolation edge in the channel-length direction.
+255     dmdg=0.0 m        Distance from S/D contact center to the gate edge.
+256     dmcgt=0.0 m       DMCG of test structures.
+257     dwj=`dwc' m       Offset of the S/D junction width.
+258     xgw=0.0 m         Distance from the gate contact to the channel edge.
+259     xgl=0.0 m         Offset of gate length due to variations in patterning.
+260     xl=0.0 m          Length variation due to masking and etching.
+261     xw=0.0 m          Width variation due to masking and etching.
+262     ngcon=1.0         Number of gate contacts.
+263     nf=1              Number of device fingers. It served as the default value of instance nf.
+264     min=0             Whether to minimize the number of drain or source diffusions for evennumber fingered device. Set to
+                          0 to minimize. It served as the default value of instance min.
+
+Junction diode model parameters:
+265     ijthsrev=0.1 A    Source diode limiting current in reverse bias region.
+266     ijthdrev=`ijthsrev' A
+                          Drain diode limiting current in reverse bias region.
+267     ijthsfwd=0.1 A    Source diode limiting current in forward bias region.
+268     ijthdfwd=`ijthsfwd' A
+                          Drain diode limiting current in forward bias region.
+269     xjbvs=1.0         Fitting parameter for bulk-source diode breakdown.
+270     xjbvd=`xjbvs'     Fitting parameter for bulk-drain diode breakdown.
+271     bv=10.0 V         Diode breakdown voltage. Alias of bvs.
+272     bvs=10.0 V        Source diode breakdown voltage.
+273     bvd=`bvs' V       Drain diode breakdown voltage.
+274     bv_enable=on      Flag to enable the breakdown of diode. on=breakdown effect enabled, off=breakdown effect disabled.
+                          Possible values are off and on.
+275     is=1.0e-14 A      Bulk junction reverse saturation current.
+276     js=1.0e-4 A/m^2   Bottom junction reverse saturation current density. Alias of jss.
+277     jss=1.0e-4 A/m^2  Source bottom junction reverse saturation current density.
+278     jsd=`jss' A/m^2   Drain bottom junction reverse saturation current density.
+279     jsws=0.0 A/m      Isolation-edge sidewall source junction reverse saturation current density.
+280     jswd=`jsws' A/m   Isolation-edge sidewall drain junction reverse saturation current density.
+281     jswgs=0.0 A/m     Gate-edge sidewall source junction reverse saturation current density.
+282     jswgd=`jswgs' A/m
+                          Gate-edge sidewall drain junction reverse saturation current density.
+283     jtss=0.0 A/m^2    Source bottom trap-assisted saturation current density.
+284     jtsd=`jtss' A/m^2
+                          Drain bottom trap-assisted saturation current density.
+285     jtssws=0.0 A/m    Source isolation-edge sidewall trap-assisted saturation current density.
+286     jtsswd=`jtssws' A/m
+                          Drain isolation-edge sidewall trap-assisted saturation current density.
+287     jtsswgs=0.0 A/m   Source gate-edge sidewall trap-assisted saturation current density.
+288     jtsswgd=`jtsswgs' A/m
+                          Drain gate-edge sidewall trap-assisted saturation current density.
+289     njts=20.0         Non-ideality factor for jtss. For TSMC diode model, default=60.0.
+290     njtssw=20.0       Non-ideality factor for jtssws. For TSMC diode model, default=60.0.
+291     njtsswg=20        Non-ideality factor for jtsswgs. For TSMC diode model, default=60.0.
+292     njtsd=njts        Non-ideality factor for jtsd (bsim4.6).
+293     njtsswd=njtssw    Non-ideality factor for jtsswd (bsim4.6).
+294     njtsswgd=njtsswg  Non-ideality factor for jtsswgd (bsim4.6).
+295     xtss=0.02         Power dependence of jtss on temperature.
+296     xtsd=`xtss'       Power dependence of jtsd on temperature.
+297     xtssws=0.02       Power dependence of jtssws on temperature.
+298     xtsswd=`xtssws'   Power dependence of jtsswd on temperature.
+299     xtsswgs=0.02      Power dependence of jtsswgs on temperature.
+300     xtsswgd=`xtsswgs'
+                          Power dependence of jtsswgd on temperature.
+301     vtss=10.0 V       Source bottom trap-assisted voltage dependent parameter.
+302     vtsd=`vtss' V     Drain bottom trap-assisted voltage dependent parameter.
+303     vtssws=10.0 V     Source STI sidewall trap-assisted voltage dependent parameter.
+304     vtsswd=`vtssws' V
+                          Drain STI sidewall trap-assisted voltage dependent parameter.
+305     vtsswgs=10.0 V    Source gate-edge sidewall trap-assisted voltage dependent parameter.
+306     vtsswgd=`vtsswgs' V
+                          Drain gate-edge sidewall trap-assisted voltage dependent parameter.
+307     tnjts=0.0         Temperature coefficient for njts.
+308     tnjtssw=0.0       Temperature coefficient for njtssw.
+309     tnjtsswg=0.0      Temperature coefficient for njtsswg.
+310     tnjtsd=tnjts      Temperature coefficient for njtsd (bsim4.6).
+311     tnjtsswd=tnjtsssw
+                          Temperature coefficient for njtsswd (bsim4.6).
+312     tnjtsswgd=tnjtsswg
+                          Temperature coefficient for njtsswgd (bsim4.6).
+313     dskip=yes         Use simple piece-wise linear model for diode currents below 0.1*iabstol. Possible values are no and
+                          yes.
+314     imelt=`imax' A    Explosion current.
+315     jmelt=`jmax' A/m^2
+                          Explosion current density.
+316     jtweff=0.0 m      TAT current width dependence.
+
+TSMC junction diode model parameters:
+317     mnr=21.0          Fitting parameter for resistance induced non-ideality factor.
+318     bnr=0.0           Fitting parameter for resistance induced non-ideality factor.
+319     cnr=0.0 1/V*m     Fitting parameter for resistance induced non-ideality factor.
+320     dnr=0.0 1/V       Fitting parameter for resistance induced non-ideality factor.
+321     tmnr=0.0          Temperature coefficient for mnr.
+322     tcnr=0.0          Temperature coefficient for cnr.
+323     tdnr=0.0          Temperature coefficient for dnr.
+324     nrfwd=1.0 A/m^2   Source bottom trap-assisted saturation current density.
+325     jsswg=0.0         Sidewall-gate junction reverse saturation current density.
+
+Junction capacitance model parameters:
+326     cj=5e-4 F/m^2     Zero bias bottom junction capacitance per unit area. Alias of cjs.
+327     cjs=5.0e-4 F/m^2  Zero bias source bottom junction capacitance per unit area.
+328     cjd=`cjs' F/m^2   Zero bias drain bottom junction capacitance per unit area.
+329     mj=1/2            Bottom junction capacitance grading coefficient. Alias of mjs.
+330     mjs=1/2           Source bottom junction capacitance grading coefficient.
+331     mjd=`mjs'         Drain bottom junction capacitance grading coefficient.
+332     pb=1.0 V          If juncap is default value '0', pb stands for 'Bottom junction built-in potential. Alias of pbs'.
+                          If juncap is set '1', pb stands for 'Bottom-junction grading coefficient'.
+333     pbs=1.0 V         Source bottom junction built-in potential.
+334     pbd=`pbs' V       Drain bottom junction built-in potential.
+335     fc=0.5            Forward-bias depletion capacitance threshold.
+336     cjsw=5e-10 F/m    Sidewall junction capacitance per unit periphery. Alias of cjsws.
+337     cjsws=5.0e-10 F/m
+                          Source sidewall junction capacitance per unit periphery.
+338     cjswd=`cjsws' F/m
+                          Drain sidewall junction capacitance per unit periphery.
+339     mjsw=0.33         Isolation-edge sidewall junction capacitance grading coefficient. Alias of mjsws.
+340     mjsws=0.33        Isolation-edge sidewall source junction capacitance grading coefficient.
+341     mjswd=`mjsws'     Isolation-edge sidewall drain junction capacitance grading coefficient.
+342     pbsw=1.0 V        Isolation-edge sidewall junction built-in potential. Alias of pbsws.
+343     pbsws=1.0 V       Isolation-edge sidewall source junction built-in potential.
+344     pbswd=`pbsws' V   Isolation-edge sidewall drain junction built-in potential.
+345     cjswg=`cjsw' F/m  Gate-side junction capacitance per unit width. Alias of cjswgs.
+346     cjswgs=`cjsws' F/m
+                          Gate-side source junction capacitance per unit width.
+347     cjswgd=`cjswgs' F/m
+                          Gate-side source junction capacitance per unit width.
+348     mjswg=`mjsw'      Gate-edge sidewall junction grading coefficient. Alias of mjswgs.
+349     mjswgs=`mjsws'    Gate-edge sidewall source junction grading coefficient.
+350     mjswgd=`mjswgs'   Gate-edge sidewall junction grading coefficient.
+351     pbswg=`pbsw' V    Gate-edge sidewall junction built-in potential. Alias of pbswgs.
+352     pbswgs=`pbsws' V  Gate-edge sidewall source junction built-in potential.
+353     pbswgd=`pbswgs' V
+                          Gate-edge sidewall drain junction built-in potential.
+354     fcsw=0.5          Side-wall forward-bias depletion capacitance threshold.
+
+Temperature effects parameters:
+355     tnom (C)          Parameters measurement temperature. Default set by options.
+356     trise=0.0 C       Temperature rise from ambient, alias of dtemp. It served as the default value of instance trise.
+357     ute=-1.5          Mobility temperature exponent.
+358     kt1=-0.11 V       Temperature coefficient for threshold voltage.
+359     kt1l=0.0 V*m      Channel length dependence of the temperature coefficient for threshold voltage.
+360     kt2=0.022         Body-bias coefficient of Vth temperature effect.
+361     ua1=1.0e-9 m/V    Temperature coefficient for ua. When tempmod=1, units should be 1/C.
+362     ub1=-1.0e-18 m^2/V^2
+                          Temperature coefficient for ub. When tempmod=1, units should be 1/C.
+363     uc1=-0.056 1/V (mobmod=1/5) / -5.6e-11 m/V^2(other modmod)
+                          Temperature coefficient for uc. When tempmod=1, units should be 1/C.
+364     ud1=0.0 /m^2      Temperature coefficient of ud.
+365     at=3.3e4 m/s      Temperature coefficient for vsat. When tempmod=1, units should be 1/C.
+366     prt=0.0 Ohm*m     Temperature coefficient for Rdsw. If tempmod=1, units of the parameter equals 1/C.
+367     tlev=0            DC temperature selector.
+368     tlevc=0           AC temperature selector.
+369     eg=1.124519231 V  Energy band gap.
+370     gap1=7.02e-4 V/C  Band gap temperature coefficient.
+371     gap2=1108 C       Band gap temperature offset.
+372     n=1.0             junction emission coefficient. Alias of njs.
+373     njs=1.0           Bulk-Source junction emission coefficient.
+374     njd=`njs'         Bulk-Drain junction emission coefficient.
+375     xti=3             Saturation current temperature exponent. Alias of xtis.
+376     xtis=3.0          Bulk-Source junction saturation current temperature exponent.
+377     xtid=`xtis'       Bulk-Drain junction saturation current temperature exponent.
+378     pta=0.0 V/C       Temperature coefficient for pb. Alias of tpb.
+379     tpb=0.0 V/C       Temperature coefficient for pb.
+380     ptp=0.0 V/C       Temperature coefficient for pbsw. Alias of tpbsw.
+381     tpbsw=0.0 V/C     Temperature coefficient for pbsw.
+382     tpbswg=0.0 V/C    Temperature coefficient for pbswg.
+383     cta=0.0 1/C       Temperature coefficient for cj. Alias of tcj.
+384     tcj=0.0 1/C       Temperature coefficient for cj.
+385     ctp=0.0 1/C       Temperature coefficient for cjsw. Alias of tcjsw.
+386     tcjsw=0.0 1/C     Temperature coefficient for cjsw.
+387     tcjswg=0.0 1/C    Temperature coefficient for cjswg.
+388     tnfactor=0.0      Temperature parameter for nfactor.
+389     teta0=0.0         Temperature parameter for eta0.
+390     tvoffcv=0.0 1/C   Temperature parameter for tvoffcv.
+
+LOD model parameters:
+391     saref=1.0e-6 m    Reference distance between od edge to poly of one side.
+392     sbref=1.0e-6 m    Reference distance between od edge to poly of the other side.
+393     sl=2.0e-6 m       Character length along length for stress effect.
+394     lsl=0.0           Length dependence of sl.
+395     wsl=0.0           Width dependence of sl.
+396     psl=0.0           Cross-term dependence of sl.
+397     sw=2.0e-6 m       Character length along width for stress effect.
+398     lsw=0.0           Length dependence of sw.
+399     wsw=0.0           Width dependence of sw.
+400     psw=0.0           Cross-term dependence of sw.
+401     sk0=0.0           First coefficient of stress effect.
+402     lsk0=0.0          Length dependence of sk0.
+403     wsk0=0.0          Width dependence of sk0.
+404     psk0=0.0          Cross-term dependence of sk0.
+405     sk1=0.0 m         Length coefficient of stress effect.
+406     lsk1=0.0          Length dependence of sk1.
+407     wsk1=0.0          Width dependence of sk1.
+408     psk1=0.0          Cross-term dependence of sk1.
+409     sk2=0.0 m         Width coefficient of stress effect.
+410     lsk2=0.0          Length dependence of sk2.
+411     wsk2=0.0          Width dependence of sk2.
+412     psk2=0.0          Cross-term dependence of sk2.
+413     k=0.0             Ratio of velocity/mobility changes for stress.
+414     lk=0.0            Length dependence of k.
+415     wk=0.0            Width dependence of k.
+416     pk=0.0            Cross-term dependence of k.
+417     wlod=0.0 m        Length parameter for stress effect.
+418     ku0=0.0 m         Mobility degradation/enhancement coefficient for stress effect.
+419     kvsat=0.0 m       Saturation velocity degradation/enhancement parameter for stress effect.
+420     tku0=0.0          Temperature coefficient of ku0.
+421     llodku0=0.0       Length parameter for u0 stress effect.
+422     wlodku0=0.0       Width parameter for u0 stress effect.
+423     kvth0=0.0 V*m     Threshold shift parameter for stress effect.
+424     llodvth=0.0       Length parameter for vth stress effect.
+425     wlodvth=0.0       Width parameter for vth stress effect.
+426     stk2=0.0 m        k2 shift factor related to vth0 change.
+427     lodk2=1.0         k2 shift modification factor for stress effect.
+428     steta0=0.0 m      eta0 shift factor related to vth0 change.
+429     lodeta0=1.0       eta0 shift modification factor for stress effect.
+
+WPE model parameters:
+430     web=0.0           Coefficient for SCB.
+431     wec=0.0           Coefficient for SCC.
+432     kvth0we=0.0 V     Threshold shift factor for well proximity effect.
+433     k2we=0.0          K2 shift factor for well proximity effect.
+434     ku0we=0.0         Mobility degradation factor for well proximity effect.
+435     scref=1.0e-6 m    Reference distance to calculate SCA, SCB and SCC.
+
+Noise model parameters:
+436     noia=6.25e41(nmos) / 6.188e40(pmos) s^(1-EF)/(eV*m^2)
+                          Flicker noise parameter A.
+437     noib=3.125e26(nmos) / 1.5e25(pmos) s^(1-EF)/eV
+                          Flicker noise parameter C.
+438     noic=8.75e9 s^(1-EF)*m^2/eV
+                          Flicker noise parameter C.
+439     em=4.1e7 V/m      Saturation field.
+440     af=1.0            Flicker noise exponent.
+441     ef=1.0            Flicker noise frequency exponent.
+442     kf=0.0 A^(2-EF)*s^(1-EF)*F
+                          Flicker noise coefficient.
+443     lintnoi=0.0 m     Lint offset for noise calculation.
+444     wnoi=1.0e-5 m     Channel width at which noise parameters were extracted.
+445     ntnoi=1.0         Noise factor for short-channel devices for TNOIMOD=0 only.
+446     tnoia=1.5         Coefficient of channel-length dependence of total channel thermal noise.
+447     tnoib=3.5         Coefficient of channel-length dependence of total channel thermal noise.
+448     tnoic=0.0         Thermal noise parameter.
+449     rnoia=0.577       Thermal noise coefficient.
+450     rnoib=0.5164      Thermal noise coefficient.
+451     rnoic=0.395       Thermal noise coefficient.
+452     gidlclamp=-1e-5 V
+                          gidl clamp value.
+453     idovvdsc=1e-9     noise clamping limit parameter.
+
+Substrate Network parameters:
+454     xrcrg1=12.0       Parameter for distributed channel-resistance effect for both intrinsic-input resistance and
+                          charge-deficit NQS models.
+455     xrcrg2=1.0        Parameter to account for the excess channel diffusion resistance for both intrinsic-input
+                          resistance and charge-deficit NQS models.
+456     rbpb=50.0 Ohm     Resistance connected between bNode' and bNode.
+457     rbpbx0=100.0 Ohm  Body resistance RBPBX scaling.
+458     rbpbxl=0.0        Body resistance RBPBX L scaling.
+459     rbpbxw=0.0        Body resistance RBPBX W scaling.
+460     rbpbxnf=0.0       Body resistance RBPBX NF scaling.
+461     rbpby0=100.0 Ohm  Body resistance RBPBY scaling.
+462     rbpbyl=0.0        Body resistance RBPBY L scaling.
+463     rbpbyw=0.0        Body resistance RBPBY W scaling.
+464     rbpbynf=0.0       Body resistance RBPBY NF scaling.
+465     rbpd=50.0 Ohm     Resistance connected between bNode' and dbNode.
+466     rbpd0=50.0 Ohm    Body resistance RBPD scaling.
+467     rbpdl=0.0         Body resistance RBPD L scaling.
+468     rbpdw=0.0         Body resistance RBPD W scaling.
+469     rbpdnf=0.0        Body resistance RBPD NF scaling.
+470     rbps=50.0 Ohm     Resistance connected between bNode' and sbNode.
+471     rbps0=50.0 Ohm    Body resistance RBPS scaling.
+472     rbpsl=0.0         Body resistance RBPS L scaling.
+473     rbpsw=0.0         Body resistance RBPS W scaling.
+474     rbpsnf=0.0        Body resistance RBPS NF scaling.
+475     rbdb=50.0 Ohm     Resistance connected between dbNode and bNode.
+476     rbsb=50.0 Ohm     Resistance connected between sbNode and bNode.
+477     rbsbx0=100.0 Ohm  Body resistance RBSBX scaling.
+478     rbsby0=100.0 Ohm  Body resistance RBSBY scaling.
+479     rbdbx0=100.0 Ohm  Body resistance RBDBX scaling.
+480     rbdby0=100.0 Ohm  Body resistance RBDBY scaling.
+481     rbsdbxl=0.0       Body resistance RBSDBX L scaling.
+482     rbsdbxw=0.0       Body resistance RBSDBX W scaling.
+483     rbsdbxnf=0.0      Body resistance RBSDBX NF scaling.
+484     rbsdbyl=0.0       Body resistance RBSDBY L scaling.
+485     rbsdbyw=0.0       Body resistance RBSDBY W scaling.
+486     rbsdbynf=0.0      Body resistance RBSDBY NF scaling.
+487     gbmin=1.0e-12 1/Ohm
+                          Conductance in parallel with each of the five substrate resistances to avoid potential numerical
+                          instability due to an unreasonably large substrate resistance.
+
+Default for instance parameters:
+488     w=5e-6 m          Default channel width.
+489     l=5e-6 m          Default channel length.
+490     as (m^2)          Default area of source diffusion.
+491     ad (m^2)          Default area of drain diffusion.
+492     ps (m)            Default perimeter of source diffusion.
+493     pd (m)            Default perimeter of drain diffusion.
+494     nrd               Default number of squares of drain diffusion.
+495     nrs               Default number of squares of source diffusion.
+496     rdc=0.0 Ohm       Default drain contact resistance.
+497     rsc=0.0 Ohm       Default source contact resistance.
+
+Auto Model Selector parameters:
+498     wmax=1.0 m        Maximum channel width for which the model is valid.
+499     wmin=0.0 m        Minimum channel width for which the model is valid.
+500     lmax=1.0 m        Maximum channel length for which the model is valid.
+501     lmin=0.0 m        Minimum channel length for which the model is valid.
+
+Operating region warning control parameters:
+502     alarm=none        Forbidden operating region. Possible values are none, off, triode, sat, subth and rev.
+503     imax=1.0 A        Maximum allowable junction current.
+504     jmax=1.0e8 A/m^2  Maximum allowable junction current density.
+505     bvj=infinity V    Voltage at which junction breakdown warning is issued.
+506     vbox=3e9*toxe V   Oxide breakdown voltage.
+507     warn=on           Parameter to turn on or off warnings for abnormal intermediate variables in the model. Possible
+                          values are off and on.
+
+Safe Operating Areas Parameters:
+508     vds_max=infinity V
+                          Maximum allowed voltage cross source and drain.
+509     vgd_max=infinity V
+                          Maximum allowed voltage cross drain and gate.
+510     vgs_max=infinity V
+                          Maximum allowed voltage cross source/bulk and gate.
+511     vbd_max=infinity V
+                          Maximum allowed voltage cross drain/source and bulk.
+512     vbs_max=vbd_max V
+                          Maximum allowed voltage cross source and bulk.
+513     vgb_max=vgs_max V
+                          Maximum allowed voltage cross gate and bulk.
+514     vdsr_max=vds_max V
+                          Maximum allowed reverse voltage cross drain and source.
+515     vgdr_max=vgd_max V
+                          Maximum allowed reverse voltage cross gate and drain.
+516     vgsr_max=vgs_max V
+                          Maximum allowed reverse voltage cross gate and source.
+517     vgbr_max=vgb_max V
+                          Maximum allowed reverse voltage cross gate and bulk.
+518     vbsr_max=vbs_max V
+                          Maximum allowed reverse voltage cross bulk and source.
+519     vbdr_max=vbd_max V
+                          Maximum allowed reverse voltage cross bulk and drain.
+
+Length dependent parameters:
+520     lvtho=0.0 V       Length dependence of vtho.
+521     lvth0             Length dependence of vth0.
+522     lvfb=0.0          Length dependence of vfb.
+523     lk1=0.0 sqrt(V)   Length dependence of k1.
+524     lk2=0.0           Length dependence of k2.
+525     lk3=0.0           Length dependence of k3.
+526     lk3b=0.0 1/V      Length dependence of k3b.
+527     lw0=0.0 m         Length dependence of w0.
+528     lgamma1=0.0 sqrt(V)
+                          Length dependence of gamma1.
+529     lgamma2=0.0 sqrt(V)
+                          Length dependence of gamma2.
+530     lvbx=0.0 V        Length dependence of vbx.
+531     lvbm=0.0 V        Length dependence of vbm.
+532     ldvt0=0.0         Length dependence of dvt0.
+533     ldvt1=0.0         Length dependence of dvt1.
+534     ldvt2=0.0 1/V     Length dependence of dvt2.
+535     ldvt0w=0.0        Length dependence of dvt0w.
+536     ldvt1w=0.0        Length dependence of dvt1w.
+537     ldvt2w=0.0        Length dependence of dvt2w.
+538     la0=0.0           Length dependence of a0.
+539     lb0=0.0 m         Length dependence of b0.
+540     lb1=0.0 m         Length dependence of b1.
+541     la1=0.0           Length dependence of a1.
+542     la2=0.0           Length dependence of a2.
+543     lags=0.0 F/m^2*V  Length dependence of ags.
+544     lketa=0.0 1/V     Length dependence of keta.
+545     lketac=0.0 1/V    Length dependence of ketac.
+546     lnsub=0.0 cm^-3   Length dependence of nsub.
+547     lngate=0.0 cm^-3  Length dependence of ngate.
+548     lxj=0.0 m         Length dependence of xj.
+549     ldwg=0.0 m/V      Length dependence of dwg.
+550     ldwb=0.0 m/sqrt(V)
+                          Length dependence of dwb.
+551     lxt=0.0 m         Length dependence of xt.
+552     lrdsw=0.0 Ohm*um  Length dependence of rdsw.
+553     lprwb=0.0 1/sqrt(V)
+                          Length dependence of prwb.
+554     lprwg=0.0 1/V     Length dependence of prwg.
+555     lwr=0.0           Length dependence of wr.
+556     lu0=0.0           Length dependence of u0.
+557     lvsat=0.0 m/s     Length dependence of vsat.
+558     lua=0.0 m/V       Length dependence of ua.
+559     lub=0.0 m^2/V^2   Length dependence of ub.
+560     luc=0.0 m/V^2     Length dependence of uc.
+561     lud=0.0 /m^2      Length dependence of ud.
+562     lup=0.0           Length dependence of up.
+563     llp=0.0 m         Length dependence of lp.
+564     ldrout=0.0        Length dependence of drout.
+565     lpclm=0.0         Length dependence of pclm.
+566     lpdiblc1=0.0      Length dependence of pdiblc1.
+567     lpdiblc2=0.0      Length dependence of pdiblc2.
+568     lpdiblcb=0.0 1/V  Length dependence of pdiblcd.
+569     lpscbe1=0.0 V/m   Length dependence of pscbe1.
+570     lpscbe2=0.0 m/V   Length dependence of pscbe2.
+571     lpvag=0.0         Length dependence of pvag.
+572     ldelta=0.0 V      Length dependence of delta.
+573     lcdsc=0.0 F/m^2   Length dependence of cdsc.
+574     lcdscb=0.0 F/m^2*V
+                          Length dependence of cdscb.
+575     lcdscd=0.0 F/m^2*V
+                          Length dependence of cdscd.
+576     lnfactor=0.0      Length dependence of nfactor.
+577     ltnfactor=0.0     Length dependence of tnfactor.
+578     lcit=0.0 F        Length dependence of cit.
+579     lvoff=0.0 V       Length dependence of voff.
+580     ldsub=0.0         Length dependence of dsub.
+581     leta0=0.0         Length dependence of eta0.
+582     lteta0=0.0        Length dependence of teta0.
+583     letab=0.0 1/V     Length dependence of etab.
+584     lalpha0=0.0 m/V   Length dependence of alpha0.
+585     lalpha1=0.0 m/V   Length dependence of alpha1.
+586     lbeta0=0.0 1/V    Length dependence of beta0.
+587     lcgsl=0.0 F/m     Length dependence of cgsl.
+588     lcgdl=0.0 F/m     Length dependence of cgdl.
+589     lclc=0.0 m        Length dependence of clc.
+590     lcle=0.0          Length dependence of cle.
+591     lcf=0.0 F/m       Length dependence of cf.
+592     lvfbcv=0.0        Length dependence of vfbcv.
+593     lacde=0.0         Length dependence of acde.
+594     lmoin=0.0         Length dependence of moin.
+595     lnoff=0.0         Length dependence of noff.
+596     lvoffcv=0.0       Length dependence of voffcv.
+597     ltvoffcv=0.0      Length dependence of tvoffcv.
+598     lminvcv=0.0       Length dependence of minvcv.
+599     lkt1=0.0 V        Length dependence of kt1.
+600     lkt1l=0 V*m       Length dependence of kt1l.
+601     lkt2=0.0          Length dependence of kt2.
+602     lat=0.0 m/s       Length dependence of at.
+603     lua1=0.0 m/V      Length dependence of ua1.
+604     lub1=0.0 m^2/V^2  Length dependence of ub1.
+605     luc1=0.0 m/V^2    Length dependence of uc1.
+606     lud1=0.0 /m^2     Length dependence of ud1.
+607     lprt=0.0 Ohm      Length dependence of prt.
+608     lute=0.0          Length dependence of ute.
+609     lndep=0.0         Length dependence of ndep.
+610     lnsd=0.0          Length dependence of nsd.
+611     lphin=0.0         Length dependence of phin.
+612     llpe0=0.0         Length dependence of lpe0.
+613     llpeb=0.0         Length dependence of lpeb.
+614     ldvtp0=0.0        Length dependence of dvtp0.
+615     ldvtp1=0.0        Length dependence of dvtp1.
+616     ldvtp2=0.0        Length dependence of dvtp2.
+617     ldvtp3=0.0        Length dependence of dvtp3.
+618     ldvtp4=0.0        Length dependence of dvtp4.
+619     ldvtp5=0.0        Length dependence of dvtp5.
+620     leu=0.0           Length dependence of eu.
+621     lminv=0.0         Length dependence of minv.
+622     lfprout=0.0       Length dependence of fprout.
+623     lpdits=0.0        Length dependence of pdits.
+624     lpditsd=0.0       Length dependence of pditsd.
+625     lrdw=0.0          Length dependence of rdw.
+626     lrsw=0.0          Length dependence of rsw.
+627     lagidl=0.0        Length dependence of agidl.
+628     lbgidl=0.0        Length dependence of bgidl.
+629     lcgidl=0.0        Length dependence of cgidl.
+630     legidl=0.0        Length dependence of egidl.
+631     lfgidl=0.0        Length dependence of fgidl.
+632     lkgidl=0.0        Length dependence of kgidl.
+633     lrgidl=0.0        Length dependence of rgidl.
+634     lfgisl=lfgidl     Length dependence of fgisl.
+635     lkgisl=lkgidl     Length dependence of kgisl.
+636     lrgisl=lrgidl     Length dependence of rgisl.
+637     laigbacc=0.0      Length dependence of aigbacc.
+638     lbigbacc=0.0      Length dependence of bigbacc.
+639     lcigbacc=0.0      Length dependence of cigbacc.
+640     lnigbacc=0.0      Length dependence of nigbacc.
+641     laigbinv=0.0      Length dependence of aigbinv.
+642     lbigbinv=0.0      Length dependence of bigbinv.
+643     lcigbinv=0.0      Length dependence of cigbinv.
+644     leigbinv=0.0      Length dependence of eigbinv.
+645     lnigbinv=0.0      Length dependence of nigbinv.
+646     laigc=0.0         Length dependence of aigc.
+647     lbigc=0.0         Length dependence of bigc.
+648     lcigc=0.0         Length dependence of cigc.
+649     laigsd=0.0        Length dependence of aigsd.
+650     lbigsd=0.0        Length dependence of bigsd.
+651     lcigsd=0.0        Length dependence of cigsd.
+652     lnigc=0.0         Length dependence of nigc.
+653     lpoxedge=0.0      Length dependence of poxedge.
+654     lpigcd=0.0        Length dependence of pigcd.
+655     lntox=0.0         Length dependence of ntox.
+656     lckappas=0.0      Length dependence of ckappas.
+657     lckappad=0.0      Length dependence of ckappad.
+658     lxrcrg1=0.0       Length dependence of xrcrg1.
+659     lxrcrg2=0.0       Length dependence of xrcrg2.
+660     lvfbsdoff=0.0     Length dependence of vfbsdoff.
+661     llambda=0.0       Length dependence of lambda.
+662     lvtl=0.0          Length dependence of vtl.
+663     lxn=0.0           Length dependence of xn.
+664     lkvth0we=0.0 V    Length dependence of kvth0we.
+665     lk2we=0.0         Length dependence of k2we.
+666     lku0we=0.0        Length dependence of ku0we.
+667     lku0=0.0 m^llodku0
+                          Length dependence of ku0.
+668     lkvth0=0.0 V*m^llodku0
+                          Length dependence of kvth0.
+669     lucs=0.0          Length dependence of ucs.
+670     lucste=0.0        Length dependence of ucste.
+
+Width dependent parameters:
+671     wvtho=0.0 V       Width dependence of vtho.
+672     wvth0             Width dependence of vth0.
+673     wvfb=0.0          Width dependence of vfb.
+674     wk1=0.0 sqrt(V)   Width dependence of k1.
+675     wk2=0.0           Width dependence of k2.
+676     wk3=0.0           Width dependence of k3.
+677     wk3b=0.0 1/V      Width dependence of k3b.
+678     ww0=0.0 m         Width dependence of w0.
+679     wgamma1=0.0 sqrt(V)
+                          Width dependence of gamma1.
+680     wgamma2=0.0 sqrt(V)
+                          Width dependence of gamma2.
+681     wvbx=0.0 V        Width dependence of vbx.
+682     wvbm=0.0 V        Width dependence of vbm.
+683     wdvt0=0.0         Width dependence of dvt0.
+684     wdvt1=0.0         Width dependence of dvt1.
+685     wdvt2=0.0 1/V     Width dependence of dvt2.
+686     wdvt0w=0.0        Width dependence of dvt0w.
+687     wdvt1w=0.0        Width dependence of dvt1w.
+688     wdvt2w=0.0        Width dependence of dvt2w.
+689     wa0=0.0           Width dependence of a0.
+690     wb0=0.0 m         Width dependence of b0.
+691     wb1=0.0 m         Width dependence of b1.
+692     wa1=0.0           Width dependence of a1.
+693     wa2=0.0           Width dependence of a2.
+694     wags=0.0 F/m^2*V  Width dependence of ags.
+695     wketa=0.0 1/V     Width dependence of keta.
+696     wketac=0.0 1/V    Width dependence of ketac.
+697     wnsub=0.0 cm^-3   Width dependence of nsub.
+698     wngate=0.0 cm^-3  Width dependence of ngate.
+699     wxj=0.0 m         Width dependence of xj.
+700     wdwg=0.0 m/V      Width dependence of dwg.
+701     wdwb=0.0 m/sqrt(V)
+                          Width dependence of dwb.
+702     wxt=0.0 m         Width dependence of xt.
+703     wrdsw=0.0 Ohm*um  Width dependence of rdsw.
+704     wprwb=0.0 1/sqrt(V)
+                          Width dependence of prwb.
+705     wprwg=0.0 1/V     Width dependence of prwg.
+706     wwr=0.0           Width dependence of wr.
+707     wu0=0.0           Width dependence of u0.
+708     wvsat=0.0 m/s     Width dependence of vsat.
+709     wua=0.0 m/V       Width dependence of ua.
+710     wub=0.0 m^2/V^2   Width dependence of ub.
+711     wuc=0.0 m/V^2     Width dependence of uc.
+712     wud=0.0 /m^2      Width dependence of ud.
+713     wup=0.0           Width dependence of up.
+714     wlp=0.0 m         Width dependence of lp.
+715     wdrout=0.0        Width dependence of drout.
+716     wpclm=0.0         Width dependence of pclm.
+717     wpdiblc1=0.0      Width dependence of pdiblc1.
+718     wpdiblc2=0.0      Width dependence of pdiblc2.
+719     wpdiblcb=0.0 1/V  Width dependence of pdiblcb.
+720     wpscbe1=0.0 V/m   Width dependence of pscbe1.
+721     wpscbe2=0.0 m/V   Width dependence of pscbe2.
+722     wpvag=0.0         Width dependence of pvag.
+723     wdelta=0.0 V      Width dependence of delta.
+724     wcdsc=0.0 F/m^2   Width dependence of cdsc.
+725     wcdscb=0.0 F/m^2*V
+                          Width dependence of cdscb.
+726     wcdscd=0.0 F/m^2*V
+                          Width dependence of cdscd.
+727     wnfactor=0.0      Width dependence of nfactor.
+728     wtnfactor=0.0     Width dependence of tnfactor.
+729     wcit=0.0 F        Width dependence of cit.
+730     wvoff=0.0 V       Width dependence of voff.
+731     wdsub=0.0         Width dependence of dsub.
+732     weta0=0.0         Width dependence of eta0.
+733     wteta0=0.0        Width dependence of teta0.
+734     wetab=0.0 1/V     Width dependence of etab.
+735     walpha0=0.0 m/V   Width dependence of alpha0.
+736     walpha1=0.0 m/V   Width dependence of alpha1.
+737     wbeta0=0.0 1/V    Width dependence of beta0.
+738     wcgsl=0.0 F/m     Width dependence of cgsl.
+739     wcgdl=0.0 F/m     Width dependence of cgdl.
+740     wclc=0.0 m        Width dependence of clc.
+741     wcle=0.0          Width dependence of cle.
+742     wcf=0.0 F/m       Width dependence of cf.
+743     wvfbcv=0.0        Width dependence of vfbcv.
+744     wacde=0.0         Width dependence of acde.
+745     wmoin=0.0         Width dependence of moin.
+746     wnoff=0.0         Width dependence of noff.
+747     wvoffcv=0.0       Width dependence of voffcv.
+748     wtvoffcv=0.0      Width dependence of tvoffcv.
+749     wminvcv=0.0       Width dependence of minvcv.
+750     wkt1=0.0 V        Width dependence of kt1.
+751     wkt1l=0 V*m       Width dependence of kt1l.
+752     wkt2=0.0          Width dependence of kt2.
+753     wat=0.0 m/s       Width dependence of at.
+754     wua1=0.0 m/V      Width dependence of ua1.
+755     wub1=0.0 m^2/V^2  Width dependence of ub1.
+756     wuc1=0.0 m/V^2    Width dependence of uc1.
+757     wud1=0.0 /m^2     Width dependence of ud1.
+758     wprt=0.0 Ohm      Width dependence of prt.
+759     wute=0.0          Width dependence of ute.
+760     wndep=0.0         Width dependence of ndep.
+761     wnsd=0.0          Width dependence of nsd.
+762     wphin=0.0         Width dependence of phin.
+763     wlpe0=0.0         Width dependence of lpe0.
+764     wlpeb=0.0         Width dependence of lpeb.
+765     wdvtp0=0.0        Width dependence of dvtp0.
+766     wdvtp1=0.0        Width dependence of dvtp1.
+767     wdvtp2=0.0        Width dependence of dvtp2.
+768     wdvtp3=0.0        Width dependence of dvtp3.
+769     wdvtp4=0.0        Width dependence of dvtp4.
+770     wdvtp5=0.0        Width dependence of dvtp5.
+771     weu=0.0           Width dependence of eu.
+772     wminv=0.0         Width dependence of minv.
+773     wfprout=0.0       Width dependence of fprout.
+774     wpdits=0.0        Width dependence of pdits.
+775     wpditsd=0.0       Width dependence of pditsd.
+776     wrdw=0.0          Width dependence of rdw.
+777     wrsw=0.0          Width dependence of rsw.
+778     wagidl=0.0        Width dependence of agidl.
+779     wbgidl=0.0        Width dependence of bgidl.
+780     wcgidl=0.0        Width dependence of cgidl.
+781     wegidl=0.0        Width dependence of egidl.
+782     wfgidl=0.0        Width dependence of fgidl.
+783     wkgidl=0.0        Width dependence of kgidl.
+784     wrgidl=0.0        Width dependence of rgidl.
+785     wfgisl=wfgidl     Width dependence of fgisl.
+786     wkgisl=wkgidl     Width dependence of kgisl.
+787     wrgisl=wrgidl     Width dependence of rgisl.
+788     waigbacc=0.0      Width dependence of aigbacc.
+789     wbigbacc=0.0      Width dependence of bigbacc.
+790     wcigbacc=0.0      Width dependence of cigbacc.
+791     wnigbacc=0.0      Width dependence of nigbacc.
+792     waigbinv=0.0      Width dependence of aigbinv.
+793     wbigbinv=0.0      Width dependence of bigbinv.
+794     wcigbinv=0.0      Width dependence of cigbinv.
+795     weigbinv=0.0      Width dependence of eigbinv.
+796     wnigbinv=0.0      Width dependence of nigbinv.
+797     waigc=0.0         Width dependence of aigc.
+798     wbigc=0.0         Width dependence of bigc.
+799     wcigc=0.0         Width dependence of cigc.
+800     waigsd=0.0        Width dependence of aigsd.
+801     wbigsd=0.0        Width dependence of bigsd.
+802     wcigsd=0.0        Width dependence of cigsd.
+803     wnigc=0.0         Width dependence of nigc.
+804     wpoxedge=0.0      Width dependence of poxedge.
+805     wpigcd=0.0        Width dependence of pigcd.
+806     wntox=0.0         Width dependence of ntox.
+807     wckappas=0.0      Width dependence of ckappas.
+808     wckappad=0.0      Width dependence of ckappad.
+809     wxrcrg1=0.0       Width dependence of xrcrg1.
+810     wxrcrg2=0.0       Width dependence of xrcrg2.
+811     wvfbsdoff=0.0     Width dependence of vfbsdoff.
+812     wlambda=0.0       Width dependence of lambda.
+813     wvtl=0.0          Width dependence of vtl.
+814     wxn=0.0           Width dependence of xn.
+815     wkvth0we=0.0 V    Width dependence of kvth0we.
+816     wk2we=0.0         Width dependence of k2we.
+817     wku0we=0.0        Width dependence of ku0we.
+818     wku0=0.0 m^wlodku0
+                          Width dependence of ku0.
+819     wkvth0=0.0 V*m^wlodku0
+                          Width dependence of kvth0.
+820     wucs=0.0          Width dependence of ucs.
+821     wucste=0.0        Width dependence of ucste.
+
+Cross-term dependent parameters:
+822     pvtho=0.0 V       Cross-term dependence of vtho.
+823     pvth0             Cross-term dependence of vth0.
+824     pvfb=0.0          Cross-term dependence of vfb.
+825     pk1=0.0 sqrt(V)   Cross-term dependence of k1.
+826     pk2=0.0           Cross-term dependence of k2.
+827     pk3=0.0           Cross-term dependence of k3.
+828     pk3b=0.0 1/V      Cross-term dependence of k3b.
+829     pw0=0.0 m         Cross-term dependence of w0.
+830     pgamma1=0.0 sqrt(V)
+                          Cross-term dependence of gamma1.
+831     pgamma2=0.0 sqrt(V)
+                          Cross-term dependence of gamma2.
+832     pvbx=0.0 V        Cross-term dependence of vbx.
+833     pvbm=0.0 V        Cross-term dependence of vbm.
+834     pdvt0=0.0         Cross-term dependence of dvt0.
+835     pdvt1=0.0         Cross-term dependence of dvt1.
+836     pdvt2=0.0 1/V     Cross-term dependence of dvt2.
+837     pdvt0w=0.0        Cross-term dependence of dvt0w.
+838     pdvt1w=0.0        Cross-term dependence of dvt1w.
+839     pdvt2w=0.0        Cross-term dependence of dvt2w.
+840     pa0=0.0           Cross-term dependence of a0.
+841     pb0=0.0 m         Cross-term dependence of b0.
+842     pb1=0.0 m         Cross-term dependence of b1.
+843     pa1=0.0           Cross-term dependence of a1.
+844     pa2=0.0           Cross-term dependence of a2.
+845     pags=0.0 F/m^2*V  Cross-term dependence of ags.
+846     pketa=0.0 1/V     Cross-term dependence of keta.
+847     pketac=0.0 1/V    Cross-term dependence of ketac.
+848     pnsub=0.0 cm^-3   Cross-term dependence of nsub.
+849     pngate=0.0 cm^-3  Cross-term dependence of ngate.
+850     pxj=0.0 m         Cross-term dependence of xj.
+851     pdwg=0.0 m/V      Cross-term dependence of dwg.
+852     pdwb=0.0 m/sqrt(V)
+                          Cross-term dependence of dwb.
+853     pxt=0.0 m         Cross-term dependence of xt.
+854     prdsw=0.0 Ohm*um  Cross-term dependence of rdsw.
+855     pprwb=0.0 1/sqrt(V)
+                          Cross-term dependence of prwb.
+856     pprwg=0.0 1/V     Cross-term dependence of prwg.
+857     pwr=0.0           Cross-term dependence of wr.
+858     pu0=0.0           Cross-term dependence of u0.
+859     pvsat=0.0 m/s     Cross-term dependence of vsat.
+860     pua=0.0 m/V       Cross-term dependence of ua.
+861     pub=0.0 m^2/V^2   Cross-term dependence of ub.
+862     puc=0.0 m/V^2     Cross-term dependence of uc.
+863     pud=0.0 /m^2      Cross-term dependence of ud.
+864     pup=0.0           Cross-term dependence of up.
+865     plp=0.0 m         Cross-term dependence of lp.
+866     pdrout=0.0        Cross-term dependence of drout.
+867     ppclm=0.0         Cross-term dependence of pclm.
+868     ppdiblc1=0.0      Cross-term dependence of pdiblc1.
+869     ppdiblc2=0.0      Cross-term dependence of pdiblc2.
+870     ppdiblcb=0.0 1/V  Cross-term dependence of pdiblcd.
+871     ppscbe1=0.0 V/m   Cross-term dependence of pscbe1.
+872     ppscbe2=0.0 m/V   Cross-term dependence of pscbe2.
+873     ppvag=0.0         Cross-term dependence of pvag.
+874     pdelta=0.0 V      Cross-term dependence of delta.
+875     pcdsc=0.0 F/m^2   Cross-term dependence of cdsc.
+876     pcdscb=0.0 F/m^2*V
+                          Cross-term dependence of cdscb.
+877     pcdscd=0.0 F/m^2*V
+                          Cross-term dependence of cdscd.
+878     pnfactor=0.0      Cross-term dependence of nfactor.
+879     ptnfactor=0.0     Cross-term dependence of tnfactor.
+880     pcit=0.0 F        Cross-term dependence of cit.
+881     pvoff=0.0 V       Cross-term dependence of voff.
+882     pdsub=0.0         Cross-term dependence of dsub.
+883     peta0=0.0         Cross-term dependence of eta0.
+884     pteta0=0.0        Cross-term dependence of teta0.
+885     petab=0.0 1/V     Cross-term dependence of etab.
+886     palpha0=0.0 m/V   Cross-term dependence of alpha0.
+887     palpha1=0.0 m/V   Cross-term dependence of alpha1.
+888     pbeta0=0.0 1/V    Cross-term dependence of beta0.
+889     pcgsl=0.0 F/m     Cross-term dependence of cgsl.
+890     pcgdl=0.0 F/m     Cross-term dependence of cgdl.
+891     pclc=0.0 m        Cross-term dependence of clc.
+892     pcle=0.0          Cross-term dependence of cle.
+893     pcf=0.0 F/m       Cross-term dependence of cf.
+894     pvfbcv=0.0        Cross-term dependence of vfbcv.
+895     pacde=0.0         Cross-term dependence of acde.
+896     pmoin=0.0         Cross-term dependence of moin.
+897     pnoff=0.0         Cross-term dependence of noff.
+898     pvoffcv=0.0       Cross-term dependence of voffcv.
+899     ptvoffcv=0.0      Cross-term dependence of tvoffcv.
+900     pminvcv=0.0       Cross-term dependence of minvcv.
+901     pkt1=0.0 V        Cross-term dependence of kt1.
+902     pkt1l=0 V*m       Cross-term dependence of kt1l.
+903     pkt2=0.0          Cross-term dependence of kt2.
+904     pat=0.0 m/s       Cross-term dependence of at.
+905     pua1=0.0 m/V      Cross-term dependence of ua1.
+906     pub1=0.0 m^2/V^2  Cross-term dependence of ub1.
+907     puc1=0.0 m/V^2    Cross-term dependence of uc1.
+908     pud1=0.0 /m^2     Cross-term dependence of ud1.
+909     pprt=0.0 Ohm      Cross-term dependence of prt.
+910     pute=0.0          Cross-term dependence of ute.
+911     pndep=0.0         Cross-term dependence of ndep.
+912     pnsd=0.0          Cross-term dependence of nsd.
+913     pphin=0.0         Cross-term dependence of phin.
+914     plpe0=0.0         Cross-term dependence of lpe0.
+915     plpeb=0.0         Cross-term dependence of lpeb.
+916     pdvtp0=0.0        Cross-term dependence of dvtp0.
+917     pdvtp1=0.0        Cross-term dependence of dvtp1.
+918     pdvtp2=0.0        Cross-term dependence of dvtp2.
+919     pdvtp3=0.0        Cross-term dependence of dvtp3.
+920     pdvtp4=0.0        Cross-term dependence of dvtp4.
+921     pdvtp5=0.0        Cross-term dependence of dvtp5.
+922     peu=0.0           Cross-term dependence of eu.
+923     pminv=0.0         Cross-term dependence of minv.
+924     pfprout=0.0       Cross-term dependence of fprout.
+925     ppdits=0.0        Cross-term dependence of pdits.
+926     ppditsd=0.0       Cross-term dependence of pditsd.
+927     prdw=0.0          Cross-term dependence of rdw.
+928     prsw=0.0          Cross-term dependence of rsw.
+929     pagidl=0.0        Cross-term dependence of agidl.
+930     pbgidl=0.0        Cross-term dependence of bgidl.
+931     pcgidl=0.0        Cross-term dependence of cgidl.
+932     pegidl=0.0        Cross-term dependence of egidl.
+933     pfgidl=0.0        Cross-term dependence of fgidl.
+934     pkgidl=0.0        Cross-term dependence of kgidl.
+935     prgidl=0.0        Cross-term dependence of rgidl.
+936     pfgisl=pfgidl     Cross-term dependence of fgisl.
+937     pkgisl=pkgidl     Cross-term dependence of kgisl.
+938     prgisl=prgidl     Cross-term dependence of rgisl.
+939     paigbacc=0.0      Cross-term dependence of aigbacc.
+940     pbigbacc=0.0      Cross-term dependence of bigbacc.
+941     pcigbacc=0.0      Cross-term dependence of cigbacc.
+942     pnigbacc=0.0      Cross-term dependence of nigbacc.
+943     paigbinv=0.0      Cross-term dependence of aigbinv.
+944     pbigbinv=0.0      Cross-term dependence of bigbinv.
+945     pcigbinv=0.0      Cross-term dependence of cigbinv.
+946     peigbinv=0.0      Cross-term dependence of eigbinv.
+947     pnigbinv=0.0      Cross-term dependence of nigbinv.
+948     paigc=0.0         Cross-term dependence of aigc.
+949     pbigc=0.0         Cross-term dependence of bigc.
+950     pcigc=0.0         Cross-term dependence of cigc.
+951     paigsd=0.0        Cross-term dependence of aigsd.
+952     pbigsd=0.0        Cross-term dependence of bigsd.
+953     pcigsd=0.0        Cross-term dependence of cigsd.
+954     pnigc=0.0         Cross-term dependence of nigc.
+955     ppoxedge=0.0      Cross-term dependence of poxedge.
+956     ppigcd=0.0        Cross-term dependence of pigcd.
+957     pntox=0.0         Cross-term dependence of ntox.
+958     pckappas=0.0      Cross-term dependence of ckappas.
+959     pckappad=0.0      Cross-term dependence of ckappad.
+960     pxrcrg1=0.0       Cross-term dependence of xrcrg1.
+961     pxrcrg2=0.0       Cross-term dependence of xrcrg2.
+962     pvfbsdoff=0.0     Cross-term dependence of Vfbsdoff.
+963     plambda=0.0       Cross-term dependence of lambda.
+964     pvtl=0.0          Cross-term dependence of vtl.
+965     pxn=0.0           Cross-term dependence of xn.
+966     pkvth0we=0.0 V    Cross-term dependence of kvth0we.
+967     pk2we=0.0         Cross-term dependence of k2we.
+968     pku0we=0.0        Cross-term dependence of ku0we.
+969     pku0=0.0 m^(llodku0+wlodku0)
+                          Cross-term dependence of ku0.
+970     pkvth0=0.0 V*m^(llodku0+wlodku0)
+                          Cross-term dependence of kvth0.
+971     pucs=0.0          Cross-term dependence of ucs.
+972     pucste=0.0        Cross-term dependence of ucste.
+
+DC-mismatch dependent parameters:
+973     mvtwl=0.0 V*m     Threshold mismatch area dependence.
+974     mvtwl2=0.0 V*m^1.5
+                          Threshold mismatch area square dependence.
+975     mvt0=0.0 V        Threshold mismatch intercept.
+976     mbewl=0.0 m       Beta mismatch area dependence.
+977     mbe0=0.0          Beta mismatch intercept.
+978     mismatchmod=0     Select Mismatch mode.
+979     mismatchvec1=[...]
+                          Vector 1 used in the mismatch.
+980     mismatchvec2=[...]
+                          Vector 2 used in the mismatch.
+981     mismatchvec3=[...]
+                          Vector 3 used in the mismatch.
+982     mismatchvec4=[...]
+                          Vector 4 used in the mismatch.
+983     mismatchdist=0 m  Mismatch Distance.
+
+Compatibility model parameters:
+984     compatible=spectre
+                          Encourage device equations to be compatible with a foreign simulator. This option does not affect
+                          input syntax. Possible values are spectre, spice2, spice3, cdsspice, spiceplus, eldo, sspice, mica,
+                          tispice and pspice.
+
+Shrink Parameters:
+985     shrink=0          Linear shrink parameter.
+986     shrink2=0         Area shrink parameter.
+987     maxvdd=0.0 V      max Vdd for the model.
+
+
+
+Imax and Imelt: 
+--------------- 
+
+The `imax' parameter aids in convergence and prevents numerical overflow. The junction characteristics of the device are
+accurately modeled for the value of current up to `imax'. If the value of `imax' exceeds during iterations, the linear model
+is substituted until the current drops below 'imax' or until the convergence is achieved. If convergence is achieved with the
+current exceeding `imax', the results are inaccurate, and a warning message is displayed. 
+
+A separate model parameter, `imelt', is used as a limit warning for the junction current. This parameter can be set to the
+maximum current rating of the device. When any component of the junction current exceeds `imelt', given that the base and
+collector currents are composed of many exponential terms, the results become inaccurate and a warning message is displayed.
+The junction current is linearized to above the value of `imelt' to prevent arithmetic exception, with the exponential term
+replaced by a linear equation at `imelt'.
+
+Both of these parameters have current density counterparts, `jmax' and `jmelt', that you can specify if you want the absolute
+current values to depend on the device area.
+
+In Bsim4, imax (jmax) will take effect only when diomod=3 (spectre common diode model). Berkeley uses other model parameters,
+such as ijthsfwd, ijthdfwd to do limitation. For more information, see the Berkeley BSIM4 manual.
+
+
+Auto Model Selection: 
+--------------------- 
+
+Many models need to be characterized for different geometries in order to obtain accurate results for model development. The
+model selector program automatically searches for a model with the length and width range specified in the instance statement
+and uses this model in the simulations. 
+
+For the auto model selector program to find a specific model, the models to be searched should be grouped together within
+braces. Such a group is called a model group. An opening brace is required at the end of the line defining each model group.
+Every model in the group is given a name followed by a colon and the list of parameters. Also, the four geometric parameters
+`lmax', `lmin', `wmax', and `wmin' should be given. The selection criteria to choose a model is as follows: 
+
+  lmin <= inst_length < lmax  and   wmin <= inst_width  < wmax 
+
+Example:
+
+model ModelName ModelType { 
+   1:     <model parameters> lmin=2 lmax=4 wmin=1 wmax=2 
+   2:     <model parameters> lmin=1 lmax=2 wmin=2 wmax=4 
+   3:     <model parameters> lmin=2 lmax=4 wmin=4 wmax=6 
+}
+
+
+Then for a given instance 
+
+M1 1 2 3 4 ModelName w=3 l=1.5 
+
+the program would search all the models in the model group with the name `ModelName' and then pick the first model whose
+geometric range satisfies the selection criteria. In the preceding example, the auto model selector program would choose
+ModelName.2.
+
+You must specify both length (l) and width (w) on the device instance line to enable automatic model selection.
+
+
+Inst Default to Model: 
+---------------------- 
+
+In BSIM4, for customer convenience, some model parameters are added to serve as default values for the corresponding instance
+parameters (they are not Berkeley model parameters. These include: l, w, as, ad, ps, pd, nrs, nrd, rdc, rsc, rgeomod, nf,
+min, and trise. 
+
+
+
+
+=================
+Output Parameters
+=================
+
+1       tempeff (C)       Effective temperature for a single device.
+2       meff              Effective multiplicity factor (m-factor).
+3       weff (m)          Effective channel width (alias=lx62).
+4       leff (m)          Effective channel length (alias=lx63).
+5       weffcv (m)        Effective channel width for CV (alias=lx64).
+6       leffcv (m)        Effective channel length for CV (alias=lx65).
+7       vfbsd (V)         Flat band Voltage between the gate and Drain/source diffusions (alias=lx75).
+8       rgbi (Ohm)        Gate bias-independent resistance.
+9       adeff (m^2)       Effective drain area.
+10      aseff (m^2)       Effective source area.
+11      pdeff (m)         Effective drain perimeter.
+12      pseff (m)         Effective source perimeter.
+
+
+==========================
+Operating Point Parameters
+==========================
+
+1       region=triode     Estimated operating region. Spectre outputs the number (0-4) in a rawfile. Possible values are off,
+                          triode, sat, subth and breakdown.
+2       trise (C)         Temperature rise from ambient.
+3       dtemp (C)         Alias for trise.
+4       reversed          Reverse mode indicator. Possible values are no and yes.
+5       ids (A)           Resistive drain-to-source current.
+6       vgs (V)           Gate-source voltage.
+7       vds (V)           Drain-source voltage.
+8       vbs (V)           Bulk-source voltage.
+9       vgd (V)           Gate-drain voltage.
+10      vdb (V)           Drain-bulk voltage.
+11      vgb (V)           Gate-bulk voltage.
+12      vth (V)           Threshold voltage (alias=lv9).
+13      vdsat (V)         Drain-source saturation voltage (alias=lv10).
+14      gm (S)            Common-source transconductance (alias=lx7).
+15      gds (S)           Common-source output conductance (alias=lx8).
+16      gmbs (S)          Body-transconductance (alias=lx9).
+17      betaeff (A/V^2)   Effective beta (alias LV21).
+18      pro_Gamma         Gamma.
+19      cjd (F)           Drain-bulk junction capacitance (alias=lx29).
+20      cjs (F)           Source-bulk junction capacitance (alias=lx28).
+21      cgg (F)           Total gate capacitance, including intrinsic, overlap and fringing components (alias=lx82).
+22      cgd (F)           Total gate-to-drain capacitance, including intrinsic, overlap, and fringing components
+                          (alias=lx83).
+23      cgs (F)           Total gate-to-source capacitance, including intrinsic, overlap, and fringing components
+                          (alias=lx84).
+24      cgb (F)           Total gate-to-bulk capacitance, including intrinsic and overlap components.
+25      cdg (F)           Total drain-to-gate capacitance, including intrinsic, overlap, and fringing components
+                          (alias=lx87).
+26      cdd (F)           Drain capacitance, including intrinsic, overlap, and fringing components.
+27      cds (F)           Total drain-to-source capacitance (alias=lx86).
+28      cdb (F)           Intrinsic drain-to-bulk capacitance.
+29      csg (F)           Total source-to-gate capacitance, including intrinsic, overlap, and fringing components.
+30      csd (F)           Total source-to-drain capacitance.
+31      css (F)           Source capacitance, including intrinsic, overlap, and fringing components.
+32      csb (F)           Intrinsic source-to-bulk capacitance.
+33      cbg (F)           Total bulk-to-gate capacitance, including intrinsic and overlap components (alias=lx88).
+34      cbd (F)           Intrinsic bulk-to-drain capacitance.
+35      cbs (F)           Intrinsic bulk-to-source capacitance.
+36      cbb (F)           Bulk capacitance, including intrinsic and overlap components.
+37      covlgs (F/m)      Gate-source overlap and fringing capacitances (alias=lv36).
+38      covlgd (F/m)      Gate-drain overlap and fringing capacitances (alias=lv37).
+39      covlgb (F/m)      Gate-bulk overlap capacitances (alias=lv38).
+40      cggbo (F)         CGGBO = dQg/dVg intrinsic gate capacitance (alias=lx18).
+41      cgdbo (F)         CGDBO = -dQg/dVd intrinsic gate-to-drain capacitance (alias=lx19).
+42      cgsbo (F)         CGSBO = -dQg/dVs intrinsic gate-to-source capacitance (alias=lx20).
+43      cbgbo (F)         CBGBO = -dQb/dVg intrinsic bulk-to-gate capacitance (alias=lx21).
+44      cbdbo (F)         CBDBO = -dQb/dVd intrinsic bulk-to-drain capacitance (alias=lx22).
+45      cbsbo (F)         CBSBO = -dQb/dVs intrinsic bulk-to-source capacitance (alias=lx23).
+46      cdgbo (F)         CDGBO = -dQd/dVg intrinsic drain-to-gate capacitance (alias=lx32).
+47      cddbo (F)         CDDBO = dQd/dVd intrinsic drain capacitance (alias=lx33).
+48      cdsbo (F)         CDSBO = -dQd/dVs intrinsic drain-to-source capacitance (alias=lx34).
+49      ron (Ohm)         On-resistance, includes the parasitical rs and rd.
+50      id (A)            Resistive drain current.
+51      ig (A)            Total DC gate current.
+52      is (A)            Total DC source current.
+53      ib (A)            Total DC bulk current.
+54      ibulk (A)         Resistive bulk current.
+55      pwr (W)           Power at op point.
+56      gmoverid (1/V)    Gm/Ids.
+57      ueff              ueff.
+58      rdeff (Ohm)       Effective drain resistance.
+59      rseff (Ohm)       Effective source resistance.
+60      rgbd (Ohm)        Gate bias-dependent resistance.
+61      igidl (A)         Gate-induced drain leakage current (alias=lx70).
+62      igisl (A)         Gate-induced source leakage current.
+63      igdt (A)          Gate Dielectric tunneling current (alias=lx71).
+64      igd (A)           Gate-to-drain tunneling current (alias=lx39).
+65      igs (A)           Gate-to-source tunneling current (alias=lx38).
+66      igb (A)           Gate-to-bulk tunneling current (alias=lx66).
+67      igbacc (A)        Gate-to-bulk tunneling current determined by ECB (alias=lx73).
+68      igbinv (A)        Gate-to-bulk tunneling current determined by EVB (alias=lx74).
+69      igcs (A)          Gate-to-channel (source side) tunneling current (alias=lx67).
+70      igcd (A)          Gate-to-channel (drain side) tunneling current (alias=lx68).
+71      isub (A)           Substrate current ( alias to LX69 ).
+72      gbs (S)           Bulk-source diode conductance (alias=lx11).
+73      gbd (S)           Bulk-drain diode conductance (alias=lx10).
+74      qg (Coul)         Total gate charge, including intrinsic, overlap and fringing components.
+75      qd (Coul)         Total drain charge, including intrinsic, overlap and fringing components.
+76      qs (Coul)         Total source charge, including intrinsic, overlap and fringing components.
+77      qb (Coul)         Total bulk charge, including intrinsic and overlap components.
+78      qjd (Coul)        Drain-bulk junction charge.
+79      qjs (Coul)        Source-bulk junction charge.
+80      qgdovl (Coul)     Gate-drain overlap and fringing charge.
+81      qgsovl (Coul)     Gate-source overlap and fringing charge.
+82      qgi (Coul)        Intrinsic gate charge.
+83      qdi (Coul)        Intrinsic drain charge.
+84      qsi (Coul)        Intrinsic source charge.
+85      qbi (Coul)        Intrinsic bulk charge.
+86      ide (A)           Total DC drain current.
+87      ige (A)           Total DC gate current.
+88      ise (A)           Total DC source current.
+89      ibe (A)           Total DC bulk current.
+90      idb (A)           DC drain-bulk current.
+91      isb (A)           DC source-bulk current.
+92      vsb (V)           Source-bulk DC voltage.
+93      gmb (S)           DC bulk transconductance.
+94      vgt (V)           effective gate drive voltage including back bias and drain bias effects.
+95      vth_drive (V)     effective gate drive voltage including back bias and drain bias effects. Alias for Vgt.
+96      vdss (V)          Drain saturation voltage at actual bias.
+97      vsat_marg (V)     Vds margin.
+98      vdsat_marg (V)    Vds margin.
+99      self_gain         Transistor self gain.
+100     rout (Ohm)        AC output resistor. The parasitical rs and rd are excluded.
+101     beff (A/V^2)      Gain factor in saturation.
+102     fug (Hz)          Unity current gain frequency at actual bias.
+103     ft (Hz)           Unity current gain frequency at actual bias.
+104     rgate (Ohm)       MOS gate resistance.
+105     vearly (V)        Equivalent early voltage.
+106     OPdef             1: Device Physics notation. 2: Circuit Simulator notation.
+107     Ctype             Flag for channel type of MOSFET. 1: NMOS. -1: PMOS.
+108     SDop              Operation mode related to channel type and drain-source voltage sign. Possible values are Forward
+                          and Reverse.
+109     SDint             Flag for source-drain interchange. 1: No S-D interchange, -1: S-D interchange.
+110     Tk (K)            Absolute Device temperature including self-heating.
+111     Dtsh (K)          Device temperature rise due to self-heating.
+112     Iavl (A)          Weak avalanche current.
+113     vth0 (V)          Zero-bias threshold voltage, excluding back-bias (body effect) and drain-bias effect (DIBL).
+114     go (S)            Common-source output conductance.
+115     co (F)            Output Drain-Source capacitance.
+116     cm (F)            Capacitance element 1 for QS model.
+117     cmb (F)           Capacitance element 2 for QS model.
+118     cmx (F)           Capacitance element 3 for QS model.
+119     tau1 (s)          Time constant related to NQS first frequency pole.
+120     fqslim (Hz)       QS model frequency limit.
+121     gmoveri (1/V)     Gm/Ids.
+
+
+===============
+Parameter Index
+===============
+
+    Ctype ........ OP-107   ise ........... OP-88   minv .......... M-144   pup ........... M-864   vgb ........... OP-11
+    Dtsh ......... OP-111   isnoisy ........ I-44   minvcv ........ M-243   pute .......... M-910   vgb_max ....... M-513
+    Iavl ......... OP-112   isub .......... OP-71   mismatchdist .. M-983   pvag .......... M-161   vgbr_max ...... M-517
+    OPdef ........ OP-106   ivth .......... M-110   mismatchmod ... M-978   pvbm .......... M-833   vgd ............ OP-9
+    SDint ........ OP-109   ivth_vdsmin ... M-113   mismatchvec1 .. M-979   pvbx .......... M-832   vgd_max ....... M-509
+    SDop ......... OP-108   ivthl ......... M-112   mismatchvec2 .. M-980   pvfb .......... M-824   vgdr_max ...... M-515
+    Tk ........... OP-110   ivthw ......... M-111   mismatchvec3 .. M-981   pvfbcv ........ M-894   vgs ............ OP-6
+    a0 ............. M-91   jmax .......... M-504   mismatchvec4 .. M-982   pvfbsdoff ..... M-962   vgs_max ....... M-510
+    a1 ............. M-97   jmelt ......... M-315   mj ............ M-329   pvoff ......... M-881   vgsr_max ...... M-516
+    a2 ............. M-98   js ............ M-276   mjd ........... M-331   pvoffcv ....... M-898   vgt ........... OP-94
+    acde .......... M-245   jsd ........... M-278   mjs ........... M-330   pvsat ......... M-859   voff .......... M-138
+    acm ........... M-114   jss ........... M-277   mjsw .......... M-339   pvth0 ......... M-823   voffcv ........ M-242
+    acnqsmod ....... I-51   jsswg ......... M-325   mjswd ......... M-341   pvtho ......... M-822   voffcvl ....... M-244
+    acnqsmod ....... M-17   jswd .......... M-280   mjswg ......... M-348   pvtl .......... M-964   voffl ......... M-143
+    ad .............. I-4   jswgd ......... M-282   mjswgd ........ M-350   pw0 ........... M-829   vsat .......... M-130
+    ad ............ M-491   jswgs ......... M-281   mjswgs ........ M-349   pwr ........... M-857   vsat_marg ..... OP-97
+    adeff ........... O-9   jsws .......... M-279   mjsws ......... M-340   pwr ........... OP-55   vsb ........... OP-92
+    ados .......... M-104   jtsd .......... M-284   mnr ........... M-317   pxj ........... M-850   vth ........... OP-12
+    af ............ M-440   jtss .......... M-283   mobmod .......... M-6   pxn ........... M-965   vth0 ......... OP-113
+    agidl ......... M-179   jtsswd ........ M-286   moin .......... M-246   pxrcrg1 ....... M-960   vth_drive ..... OP-95
+    agisl ......... M-186   jtsswgd ....... M-288   mtrlcompatmod ... M-9   pxrcrg2 ....... M-961   vthmod ........ M-109
+    ags ............ M-92   jtsswgs ....... M-287   mtrlmod ......... M-8   pxt ........... M-853   vtho ........... M-67
+    aigbacc ....... M-193   jtssws ........ M-285   mulbeta ........ I-72   qb ............ OP-77   vtl ........... M-132
+    aigbinv ....... M-197   jtweff ........ M-316   mulid0 ......... I-71   qbi ........... OP-85   vtsd .......... M-302
+    aigc .......... M-202   k ............. M-413   mulmu0 ......... I-68   qd ............ OP-75   vtss .......... M-301
+    aigd .......... M-211   k1 ............. M-71   mult_fn ........ I-48   qdi ........... OP-83   vtsswd ........ M-304
+    aigs .......... M-208   k2 ............. M-72   mult_i ......... I-46   qg ............ OP-74   vtsswgd ....... M-306
+    aigsd ......... M-205   k2we .......... M-433   mult_q ......... I-47   qgdovl ........ OP-80   vtsswgs ....... M-305
+    alarm ......... M-502   k3 ............. M-73   mulu0 .......... I-70   qgi ........... OP-82   vtssws ........ M-303
+    alpha0 ........ M-175   k3b ............ M-74   mulvsat ........ I-69   qgsovl ........ OP-81   w ............... I-1
+    alpha1 ........ M-176   keta ........... M-95   mvt0 .......... M-975   qjd ........... OP-78   w ............. M-488
+    as .............. I-3   ketac .......... M-96   mvtwl ......... M-973   qjs ........... OP-79   w0 ............. M-75
+    as ............ M-490   kf ............ M-442   mvtwl2 ........ M-974   qs ............ OP-76   wa0 ........... M-689
+    aseff .......... O-10   kgidl ......... M-184   n ............. M-372   qsi ........... OP-84   wa1 ........... M-692
+    at ............ M-365   kgisl ......... M-191   ndep ........... M-43   rbdb ........... I-63   wa2 ........... M-693
+    b0 ............. M-93   kt1 ........... M-358   nf ............. I-65   rbdb .......... M-475   wacde ......... M-744
+    b1 ............. M-94   kt1l .......... M-359   nf ............ M-263   rbdbx0 ........ M-479   wagidl ........ M-778
+    bdos .......... M-105   kt2 ........... M-360   nfactor ....... M-145   rbdby0 ........ M-480   wags .......... M-694
+    beff ......... OP-101   ku0 ........... M-418   ngate .......... M-45   rbodymod ....... I-56   waigbacc ...... M-788
+    beta0 ......... M-177   ku0we ......... M-434   ngcon .......... I-81   rbodymod ....... M-15   waigbinv ...... M-792
+    betaeff ....... OP-17   kvsat ......... M-419   ngcon ......... M-262   rbpb ........... I-60   waigc ......... M-797
+    bg0sub ........ M-101   kvth0 ......... M-423   ni0sub ........ M-100   rbpb .......... M-456   waigsd ........ M-800
+    bgidl ......... M-180   kvth0we ....... M-432   nigbacc ....... M-196   rbpbx0 ........ M-457   walpha0 ....... M-735
+    bgisl ......... M-187   l ............... I-2   nigbinv ....... M-201   rbpbxl ........ M-458   walpha1 ....... M-736
+    bigbacc ....... M-194   l ............. M-489   nigc .......... M-216   rbpbxnf ....... M-460   warn .......... M-507
+    bigbinv ....... M-198   la0 ........... M-538   njd ........... M-374   rbpbxw ........ M-459   wat ........... M-753
+    bigc .......... M-203   la1 ........... M-541   njs ........... M-373   rbpby0 ........ M-461   wb0 ........... M-690
+    bigd .......... M-212   la2 ........... M-542   njts .......... M-289   rbpbyl ........ M-462   wb1 ........... M-691
+    bigs .......... M-209   lacde ......... M-593   njtsd ......... M-292   rbpbynf ....... M-464   wbeta0 ........ M-737
+    bigsd ......... M-206   lagidl ........ M-627   njtssw ........ M-290   rbpbyw ........ M-463   wbgidl ........ M-779
+    binunit ......... M-4   lags .......... M-543   njtsswd ....... M-293   rbpd ........... I-61   wbigbacc ...... M-789
+    bnr ........... M-318   laigbacc ...... M-637   njtsswg ....... M-291   rbpd .......... M-465   wbigbinv ...... M-793
+    bv ............ M-271   laigbinv ...... M-641   njtsswgd ...... M-294   rbpd0 ......... M-466   wbigc ......... M-798
+    bv_enable ..... M-274   laigc ......... M-646   noff .......... M-241   rbpdl ......... M-467   wbigsd ........ M-801
+    bvd ........... M-273   laigsd ........ M-649   noia .......... M-436   rbpdnf ........ M-469   wcdsc ......... M-724
+    bvj ........... M-505   lalpha0 ....... M-584   noib .......... M-437   rbpdw ......... M-468   wcdscb ........ M-725
+    bvs ........... M-272   lalpha1 ....... M-585   noic .......... M-438   rbps ........... I-62   wcdscd ........ M-726
+    capmod ......... M-13   lambda ........ M-131   nrd ............. I-7   rbps .......... M-470   wcf ........... M-742
+    cbb ........... OP-36   lat ........... M-602   nrd ........... M-494   rbps0 ......... M-471   wcgdl ......... M-739
+    cbd ........... OP-34   lb0 ........... M-539   nrfwd ......... M-324   rbpsl ......... M-472   wcgidl ........ M-780
+    cbdbo ......... OP-44   lb1 ........... M-540   nrs ............. I-8   rbpsnf ........ M-474   wcgsl ......... M-738
+    cbg ........... OP-33   lbeta0 ........ M-586   nrs ........... M-495   rbpsw ......... M-473   wcigbacc ...... M-790
+    cbgbo ......... OP-43   lbgidl ........ M-628   nsd ............ M-46   rbsb ........... I-64   wcigbinv ...... M-794
+    cbs ........... OP-35   lbigbacc ...... M-638   nsub ........... M-44   rbsb .......... M-476   wcigc ......... M-799
+    cbsbo ......... OP-45   lbigbinv ...... M-642   ntnoi ......... M-445   rbsbx0 ........ M-477   wcigsd ........ M-802
+    cdb ........... OP-28   lbigc ......... M-647   ntox .......... M-219   rbsby0 ........ M-478   wcit .......... M-729
+    cdd ........... OP-26   lbigsd ........ M-650   pa0 ........... M-840   rbsdbxl ....... M-481   wckappad ...... M-808
+    cddbo ......... OP-47   lc ............ M-133   pa1 ........... M-843   rbsdbxnf ...... M-483   wckappas ...... M-807
+    cdg ........... OP-25   lcdsc ......... M-573   pa2 ........... M-844   rbsdbxw ....... M-482   wclc .......... M-740
+    cdgbo ......... OP-46   lcdscb ........ M-574   pacde ......... M-895   rbsdbyl ....... M-484   wcle .......... M-741
+    cds ........... OP-27   lcdscd ........ M-575   pagidl ........ M-929   rbsdbynf ...... M-486   wdelta ........ M-723
+    cdsbo ......... OP-48   lcf ........... M-591   pags .......... M-845   rbsdbyw ....... M-485   wdrout ........ M-715
+    cdsc .......... M-150   lcgdl ......... M-588   paigbacc ...... M-939   rd ............ M-118   wdsub ......... M-731
+    cdscb ......... M-151   lcgidl ........ M-629   paigbinv ...... M-943   rdc ............. I-9   wdvt0 ......... M-683
+    cdscd ......... M-152   lcgsl ......... M-587   paigc ......... M-948   rdc ........... M-496   wdvt0w ........ M-686
+    cf ............ M-235   lcigbacc ...... M-639   paigsd ........ M-951   rdeff ......... OP-58   wdvt1 ......... M-684
+    cgb ........... OP-24   lcigbinv ...... M-643   palpha0 ....... M-886   rdsmod ......... M-10   wdvt1w ........ M-687
+    cgbo .......... M-228   lcigc ......... M-648   palpha1 ....... M-887   rdsw .......... M-166   wdvt2 ......... M-685
+    cgd ........... OP-22   lcigsd ........ M-651   paramchk ........ M-5   rdswmin ....... M-167   wdvt2w ........ M-688
+    cgdbo ......... OP-41   lcit .......... M-578   pat ........... M-904   rdw ........... M-168   wdvtp0 ........ M-765
+    cgdl .......... M-231   lckappad ...... M-657   pb ............ M-332   rdwmin ........ M-169   wdvtp1 ........ M-766
+    cgdo .......... M-227   lckappas ...... M-656   pb0 ........... M-841   region ......... I-49   wdvtp2 ........ M-767
+    cgg ........... OP-21   lclc .......... M-589   pb1 ........... M-842   region ......... OP-1   wdvtp3 ........ M-768
+    cggbo ......... OP-40   lcle .......... M-590   pbd ........... M-334   reversed ....... OP-4   wdvtp4 ........ M-769
+    cgidl ......... M-181   ld ............ M-119   pbeta0 ........ M-888   rgate ........ OP-104   wdvtp5 ........ M-770
+    cgisl ......... M-188   ldelta ........ M-572   pbgidl ........ M-930   rgatemod ....... I-55   wdwb .......... M-701
+    cgs ........... OP-23   ldif .......... M-116   pbigbacc ...... M-940   rgatemod ....... M-14   wdwg .......... M-700
+    cgsbo ......... OP-42   ldrout ........ M-564   pbigbinv ...... M-944   rgbd .......... OP-60   web ........... M-430
+    cgsl .......... M-230   ldsub ......... M-580   pbigc ......... M-949   rgbi ............ O-8   wec ........... M-431
+    cgso .......... M-226   ldvt0 ......... M-532   pbigsd ........ M-952   rgeomod ........ I-59   weff ............ O-3
+    cigbacc ....... M-195   ldvt0w ........ M-535   pbs ........... M-333   rgeomod ........ M-26   weffcv .......... O-5
+    cigbinv ....... M-199   ldvt1 ......... M-533   pbsw .......... M-342   rgidl ......... M-185   weffeot ....... M-108
+    cigc .......... M-204   ldvt1w ........ M-536   pbswd ......... M-344   rgisl ......... M-192   wegidl ........ M-781
+    cigd .......... M-213   ldvt2 ......... M-534   pbswg ......... M-351   rnoia ......... M-449   weigbinv ...... M-795
+    cigs .......... M-210   ldvt2w ........ M-537   pbswgd ........ M-353   rnoib ......... M-450   weta0 ......... M-732
+    cigsd ......... M-207   ldvtp0 ........ M-614   pbswgs ........ M-352   rnoic ......... M-451   wetab ......... M-734
+    cit ........... M-149   ldvtp1 ........ M-615   pbsws ......... M-343   ron ........... OP-49   weu ........... M-771
+    cj ............ M-326   ldvtp2 ........ M-616   pcdsc ......... M-875   rout ......... OP-100   wfgidl ........ M-782
+    cjd ........... M-328   ldvtp3 ........ M-617   pcdscb ........ M-876   rs ............ M-117   wfgisl ........ M-785
+    cjd ........... OP-19   ldvtp4 ........ M-618   pcdscd ........ M-877   rsc ............ I-10   wfprout ....... M-773
+    cjs ........... M-327   ldvtp5 ........ M-619   pcf ........... M-893   rsc ........... M-497   wgamma1 ....... M-679
+    cjs ........... OP-20   ldwb .......... M-550   pcgdl ......... M-890   rseff ......... OP-59   wgamma2 ....... M-680
+    cjsw .......... M-336   ldwg .......... M-549   pcgidl ........ M-931   rsh ............ M-49   wint ........... M-52
+    cjswd ......... M-338   leff ............ O-4   pcgsl ......... M-889   rshg ........... M-50   wk ............ M-415
+    cjswg ......... M-345   leffcv .......... O-6   pcigbacc ...... M-941   rsw ........... M-170   wk1 ........... M-674
+    cjswgd ........ M-347   leffeot ....... M-107   pcigbinv ...... M-945   rswmin ........ M-171   wk2 ........... M-675
+    cjswgs ........ M-346   legidl ........ M-630   pcigc ......... M-950   sa ............. I-11   wk2we ......... M-816
+    cjsws ......... M-337   leigbinv ...... M-644   pcigsd ........ M-953   sa1 ............ I-14   wk3 ........... M-676
+    ckappad ....... M-233   leta0 ......... M-581   pcit .......... M-880   sa10 ........... I-23   wk3b .......... M-677
+    ckappas ....... M-232   letab ......... M-583   pckappad ...... M-959   sa2 ............ I-15   wketa ......... M-695
+    clc ........... M-236   leu ........... M-620   pckappas ...... M-958   sa3 ............ I-16   wketac ........ M-696
+    cle ........... M-237   level ........... M-2   pclc .......... M-891   sa4 ............ I-17   wkgidl ........ M-783
+    cm ........... OP-116   lfgidl ........ M-631   pcle .......... M-892   sa5 ............ I-18   wkgisl ........ M-786
+    cmb .......... OP-117   lfgisl ........ M-634   pclm .......... M-153   sa6 ............ I-19   wkt1 .......... M-750
+    cmx .......... OP-118   lfprout ....... M-622   pd .............. I-6   sa7 ............ I-20   wkt1l ......... M-751
+    cnr ........... M-319   lgamma1 ....... M-528   pd ............ M-493   sa8 ............ I-21   wkt2 .......... M-752
+    co ........... OP-115   lgamma2 ....... M-529   pdeff .......... O-11   sa9 ............ I-22   wku0 .......... M-818
+    compatible .... M-984   lint ........... M-51   pdelta ........ M-874   saref ......... M-391   wku0we ........ M-817
+    covlgb ........ OP-39   lintnoi ....... M-443   pdiblc1 ....... M-154   sb ............. I-12   wkvth0 ........ M-819
+    covlgd ........ OP-38   lk ............ M-414   pdiblc2 ....... M-155   sb1 ............ I-24   wkvth0we ...... M-815
+    covlgs ........ OP-37   lk1 ........... M-523   pdiblcb ....... M-156   sb10 ........... I-33   wl ............. M-53
+    csb ........... OP-32   lk2 ........... M-524   pdits ......... M-163   sb2 ............ I-25   wlambda ....... M-812
+    csd ........... OP-30   lk2we ......... M-665   pditsd ........ M-165   sb3 ............ I-26   wlc ........... M-250
+    csg ........... OP-29   lk3 ........... M-525   pditsl ........ M-164   sb4 ............ I-27   wln ............ M-54
+    css ........... OP-31   lk3b .......... M-526   pdrout ........ M-866   sb5 ............ I-28   wlod .......... M-417
+    cta ........... M-383   lketa ......... M-544   pdsub ......... M-882   sb6 ............ I-29   wlodku0 ....... M-422
+    ctp ........... M-385   lketac ........ M-545   pdvt0 ......... M-834   sb7 ............ I-30   wlodvth ....... M-425
+    cvchargemod ..... M-7   lkgidl ........ M-632   pdvt0w ........ M-837   sb8 ............ I-31   wlp ........... M-714
+    deleta0 ........ I-75   lkgisl ........ M-635   pdvt1 ......... M-835   sb9 ............ I-32   wlpe0 ......... M-763
+    delk1 .......... I-73   lkt1 .......... M-599   pdvt1w ........ M-838   sbref ......... M-392   wlpeb ......... M-764
+    delnfct ........ I-74   lkt1l ......... M-600   pdvt2 ......... M-836   sc ............. I-79   wmax .......... M-498
+    delta ......... M-162   lkt2 .......... M-601   pdvt2w ........ M-839   sca ............ I-76   wmin .......... M-499
+    deltox ......... I-54   lku0 .......... M-667   pdvtp0 ........ M-916   scb ............ I-77   wminv ......... M-772
+    delvto ......... I-67   lku0we ........ M-666   pdvtp1 ........ M-917   scc ............ I-78   wminvcv ....... M-749
+    diomod ......... M-20   lkvth0 ........ M-668   pdvtp2 ........ M-918   scref ......... M-435   wmlt ........... M-66
+    dlc ........... M-238   lkvth0we ...... M-664   pdvtp3 ........ M-919   sd ............. I-13   wmoin ......... M-745
+    dlcig ......... M-214   ll ............. M-58   pdvtp4 ........ M-920   self_gain ..... OP-99   wndep ......... M-760
+    dlcigd ........ M-215   llambda ....... M-661   pdvtp5 ........ M-921   shrink ........ M-985   wnfactor ...... M-727
+    dmcg .......... M-253   llc ........... M-247   pdwb .......... M-852   shrink2 ....... M-986   wngate ........ M-698
+    dmcgt ......... M-256   lln ............ M-59   pdwg .......... M-851   sk0 ........... M-401   wnigbacc ...... M-791
+    dmci .......... M-254   llodku0 ....... M-421   pegidl ........ M-932   sk1 ........... M-405   wnigbinv ...... M-796
+    dmdg .......... M-255   llodvth ....... M-424   peigbinv ...... M-946   sk2 ........... M-409   wnigc ......... M-803
+    dnr ........... M-320   llp ........... M-563   permod ......... M-22   sl ............ M-393   wnoff ......... M-746
+    drout ......... M-157   llpe0 ......... M-612   peta0 ......... M-883   steta0 ........ M-428   wnoi .......... M-444
+    dskip ......... M-313   llpeb ......... M-613   petab ......... M-885   stimod ......... I-58   wnsd .......... M-761
+    dsub .......... M-148   lmax .......... M-500   peu ........... M-922   stimod ......... M-24   wnsub ......... M-697
+    dtemp .......... I-53   lmin .......... M-501   pfgidl ........ M-933   stk2 .......... M-426   wntox ......... M-806
+    dtemp .......... OP-3   lminv ......... M-621   pfgisl ........ M-936   sw ............ M-397   wpclm ......... M-716
+    dtox ........... M-39   lminvcv ....... M-598   pfprout ....... M-924   sw1 ............ I-34   wpdiblc1 ...... M-717
+    dvt0 ........... M-79   lmlt ........... M-65   pgamma1 ....... M-830   sw10 ........... I-43   wpdiblc2 ...... M-718
+    dvt0w .......... M-88   lmoin ......... M-594   pgamma2 ....... M-831   sw2 ............ I-35   wpdiblcb ...... M-719
+    dvt1 ........... M-80   lndep ......... M-609   phig ........... M-99   sw3 ............ I-36   wpdits ........ M-774
+    dvt1w .......... M-89   lnfactor ...... M-576   phin ........... M-70   sw4 ............ I-37   wpditsd ....... M-775
+    dvt2 ........... M-81   lngate ........ M-547   pigcd ......... M-218   sw5 ............ I-38   wpemod ......... M-25
+    dvt2w .......... M-90   lnigbacc ...... M-640   pk ............ M-416   sw6 ............ I-39   wphin ......... M-762
+    dvtp0 .......... M-82   lnigbinv ...... M-645   pk1 ........... M-825   sw7 ............ I-40   wpigcd ........ M-805
+    dvtp1 .......... M-83   lnigc ......... M-652   pk2 ........... M-826   sw8 ............ I-41   wpoxedge ...... M-804
+    dvtp2 .......... M-84   lnoff ......... M-595   pk2we ......... M-967   sw9 ............ I-42   wprt .......... M-758
+    dvtp3 .......... M-85   lnsd .......... M-610   pk3 ........... M-827   tau1 ......... OP-119   wprwb ......... M-704
+    dvtp4 .......... M-86   lnsub ......... M-546   pk3b .......... M-828   tbgasub ....... M-102   wprwg ......... M-705
+    dvtp5 .......... M-87   lntox ......... M-655   pketa ......... M-846   tbgbsub ....... M-103   wpscbe1 ....... M-720
+    dwb ............ M-64   lodeta0 ....... M-429   pketac ........ M-847   tcj ........... M-384   wpscbe2 ....... M-721
+    dwc ........... M-239   lodk2 ......... M-427   pkgidl ........ M-934   tcjsw ......... M-386   wpvag ......... M-722
+    dwg ............ M-63   lp ............ M-128   pkgisl ........ M-937   tcjswg ........ M-387   wr ............ M-174
+    dwj ........... M-257   lpclm ......... M-565   pkt1 .......... M-901   tcnr .......... M-322   wrdsw ......... M-703
+    easub ......... M-135   lpdiblc1 ...... M-566   pkt1l ......... M-902   tdnr .......... M-323   wrdw .......... M-776
+    ef ............ M-441   lpdiblc2 ...... M-567   pkt2 .......... M-903   tempeff ......... O-1   wrgidl ........ M-784
+    eg ............ M-369   lpdiblcb ...... M-568   pku0 .......... M-969   tempeot ....... M-106   wrgisl ........ M-787
+    egidl ......... M-182   lpdits ........ M-623   pku0we ........ M-968   tempmod ........ M-21   wrsw .......... M-777
+    egisl ......... M-189   lpditsd ....... M-624   pkvth0 ........ M-970   teta0 ......... M-389   wsk0 .......... M-403
+    eglev .......... M-30   lpe0 ........... M-76   pkvth0we ...... M-966   tku0 .......... M-420   wsk1 .......... M-407
+    eigbinv ....... M-200   lpeb ........... M-77   plambda ....... M-963   tlev .......... M-367   wsk2 .......... M-411
+    em ............ M-439   lphin ......... M-611   plp ........... M-865   tlevc ......... M-368   wsl ........... M-395
+    eot ............ M-35   lpigcd ........ M-654   plpe0 ......... M-914   tmnr .......... M-321   wsw ........... M-399
+    epsrgate ....... M-33   lpoxedge ...... M-653   plpeb ......... M-915   tnfactor ...... M-388   wteta0 ........ M-733
+    epsrox ......... M-32   lprt .......... M-607   pminv ......... M-923   tnjts ......... M-307   wtnfactor ..... M-728
+    epsrsub ........ M-34   lprwb ......... M-553   pminvcv ....... M-900   tnjtsd ........ M-310   wtvfbsdoff .... M-224
+    eta0 .......... M-146   lprwg ......... M-554   pmoin ......... M-896   tnjtssw ....... M-308   wtvoff ........ M-141
+    etab .......... M-147   lpscbe1 ....... M-569   pndep ......... M-911   tnjtsswd ...... M-311   wtvoffcv ...... M-748
+    eu ............ M-129   lpscbe2 ....... M-570   pnfactor ...... M-878   tnjtsswg ...... M-309   wu0 ........... M-707
+    fc ............ M-335   lpvag ......... M-571   pngate ........ M-849   tnjtsswgd ..... M-312   wua ........... M-709
+    fcsw .......... M-354   lrdsw ......... M-552   pnigbacc ...... M-942   tnoia ......... M-446   wua1 .......... M-754
+    fgidl ......... M-183   lrdw .......... M-625   pnigbinv ...... M-947   tnoib ......... M-447   wub ........... M-710
+    fgisl ......... M-190   lrgidl ........ M-633   pnigc ......... M-954   tnoic ......... M-448   wub1 .......... M-755
+    flkmod ......... M-27   lrgisl ........ M-636   pnoff ......... M-897   tnoimod ........ M-19   wuc ........... M-711
+    fnoimod ........ M-18   lrsw .......... M-626   pnsd .......... M-912   tnom .......... M-355   wuc1 .......... M-756
+    fprout ........ M-160   lsk0 .......... M-402   pnsub ......... M-848   toxe ........... M-36   wucs .......... M-820
+    fqslim ....... OP-120   lsk1 .......... M-406   pntox ......... M-957   toxm ........... M-38   wucste ........ M-821
+    ft ........... OP-103   lsk2 .......... M-410   poxedge ....... M-217   toxp ........... M-37   wud ........... M-712
+    fug .......... OP-102   lsl ........... M-394   ppclm ......... M-867   toxref ........ M-220   wud1 .......... M-757
+    fullreinit ..... M-28   lsw ........... M-398   ppdiblc1 ...... M-868   tpb ........... M-379   wup ........... M-713
+    gamma1 ......... M-41   lteta0 ........ M-582   ppdiblc2 ...... M-869   tpbsw ......... M-381   wute .......... M-759
+    gamma2 ......... M-42   ltnfactor ..... M-577   ppdiblcb ...... M-870   tpbswg ........ M-382   wvbm .......... M-682
+    gap1 .......... M-370   ltvfbsdoff .... M-223   ppdits ........ M-925   trd ........... M-120   wvbx .......... M-681
+    gap2 .......... M-371   ltvoff ........ M-140   ppditsd ....... M-926   trise .......... I-52   wvfb .......... M-673
+    gbd ........... OP-73   ltvoffcv ...... M-597   pphin ......... M-913   trise ......... M-356   wvfbcv ........ M-743
+    gbmin ......... M-487   lu0 ........... M-556   ppigcd ........ M-956   trise .......... OP-2   wvfbsdoff ..... M-811
+    gbs ........... OP-72   lua ........... M-558   ppoxedge ...... M-955   trnqsmod ....... I-50   wvoff ......... M-730
+    gds ........... OP-15   lua1 .......... M-603   pprt .......... M-909   trnqsmod ....... M-16   wvoffcv ....... M-747
+    geomod ......... I-57   lub ........... M-559   pprwb ......... M-855   trs ........... M-121   wvsat ......... M-708
+    geomod ......... M-23   lub1 .......... M-604   pprwg ......... M-856   tvfbsdoff ..... M-222   wvth0 ......... M-672
+    gidlclamp ..... M-452   luc ........... M-560   ppscbe1 ....... M-871   tvoff ......... M-139   wvtho ......... M-671
+    gidlmod ....... M-178   luc1 .......... M-605   ppscbe2 ....... M-872   tvoffcv ....... M-390   wvtl .......... M-813
+    gm ............ OP-14   lucs .......... M-669   ppvag ......... M-873   type ............ M-1   ww ............. M-55
+    gmb ........... OP-93   lucste ........ M-670   prdsw ......... M-854   u0 ............ M-122   ww0 ........... M-678
+    gmbs .......... OP-16   lud ........... M-561   prdw .......... M-927   ua ............ M-123   wwc ........... M-251
+    gmoveri ...... OP-121   lud1 .......... M-606   prgidl ........ M-935   ua1 ........... M-361   wwl ............ M-57
+    gmoverid ...... OP-56   lup ........... M-562   prgisl ........ M-938   ub ............ M-124   wwlc .......... M-252
+    go ........... OP-114   lute .......... M-608   pro_Gamma ..... OP-18   ub1 ........... M-362   wwn ............ M-56
+    hdif .......... M-115   lvbm .......... M-531   prsw .......... M-928   uc ............ M-125   wwr ........... M-706
+    ib ............ OP-53   lvbx .......... M-530   prt ........... M-366   uc1 ........... M-363   wxj ........... M-699
+    ibe ........... OP-89   lvfb .......... M-522   prwb .......... M-173   ucs ........... M-136   wxn ........... M-814
+    ibulk ......... OP-54   lvfbcv ........ M-592   prwg .......... M-172   ucste ......... M-137   wxrcrg1 ....... M-809
+    id ............ OP-50   lvfbsdoff ..... M-660   ps .............. I-5   ud ............ M-126   wxrcrg2 ....... M-810
+    idb ........... OP-90   lvoff ......... M-579   ps ............ M-492   ud1 ........... M-364   wxt ........... M-702
+    ide ........... OP-86   lvoffcv ....... M-596   pscbe1 ........ M-158   ueff .......... OP-57   xgl ........... M-259
+    idovvdsc ...... M-453   lvsat ......... M-557   pscbe2 ........ M-159   up ............ M-127   xgw ............ I-80
+    ids ............ OP-5   lvth0 ......... M-521   pseff .......... O-12   updatelevel .... M-29   xgw ........... M-258
+    ig ............ OP-51   lvtho ......... M-520   psk0 .......... M-404   ute ........... M-357   xj ............. M-40
+    igb ........... OP-66   lvtl .......... M-662   psk1 .......... M-408   vbd_max ....... M-511   xjbvd ......... M-270
+    igbacc ........ OP-67   lw ............. M-60   psk2 .......... M-412   vbdr_max ...... M-519   xjbvs ......... M-269
+    igbinv ........ OP-68   lw0 ........... M-527   psl ........... M-396   vbm ............ M-78   xl ............ M-260
+    igbmod ......... M-12   lwc ........... M-248   psw ........... M-400   vbox .......... M-506   xn ............ M-134
+    igcd .......... OP-70   lwl ............ M-62   pta ........... M-378   vbs ............ OP-8   xpart ......... M-234
+    igcmod ......... M-11   lwlc .......... M-249   pteta0 ........ M-884   vbs_max ....... M-512   xrcrg1 ........ M-454
+    igcs .......... OP-69   lwn ............ M-61   ptnfactor ..... M-879   vbsr_max ...... M-518   xrcrg2 ........ M-455
+    igd ........... OP-64   lwr ........... M-555   ptp ........... M-380   vbx ............ M-47   xt ............. M-48
+    igdt .......... OP-63   lxj ........... M-548   ptvfbsdoff .... M-225   vdb ........... OP-10   xti ........... M-375
+    ige ........... OP-87   lxn ........... M-663   ptvoff ........ M-142   vddeot ......... M-69   xtid .......... M-377
+    igidl ......... OP-61   lxrcrg1 ....... M-658   ptvoffcv ...... M-899   vds ............ OP-7   xtis .......... M-376
+    igisl ......... OP-62   lxrcrg2 ....... M-659   pu0 ........... M-858   vds_max ....... M-508   xtsd .......... M-296
+    igs ........... OP-65   lxt ........... M-551   pua ........... M-860   vdsat ......... OP-13   xtss .......... M-295
+    ijthdfwd ...... M-268   m .............. I-45   pua1 .......... M-905   vdsat_marg .... OP-98   xtsswd ........ M-298
+    ijthdrev ...... M-266   maxvdd ........ M-987   pub ........... M-861   vdsr_max ...... M-514   xtsswgd ....... M-300
+    ijthsfwd ...... M-267   mbe0 .......... M-977   pub1 .......... M-906   vdss .......... OP-96   xtsswgs ....... M-299
+    ijthsrev ...... M-265   mbewl ......... M-976   puc ........... M-862   vearly ....... OP-105   xtssws ........ M-297
+    imax .......... M-503   meff ............ O-2   puc1 .......... M-907   version ......... M-3   xw ............ M-261
+    imelt ......... M-314   meto .......... M-229   pucs .......... M-971   vfb ............ M-68
+    is ............ M-275   min ............ I-66   pucste ........ M-972   vfbcv ......... M-240
+    is ............ OP-52   min ........... M-264   pud ........... M-863   vfbsd ........... O-7
+    isb ........... OP-91   minr ........... M-31   pud1 .......... M-908   vfbsdoff ...... M-221
+
